@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁正涛 | AI Researcher & Developer</title>
+    <meta name="description" content="梁正涛 - 北京理工大学 AI 研究员，37+ 开源项目，华为 ICT 大赛国家一等奖">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --surface-2: #1a1a1a;
+            --border: #2a2a2a;
+            --text: #e5e5e5;
+            --text-muted: #888;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --green: #22c55e;
+            --orange: #f59e0b;
+            --purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .stat { text-align: center; }
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-heading {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .card-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .badge-blue { background: rgba(59,130,246,0.15); color: var(--accent); }
+        .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+        .badge-orange { background: rgba(245,158,11,0.15); color: var(--orange); }
+        .badge-purple { background: rgba(168,85,247,0.15); color: var(--purple); }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 32px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg);
+        }
+
+        .timeline-date {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 4px 0;
+        }
+
+        .timeline-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Skills */
+        .skill-group {
+            margin-bottom: 32px;
+        }
+
+        .skill-group-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            padding: 6px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* Awards */
+        .award-card {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .award-icon {
+            font-size: 48px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .award-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .award-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats { gap: 24px; }
+            .stat-value { font-size: 28px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-logo">ZT</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="https://github.com/liangzhengtao" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>🎓</span>
+                <span>北京理工大学 · AI 硕士在读</span>
+            </div>
+            <h1>梁正涛</h1>
+            <p>AI 研究员 & 全栈开发者。专注于多模态大模型安全对齐、AI Agent 架构、开源工具开发。</p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value" style="color: var(--accent)">37+</div>
+                    <div class="stat-label">Open Source Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" style="color: var(--green)">200+</div>
+                    <div class="stat-label">Skills & Prompts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" style="color: var(--orange)">🥇</div>
+                    <div class="stat-label">华为 ICT 国家一等奖</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" style="color: var(--purple)">🌍</div>
+                    <div class="stat-label">全球赛三等奖</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">About</div>
+            <div class="section-heading">关于我</div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+                <div>
+                    <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted);">
+                        我是梁正涛，2026 年入学北京理工大学人工智能学院，攻读智能科学与技术硕士学位（3 年制），预计 2029 年毕业。
+                    </p>
+                    <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); margin-top: 16px;">
+                        研究方向为<strong style="color: var(--text)">多模态大模型的安全对齐方法</strong>。本科毕业于贵州大学，在校期间获得华为 ICT 大赛昇腾 AI 赛道国家一等奖和全球赛三等奖。
+                    </p>
+                    <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); margin-top: 16px;">
+                        我热爱开源，在 GitHub 上维护着 <strong style="color: var(--text)">37+ 个开源项目</strong>，涵盖 AI 开发工具、科研技能、面试准备、视频创作等多个领域。所有项目都是中英双语，免费开源。
+                    </p>
+                </div>
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+                    <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--text-muted);">QUICK FACTS</h3>
+                    <div style="font-size: 14px; line-height: 2;">
+                        <div>📍 北京理工大学</div>
+                        <div>🎓 AI 硕士 (2026-2029)</div>
+                        <div>🔬 多模态安全对齐</div>
+                        <div>🏆 华为 ICT 国家一等奖</div>
+                        <div>💻 37+ 开源项目</div>
+                        <div>🌐 中英双语</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">Education</div>
+            <div class="section-heading">教育经历</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2026 - 2029 (预计)</div>
+                    <div class="timeline-title">北京理工大学</div>
+                    <div class="timeline-subtitle">人工智能学院 · 智能科学与技术 · 学术硕士</div>
+                    <div class="timeline-subtitle" style="margin-top: 8px; color: var(--accent);">
+                      研究方向：多模态大模型的安全对齐方法
+                    </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-date">2022 - 2026</div>
+                  <div class="timeline-title">贵州大学</div>
+                  <div class="timeline-subtitle">计算机科学与技术学院 · 人工智能专业 · 学士</div>
+                  <div class="timeline-subtitle" style="margin-top: 8px;">
+                    毕业设计：多模态大模型的安全对齐方法设计与实现
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards -->
+    <section id="awards">
+        <div class="container">
+            <div class="section-title">Awards</div>
+            <div class="section-heading">荣誉奖项</div>
+
+            <div class="award-card">
+                <div class="award-icon">🥇</div>
+                <div>
+                  <div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · 国家一等奖</div>
+                  <div class="award-desc">全国总决赛最高奖项，展示 AI 模型开发与部署能力</div>
+                </div>
+            </div>
+
+            <div class="award-card">
+                <div class="award-icon">🌍</div>
+                <div>
+                  <div class="award-title">华为 ICT 大赛 · 全球总决赛 · 三等奖</div>
+                  <div class="award-desc">代表中国赛区参加全球总决赛，与全球顶尖选手同台竞技</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">Projects</div>
+            <div class="section-heading">开源项目精选</div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🧠 awesome-ai-rules</div>
+                        <span class="card-badge badge-blue">AI Tools</span>
+                    </div>
+                    <div class="card-desc">20 production-ready AI coding rules for Cursor, Claude Code, Kimi Code. Copy-paste, instant results.</div>
+                    <div class="card-tags">
+                        <span class="tag">cursor</span>
+                        <span class="tag">claude-code</span>
+                        <span class="tag">ai-rules</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🎯 vibe-check</div>
+                        <span class="card-badge badge-green">CLI Tool</span>
+                    </div>
+                    <div class="card-desc">npx vibe-check — Score your project's AI-readiness in 5 seconds. 7 categories, 84 points.</div>
+                    <div class="card-tags">
+                        <span class="tag">npx</span>
+                        <span class="tag">cli</span>
+                        <span class="tag">ai-tools</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🚀 awesome-mcp-servers</div>
+                        <span class="card-badge badge-purple">MCP</span>
+                    </div>
+                    <div class="card-desc">9 verified MCP servers for AI coding assistants. One config file, real superpowers.</div>
+                    <div class="card-tags">
+                        <span class="tag">mcp</span>
+                        <span class="tag">cursor</span>
+                        <span class="tag">claude-code</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🔍 agent-trace</div>
+                        <span class="card-badge badge-orange">Debugging</span>
+                    </div>
+                    <div class="card-desc">Trace your AI agent — costs, tokens, tool health, every conversation timeline.</div>
+                    <div class="card-tags">
+                        <span class="tag">debugging</span>
+                        <span class="tag">ai-agents</span>
+                        <span class="tag">observability</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📝 paper-grill</div>
+                        <span class="card-badge badge-blue">Research</span>
+                    </div>
+                    <div class="card-desc">Honest paper review skills — NeurIPS, ICML, ICLR, ACL, CVPR review styles.</div>
+                    <div class="card-tags">
+                        <span class="tag">academia</span>
+                        <span class="tag">review</span>
+                        <span class="tag">neurips</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🎬 awesome-video-prompts</div>
+                        <span class="card-badge badge-green">Creative</span>
+                    </div>
+                    <div class="card-desc">200+ video generation prompts for Sora, Runway, Pika, Kling. Copy, paste, create.</div>
+                    <div class="card-tags">
+                        <span class="tag">sora</span>
+                        <span class="tag">runway</span>
+                        <span class="tag">video-ai</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="https://github.com/liangzhengtao?tab=repositories" target="_blank" class="btn btn-outline">
+                    View all 37+ projects →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">Skills</div>
+            <div class="section-heading">技术栈</div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+                <div class="skill-group">
+                    <div class="skill-group-title">Languages</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Go</span>
+                        <span class="skill-tag">Rust</span>
+                        <span class="skill-tag">LaTeX</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">AI / ML</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">Local LLMs</span>
+                        <span class="skill-tag">MCP</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Frontend</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Vue</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Backend</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">DevOps</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Terraform</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Tools</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Cursor</span>
+                        <span class="skill-tag">Claude Code</span>
+                        <span class="skill-tag">Kimi Code</span>
+                        <span class="skill-tag">Vim</span>
+                        <span class="skill-tag">tmux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="section-title">Contact</div>
+            <div class="section-heading">Let's Connect</div>
+            <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">
+                如果你对我的研究或开源项目感兴趣，欢迎联系我。
+            </p>
+            <div class="cta-buttons">
+                <a href="https://github.com/liangzhengtao" target="_blank" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    GitHub
+                </a>
+                <a href="https://github.com/liangzhengtao/liangzhengtao" target="_blank" class="btn btn-outline">
+                    View Profile →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 梁正涛 · Built with ❤️ and open source</p>
+        </div>
+    </footer>
+</body>
+</html>
