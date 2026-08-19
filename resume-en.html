@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zhengtao Liang - Resume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         @page { size: A4; margin: 0; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,6 +28,8 @@
             body { background: white; }
             .page { box-shadow: none; padding: 24px 32px; }
         }
+
+        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -38,7 +40,7 @@
         }
         .header-left h1 {
             font-size: 28px;
-            font-weight: 700;
+            font-weight: 800;
             color: #1a1a2e;
             letter-spacing: -0.5px;
             margin-bottom: 4px;
@@ -46,7 +48,7 @@
         .header-left .subtitle {
             font-size: 14px;
             color: #2563eb;
-            font-weight: 500;
+            font-weight: 600;
         }
         .header-right {
             text-align: right;
@@ -54,42 +56,57 @@
             color: #555;
             line-height: 1.8;
         }
-        .header-right a { color: #2563eb; text-decoration: none; }
+        .header-right a { color: #2563eb; text-decoration: none; font-weight: 500; }
+
+        /* Sections */
         .section { margin-bottom: 16px; }
         .section-title {
             font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: #2563eb;
             border-bottom: 1.5px solid #e5e7eb;
             padding-bottom: 4px;
             margin-bottom: 10px;
         }
+
+        /* Experience items */
         .exp-item { margin-bottom: 12px; }
         .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .exp-title { font-size: 14px; font-weight: 600; color: #1a1a2e; }
-        .exp-date { font-size: 11px; color: #888; font-weight: 500; white-space: nowrap; }
-        .exp-subtitle { font-size: 12px; color: #2563eb; margin-top: 2px; }
+        .exp-title { font-size: 14px; font-weight: 700; color: #1a1a2e; }
+        .exp-date { font-size: 11px; color: #888; font-weight: 500; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+        .exp-subtitle { font-size: 12px; color: #2563eb; margin-top: 2px; font-weight: 500; }
         .exp-desc { font-size: 12px; color: #444; margin-top: 4px; line-height: 1.6; }
         .exp-desc li { margin-bottom: 3px; padding-left: 4px; }
-        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .skill-category { margin-bottom: 6px; }
-        .skill-label { font-size: 11px; font-weight: 600; color: #1a1a2e; margin-bottom: 3px; }
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 3px; }
-        .skill-tag { font-size: 10px; padding: 2px 6px; background: #f0f4ff; color: #2563eb; border-radius: 3px; border: 1px solid #dbeafe; }
-        .award-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
-        .award-icon { font-size: 16px; min-width: 20px; }
-        .award-title { font-size: 12px; font-weight: 600; }
-        .project-item { margin-bottom: 10px; padding: 8px 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #e5e7eb; }
-        .project-name { font-size: 13px; font-weight: 600; color: #1a1a2e; }
-        .project-desc { font-size: 11px; color: #666; margin-top: 3px; }
+        .skill-label { font-size: 11px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+        .skill-tag { font-size: 10px; padding: 2px 8px; background: #f0f4ff; color: #2563eb; border-radius: 4px; border: 1px solid #dbeafe; font-weight: 500; }
+
+        /* Awards */
+        .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .award-category { font-size: 12px; font-weight: 700; color: #2563eb; margin-bottom: 8px; }
+        .award-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 5px; }
+        .award-icon { font-size: 14px; min-width: 20px; }
+        .award-title { font-size: 11px; font-weight: 500; color: #333; }
+
+        /* Projects */
+        .project-item { margin-bottom: 10px; padding: 10px 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb; }
+        .project-name { font-size: 13px; font-weight: 700; color: #1a1a2e; }
+        .project-desc { font-size: 11px; color: #555; margin-top: 4px; line-height: 1.6; }
+        .project-desc li { margin-bottom: 2px; }
+
+        .highlight { color: #2563eb; font-weight: 700; }
         .footer { margin-top: 16px; padding-top: 8px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 10px; color: #999; }
-        .highlight { color: #2563eb; font-weight: 600; }
     </style>
 </head>
 <body>
     <div class="page">
+        <!-- Header -->
         <div class="header">
             <div class="header-left">
                 <h1>Zhengtao Liang</h1>
@@ -98,94 +115,140 @@
             <div class="header-right">
                 <div>📞 17684269881</div>
                 <div>📧 1392452425a@gmail.com</div>
-                <div>🎂 2003.05 · Communist Youth League Member</div>
+                <div>🎂 Born May 2003 · Communist Youth League Member</div>
                 <div>🔗 <a href="https://github.com/liangzhengtao">github.com/liangzhengtao</a></div>
                 <div>🌐 <a href="https://liangzhengtao.github.io/liangzhengtao-portfolio">Portfolio</a></div>
             </div>
         </div>
 
+        <!-- Education -->
         <div class="section">
             <div class="section-title">Education</div>
+
             <div class="exp-item">
                 <div class="exp-header">
-                    <div class="exp-title">Guizhou University (Project 211 & Double First-Class)</div>
-                    <div class="exp-date">Sep 2022 - Present</div>
+                    <div class="exp-title">Beijing Institute of Technology (BIT) — 985/211/Double First-Class</div>
+                    <div class="exp-date">Sep 2026 - Jun 2029 (Expected)</div>
                 </div>
-                <div class="exp-subtitle">Artificial Intelligence</div>
+                <div class="exp-subtitle">M.S. in Intelligent Science and Technology · School of Artificial Intelligence</div>
                 <ul class="exp-desc">
-                    <li>Weighted Average Score: <span class="highlight">1/69</span> · Comprehensive Score: <span class="highlight">1/69</span> · GPA: <span class="highlight">4.08/5</span></li>
-                    <li>English Proficiency: CET4/6, proficient in reading and writing academic English</li>
+                    <li>Research Focus: <span class="highlight">Safety alignment of multimodal large language models</span></li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Guizhou University — 211/Double First-Class</div>
+                    <div class="exp-date">Sep 2022 - Jun 2026</div>
+                </div>
+                <div class="exp-subtitle">B.S. in Artificial Intelligence · School of Computer Science and Technology</div>
+                <ul class="exp-desc">
+                    <li>Weighted Average Score Ranking: <span class="highlight">1/69</span> · Comprehensive Score: <span class="highlight">1/69</span> · GPA: <span class="highlight">4.08/5</span></li>
+                    <li>IELTS: <span class="highlight">6.5</span> · CET-6: <span class="highlight">572</span> · Fluent in academic English reading, writing, and communication</li>
                 </ul>
             </div>
         </div>
 
+        <!-- Research Experience -->
         <div class="section">
-            <div class="section-title">Honors & Awards</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div>
-                    <h3 style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #2563eb;">Provincial Level</h3>
-                    <div class="award-item"><div class="award-icon">🏆</div><div class="award-title">Provincial "Merit Student" of Guizhou</div></div>
-                    <div class="award-item"><div class="award-icon">🎤</div><div class="award-title">Third Prize, "Voice of Guizhou" Foreign Language Speech Contest</div></div>
-                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">Third Prize, "Challenge Cup" Provincial Entrepreneurship Competition</div></div>
-                    <div class="award-item"><div class="award-icon">🥇</div><div class="award-title">Huawei ICT Competition, Ascend AI Track, National 1st Prize</div></div>
-                    <div class="award-item"><div class="award-icon">🌍</div><div class="award-title">Huawei ICT Competition, Global Finals, 3rd Prize</div></div>
-                </div>
-                <div>
-                    <h3 style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #2563eb;">University Level</h3>
-                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title">First-class Scholarship (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">⭐</div><div class="award-title">Merit Student (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">Outstanding Cadre of Student Association</div></div>
-                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">Outstanding Youth League Member (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">🌟</div><div class="award-title">"Top 10 Students of Quality Development"</div></div>
-                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">"Challenge Cup" University-level 1st Prize (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"FLTRP · ETIC Cup" English Contests (2nd & 3rd)</div></div>
-                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"21st Century Cup" English Speaking (3rd)</div></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Project Experience</div>
+            <div class="section-title">Research Experience</div>
 
             <div class="project-item">
-                <div class="project-name">🧠 Cognitive Intelligence for Judicial Verdicts <span class="highlight">(Project Lead)</span></div>
+                <div class="project-name">Cognitive Intelligence for Judicial Verdicts: Knowledge-Experience Dual-Track Fusion <span class="highlight">(Project Lead)</span></div>
                 <div class="project-desc">
-                    <strong>Mar 2025 - Present</strong> · CCF-BigData 2025, First Author<br>
-                    Novel RAG framework for legal verdict prediction, fusing legal knowledge with judicial precedents.<br>
-                    • Designed knowledge-experience dual-guided LLM fusion prediction architecture<br>
-                    • Utilized 7B LLM for crime element extraction from case facts<br>
-                    • Implemented dual-track retrieval: Milvus vector DB for precedents + legal knowledge base<br>
-                    • Fused multi-source information to drive 30B LLM for verdict prediction
+                    <strong>Mar 2025 - Present</strong> · CCF-BigData 2025, First Author (Submitted)<br>
+                    <ul>
+                        <li>Designed a novel RAG framework for legal verdict prediction, fusing legal knowledge with judicial precedents as dual guidance for LLMs</li>
+                        <li>Engineered a multi-model pipeline: 7B LLM for crime element extraction → Milvus vector DB for precedent retrieval → 30B LLM for verdict generation</li>
+                        <li>Enhanced prediction accuracy and logical rigor through knowledge-experience dual-guided architecture</li>
+                    </ul>
                 </div>
             </div>
 
             <div class="project-item">
-                <div class="project-name">🏛️ Intelligent Q&A System for Government Services <span class="highlight">(Project Lead)</span></div>
+                <div class="project-name">Intelligent Q&A System for Government Services <span class="highlight">(Project Lead)</span></div>
                 <div class="project-desc">
                     <strong>Mar 2024 - Present</strong><br>
-                    LLM-driven Q&A platform for government services.<br>
-                    • Architected system and built backend with FastAPI<br>
-                    • Developed core Q&A logic using Langchain framework<br>
-                    • Managed LLM API selection, invocation, and orchestration<br>
-                    • Deployed functional web-based prototype
+                    <ul>
+                        <li>Architected end-to-end LLM-driven Q&A platform for government services using FastAPI</li>
+                        <li>Developed core Q&A logic with Langchain framework, managing LLM API selection, invocation, and orchestration</li>
+                        <li>Successfully deployed functional web-based prototype with real-time query capabilities</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
+        <!-- Internship -->
+        <div class="section">
+            <div class="section-title">Internship Experience</div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Xueersi (学而思) — Education Technology Company</div>
+                    <div class="exp-date">Guiyang</div>
+                </div>
+                <div class="exp-subtitle">Intern · Education Product Development</div>
+                <ul class="exp-desc">
+                    <li>Developed education products leveraging AI to improve teaching and learning experiences</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Caihong Group (彩虹集团) — Technology Enterprise</div>
+                    <div class="exp-date">Chengdu</div>
+                </div>
+                <div class="exp-subtitle">Intern · Enterprise Software Development</div>
+                <ul class="exp-desc">
+                    <li>Participated in enterprise-level project development, gaining industry-standard software engineering practices</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Global Experience -->
         <div class="section">
             <div class="section-title">Global Experience</div>
             <div class="project-item">
                 <div class="project-name">🇸🇬 National University of Singapore (NUS)</div>
                 <div class="project-desc">
                     <strong>Jul 2023 - Aug 2023</strong><br>
-                    Selected for "Guizhou Provincial Thousand Talents Program" (funded initiative).<br>
-                    • Built "Handwritten Digit Recognition" system independently<br>
-                    • Collaborated with international team in English on financial engineering project<br>
-                    • Both courses completed with excellent performance
+                    <ul>
+                        <li>Selected for <span class="highlight">"Guizhou Provincial Thousand Talents Program"</span> (competitive, funded initiative)</li>
+                        <li>Advanced training in AI theory and computational finance modeling</li>
+                        <li>Independently built "Handwritten Digit Recognition" system</li>
+                        <li>Collaborated with international team entirely in English on financial engineering project</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
+        <!-- Awards -->
+        <div class="section">
+            <div class="section-title">Honors & Awards</div>
+            <div class="awards-grid">
+                <div>
+                    <div class="award-category">National / Provincial</div>
+                    <div class="award-item"><div class="award-icon">🥇</div><div class="award-title">Huawei ICT Competition · Ascend AI Track · <span class="highlight">National 1st Prize</span></div></div>
+                    <div class="award-item"><div class="award-icon">🌍</div><div class="award-title">Huawei ICT Competition · <span class="highlight">Global Finals · 3rd Prize</span></div></div>
+                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title"><span class="highlight">National Scholarship</span> (国家级奖学金)</div></div>
+                    <div class="award-item"><div class="award-icon">🏆</div><div class="award-title">Provincial "Merit Student" of Guizhou</div></div>
+                    <div class="award-item"><div class="award-icon">🎤</div><div class="award-title">3rd Prize, "Voice of Guizhou" Foreign Language Speech Contest</div></div>
+                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">3rd Prize, "Challenge Cup" Provincial Entrepreneurship Competition</div></div>
+                </div>
+                <div>
+                    <div class="award-category">University Level</div>
+                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title">First-class Scholarship (×2)</div></div>
+                    <div class="award-item"><div class="award-icon">⭐</div><div class="award-title">Merit Student (×2)</div></div>
+                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">Outstanding Youth League Member (×2)</div></div>
+                    <div class="award-item"><div class="award-icon">🌟</div><div class="award-title">"Top 10 Students of Quality Development"</div></div>
+                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">"Challenge Cup" University 1st Prize (×2)</div></div>
+                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"FLTRP · ETIC Cup" English Contests (2nd & 3rd)</div></div>
+                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"21st Century Cup" English Speaking (3rd)</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Skills -->
         <div class="section">
             <div class="section-title">Technical Skills</div>
             <div class="skills-grid">
@@ -207,8 +270,8 @@
                         <span class="skill-tag">Transformers</span>
                         <span class="skill-tag">LangChain</span>
                         <span class="skill-tag">OpenAI API</span>
-                        <span class="skill-tag">MCP</span>
                         <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">MCP</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -233,8 +296,33 @@
             </div>
         </div>
 
+        <!-- Open Source -->
+        <div class="section">
+            <div class="section-title">Open Source Contributions</div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-label">Developer Tools</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">agent-trace</span>
+                        <span class="skill-tag">token-meter</span>
+                        <span class="skill-tag">vibe-check</span>
+                        <span class="skill-tag">awesome-ai-rules</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-label">Research & Resources</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">awesome-ai-alignment</span>
+                        <span class="skill-tag">paper-grill</span>
+                        <span class="skill-tag">awesome-geo</span>
+                        <span class="skill-tag">45+ Projects Total</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
-            © 2026 Zhengtao Liang · Last updated: August 2026
+            © 2026 Zhengtao Liang · <a href="https://github.com/liangzhengtao" style="color: #2563eb; text-decoration: none;">github.com/liangzhengtao</a> · Last updated: August 2026
         </div>
     </div>
 </body>
