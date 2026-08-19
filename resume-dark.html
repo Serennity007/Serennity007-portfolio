@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁正涛 - 简历 (暗夜版)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+            color: #e4e4e7;
+            line-height: 1.5;
+            background: #09090b;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: #09090b;
+            padding: 32px 40px;
+            box-shadow: 0 0 40px rgba(167,139,250,0.08);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        @media print {
+            body { background: #09090b; }
+            .page { box-shadow: none; padding: 24px 32px; border: none; }
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #a78bfa;
+            margin-bottom: 20px;
+        }
+        .header-left h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f4f4f5;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+        .header-left .subtitle {
+            font-size: 14px;
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        .header-right {
+            text-align: right;
+            font-size: 12px;
+            color: #a1a1aa;
+            line-height: 1.8;
+        }
+        .header-right a { color: #a78bfa; text-decoration: none; font-weight: 500; }
+        .section { margin-bottom: 16px; }
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #a78bfa;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+        .exp-item { margin-bottom: 12px; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .exp-title { font-size: 14px; font-weight: 700; color: #f4f4f5; }
+        .exp-date { font-size: 11px; color: #71717a; font-weight: 500; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+        .exp-subtitle { font-size: 12px; color: #a78bfa; margin-top: 2px; font-weight: 500; }
+        .exp-desc { font-size: 11px; color: #a1a1aa; margin-top: 4px; line-height: 1.6; }
+        .exp-desc li { margin-bottom: 3px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .skill-category { margin-bottom: 6px; }
+        .skill-label { font-size: 10px; font-weight: 700; color: #71717a; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 2px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+        .skill-tag { font-size: 10px; padding: 2px 8px; background: rgba(167,139,250,0.08); color: #a78bfa; border-radius: 4px; border: 1px solid rgba(167,139,250,0.15); font-weight: 500; }
+        .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .award-category { font-size: 11px; font-weight: 700; color: #a78bfa; margin-bottom: 8px; }
+        .award-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 5px; }
+        .award-icon { font-size: 13px; min-width: 18px; }
+        .award-title { font-size: 11px; font-weight: 500; color: #d4d4d8; }
+        .project-item { margin-bottom: 10px; padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+        .project-name { font-size: 13px; font-weight: 700; color: #f4f4f5; }
+        .project-desc { font-size: 11px; color: #a1a1aa; margin-top: 4px; line-height: 1.6; }
+        .project-desc li { margin-bottom: 2px; }
+        .highlight { color: #a78bfa; font-weight: 700; }
+        .footer { margin-top: 16px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-size: 10px; color: #52525b; }
+    </style>
+</head>
+<body>
+    <div style="position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:6px;background:rgba(0,0,0,0.8);padding:6px 12px;border-radius:8px;font-size:11px;">
+        <a href="resume.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">中文</a>
+        <a href="resume-en.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">EN</a>
+        <a href="resume-dark.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">暗夜</a>
+        <a href="resume-dynamic.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">动态</a>
+    </div>
+    <div class="page">
+        <div class="header">
+            <div class="header-left">
+                <h1>梁正涛</h1>
+                <div class="subtitle">AI Researcher & Developer</div>
+            </div>
+            <div class="header-right">
+                <div>📞 17684269881</div>
+                <div>📧 1392452425a@gmail.com</div>
+                <div>🎂 2003.05 · 共青团员</div>
+                <div>🔗 <a href="https://github.com/liangzhengtao">github.com/liangzhengtao</a></div>
+                <div>🌐 <a href="https://liangzhengtao.github.io/liangzhengtao-portfolio">Portfolio</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">教育背景</div>
+            <div class="exp-item">
+                <div class="exp-header"><div class="exp-title">北京理工大学（985/211/双一流）</div><div class="exp-date">2026.09 - 2029.06</div></div>
+                <div class="exp-subtitle">人工智能学院 · 智能科学与技术 · 学术硕士</div>
+                <ul class="exp-desc"><li>研究方向：<span class="highlight">多模态大语言模型的安全对齐方法</span></li></ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header"><div class="exp-title">贵州大学（211 & 双一流）</div><div class="exp-date">2022.09 - 2026.06</div></div>
+                <div class="exp-subtitle">计算机科学与技术学院 · 人工智能专业 · 学士</div>
+                <ul class="exp-desc">
+                    <li>加权平均成绩排名：<span class="highlight">1/69</span> · 综合测评排名：<span class="highlight">1/69</span> · GPA：<span class="highlight">4.14/5</span></li>
+                    <li>雅思：<span class="highlight">6.5</span> · 英语六级：<span class="highlight">572</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">科研经历</div>
+            <div class="project-item">
+                <div class="project-name">🧠 面向司法判决的认知智能构建 <span class="highlight">（负责人）</span></div>
+                <div class="project-desc">
+                    <strong>2025.03 - 至今</strong> · CCF-BigData 2025 第一作者<br>
+                    <ul><li>主导设计知识与经验双引导的 LLM 融合预测架构</li><li>7B LLM 提取犯罪要素 → Milvus 检索先例 → 30B LLM 生成判决</li></ul>
+                </div>
+            </div>
+            <div class="project-item">
+                <div class="project-name">🏛️ 政务服务智能问答系统 <span class="highlight">（负责人）</span></div>
+                <div class="project-desc"><strong>2024.03 - 至今</strong><br><ul><li>Langchain + FastAPI，已完成原型系统搭建</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">实习经历</div>
+            <div class="exp-item">
+                <div class="exp-header"><div class="exp-title">学而思（好未来旗下）</div><div class="exp-date">贵阳</div></div>
+                <div class="exp-subtitle">教育科技公司 · 教育产品开发</div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header"><div class="exp-title">彩虹集团</div><div class="exp-date">成都</div></div>
+                <div class="exp-subtitle">科技企业 · 软件开发</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">国际交流</div>
+            <div class="project-item">
+                <div class="project-name">🇸🇬 新加坡国立大学 (NUS)</div>
+                <div class="project-desc"><strong>2023.07 - 2023.08</strong><br><ul><li>入选贵州省<span class="highlight">"千人海外留学计划"</span>，全程英语协作</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">获奖情况</div>
+            <div class="awards-grid">
+                <div>
+                    <div class="award-category">国家级 / 省级</div>
+                    <div class="award-item"><div class="award-icon">🥇</div><div class="award-title">华为 ICT 大赛 · <span class="highlight">国家一等奖</span></div></div>
+                    <div class="award-item"><div class="award-icon">🌍</div><div class="award-title">华为 ICT 大赛 · <span class="highlight">全球三等奖</span></div></div>
+                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title"><span class="highlight">国家奖学金</span></div></div>
+                    <div class="award-item"><div class="award-icon">🏆</div><div class="award-title">贵州省三好学生</div></div>
+                </div>
+                <div>
+                    <div class="award-category">校级</div>
+                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title">一等奖学金（×2）</div></div>
+                    <div class="award-item"><div class="award-icon">⭐</div><div class="award-title">三好学生（×2）</div></div>
+                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">优秀共青团员（×2）</div></div>
+                    <div class="award-item"><div class="award-icon">🌟</div><div class="award-title">"十佳素质拓展大学生"</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">技术栈</div>
+            <div class="skills-grid">
+                <div class="skill-category"><div class="skill-label">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Go</span><span class="skill-tag">Rust</span><span class="skill-tag">LaTeX</span></div></div>
+                <div class="skill-category"><div class="skill-label">AI / ML</div><div class="skill-tags"><span class="skill-tag">PyTorch</span><span class="skill-tag">Transformers</span><span class="skill-tag">LangChain</span><span class="skill-tag">RAG</span><span class="skill-tag">MCP</span></div></div>
+                <div class="skill-category"><div class="skill-label">Backend</div><div class="skill-tags"><span class="skill-tag">FastAPI</span><span class="skill-tag">Node.js</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Docker</span></div></div>
+                <div class="skill-category"><div class="skill-label">开源项目</div><div class="skill-tags"><span class="skill-tag">agent-trace</span><span class="skill-tag">token-meter</span><span class="skill-tag">awesome-ai-rules</span><span class="skill-tag">45+ Projects</span></div></div>
+            </div>
+        </div>
+
+        <div class="footer">© 2026 梁正涛 · <a href="https://github.com/liangzhengtao" style="color:#a78bfa;text-decoration:none;">github.com/liangzhengtao</a></div>
+    </div>
+</body>
+</html>

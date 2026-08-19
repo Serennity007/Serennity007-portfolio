@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁正涛 - 动态简历</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background: #050508;
+            color: #ececf1;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        ::selection { background: rgba(167,139,250,0.3); }
+
+        /* Background blobs */
+        .blob { position: fixed; border-radius: 50%; filter: blur(100px); opacity: 0.12; pointer-events: none; z-index: -1; }
+        .blob-1 { width: 500px; height: 500px; background: #a78bfa; top: -150px; left: -150px; animation: blobMove 20s ease-in-out infinite; }
+        .blob-2 { width: 400px; height: 400px; background: #f472b6; bottom: -100px; right: -100px; animation: blobMove 25s ease-in-out infinite reverse; }
+        @keyframes blobMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(80px, -60px) scale(1.1); }
+            66% { transform: translate(-40px, 80px) scale(0.9); }
+        }
+
+        /* Grid overlay */
+        .grid-bg {
+            position: fixed; inset: 0; pointer-events: none; z-index: -1;
+            background-image: linear-gradient(rgba(167,139,250,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%);
+        }
+
+        /* Noise */
+        body::after {
+            content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.3;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        .header {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .header .subtitle {
+            font-size: 18px;
+            color: #a1a1aa;
+            animation: fadeInUp 0.8s 0.2s ease forwards;
+            opacity: 0;
+        }
+
+        .header .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s 0.4s ease forwards;
+            opacity: 0;
+        }
+
+        .contact-item {
+            font-size: 13px;
+            color: #71717a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-item a { color: #a78bfa; text-decoration: none; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section */
+        .section {
+            padding: 48px 0;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #a78bfa;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-label::before { content: '✦'; font-size: 8px; }
+
+        /* Cards */
+        .card {
+            background: rgba(22,22,26,0.6);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            border-color: rgba(167,139,250,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .card-title { font-size: 18px; font-weight: 700; }
+        .card-date { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: #a78bfa; }
+        .card-sub { font-size: 14px; color: #a78bfa; font-weight: 500; margin-bottom: 8px; }
+        .card-text { font-size: 14px; color: #a1a1aa; line-height: 1.7; }
+        .card-text li { margin-bottom: 4px; }
+
+        /* Stat counters */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-box {
+            background: rgba(22,22,26,0.6);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-num {
+            font-size: 32px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-lbl { font-size: 12px; color: #71717a; margin-top: 4px; }
+
+        /* Awards */
+        .award-item {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            padding: 16px;
+            background: rgba(22,22,26,0.4);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .award-item.visible { opacity: 1; transform: translateX(0); }
+        .award-item:hover { border-color: rgba(167,139,250,0.15); transform: translateX(8px); }
+        .award-emoji { font-size: 28px; min-width: 40px; text-align: center; }
+        .award-title { font-size: 14px; font-weight: 600; }
+        .award-sub { font-size: 12px; color: #71717a; }
+
+        /* Skills */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .skill-group h3 {
+            font-size: 11px;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .skill-name { min-width: 90px; font-size: 13px; font-weight: 500; }
+
+        .skill-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            border-radius: 2px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .skill-pct {
+            min-width: 32px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #71717a;
+            text-align: right;
+        }
+
+        /* Tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+        .tag {
+            padding: 4px 10px;
+            background: rgba(167,139,250,0.08);
+            border: 1px solid rgba(167,139,250,0.12);
+            border-radius: 6px;
+            font-size: 11px;
+            color: #a78bfa;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 0;
+            font-size: 13px;
+            color: #52525b;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .footer a { color: #a78bfa; text-decoration: none; }
+
+        /* Nav */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            gap: 8px;
+            background: rgba(10,10,12,0.8);
+            backdrop-filter: blur(20px);
+            padding: 8px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .top-nav a {
+            color: #71717a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .top-nav a:hover { color: #ececf1; background: rgba(167,139,250,0.1); }
+
+        /* Print */
+        @media print {
+            .blob, .grid-bg, body::after, .top-nav { display: none; }
+            .card, .award-item { opacity: 1; transform: none; break-inside: avoid; }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 40px; }
+            .stat-row { grid-template-columns: 1fr; }
+            .skill-grid { grid-template-columns: 1fr; }
+            .top-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="grid-bg"></div>
+
+    <nav class="top-nav">
+        <a href="#edu">Education</a>
+        <a href="#research">Research</a>
+        <a href="#awards">Awards</a>
+        <a href="#skills">Skills</a>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>梁正涛</h1>
+            <div class="subtitle">AI Researcher & Developer</div>
+            <div class="contact-row">
+                <div class="contact-item">📞 17684269881</div>
+                <div class="contact-item">📧 <a href="mailto:1392452425a@gmail.com">1392452425a@gmail.com</a></div>
+                <div class="contact-item">🔗 <a href="https://github.com/liangzhengtao">GitHub</a></div>
+                <div class="contact-item">🌐 <a href="https://liangzhengtao.github.io/liangzhengtao-portfolio">Portfolio</a></div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stat-row">
+            <div class="stat-box"><div class="stat-num">1/69</div><div class="stat-lbl">专业排名</div></div>
+            <div class="stat-box"><div class="stat-num">4.14</div><div class="stat-lbl">GPA / 5.0</div></div>
+            <div class="stat-box"><div class="stat-num">45+</div><div class="stat-lbl">开源项目</div></div>
+        </div>
+
+        <!-- Education -->
+        <div class="section" id="edu">
+            <div class="section-label">Education</div>
+            <div class="card">
+                <div class="card-header"><div class="card-title">北京理工大学</div><div class="card-date">2026 — 2029</div></div>
+                <div class="card-sub">人工智能学院 · 智能科学与技术 · 学术硕士</div>
+                <div class="card-text">研究方向：多模态大语言模型的安全对齐方法</div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-title">贵州大学</div><div class="card-date">2022 — 2026</div></div>
+                <div class="card-sub">人工智能专业 · 学士 · 排名 1/69 · GPA 4.14/5</div>
+                <div class="card-text">雅思 6.5 · 六级 572 · 国家奖学金</div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-title">🇸🇬 新加坡国立大学 (NUS)</div><div class="card-date">2023.07 — 2023.08</div></div>
+                <div class="card-sub">千人海外留学计划</div>
+                <div class="card-text">AI 与量化金融研修，全程英语协作</div>
+            </div>
+        </div>
+
+        <!-- Research -->
+        <div class="section" id="research">
+            <div class="section-label">Research</div>
+            <div class="card">
+                <div class="card-header"><div class="card-title">🧠 司法判决认知智能</div><div class="card-date">2025.03 — 至今</div></div>
+                <div class="card-sub">CCF-BigData 2025 第一作者 · 项目负责人</div>
+                <div class="card-text">
+                    <ul>
+                        <li>主导设计知识与经验双引导的 LLM 融合预测架构</li>
+                        <li>7B LLM 提取犯罪要素 → Milvus 检索先例 → 30B LLM 生成判决</li>
+                    </ul>
+                </div>
+                <div class="tags"><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Milvus</span><span class="tag">法律 AI</span></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-title">🏛️ 政务服务智能问答</div><div class="card-date">2024.03 — 至今</div></div>
+                <div class="card-sub">项目负责人</div>
+                <div class="card-text">Langchain + FastAPI，已完成原型系统搭建</div>
+                <div class="tags"><span class="tag">Langchain</span><span class="tag">FastAPI</span><span class="tag">LLM</span></div>
+            </div>
+        </div>
+
+        <!-- Internship -->
+        <div class="section">
+            <div class="section-label">Internship</div>
+            <div class="card">
+                <div class="card-header"><div class="card-title">学而思（好未来）</div><div class="card-date">贵阳</div></div>
+                <div class="card-sub">教育产品开发 · 用 AI 改善教学体验</div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-title">彩虹集团</div><div class="card-date">成都</div></div>
+                <div class="card-sub">企业级项目开发</div>
+            </div>
+        </div>
+
+        <!-- Awards -->
+        <div class="section" id="awards">
+            <div class="section-label">Awards</div>
+            <div class="award-item"><div class="award-emoji">🥇</div><div><div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · 国家一等奖</div><div class="award-sub">全国总决赛冠军级别</div></div></div>
+            <div class="award-item"><div class="award-emoji">🌍</div><div><div class="award-title">华为 ICT 大赛 · 全球总决赛 · 三等奖</div><div class="award-sub">代表中国赛区参加全球总决赛</div></div></div>
+            <div class="award-item"><div class="award-emoji">🎓</div><div><div class="award-title">国家奖学金</div><div class="award-sub">国家级奖学金</div></div></div>
+            <div class="award-item"><div class="award-emoji">🗣️</div><div><div class="award-title">雅思 6.5 · 六级 572</div><div class="award-sub">贵州省级三好学生</div></div></div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section" id="skills">
+            <div class="section-label">Skills</div>
+            <div class="skill-grid">
+                <div class="skill-group">
+                    <h3>Languages</h3>
+                    <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div><span class="skill-pct">95%</span></div>
+                    <div class="skill-item"><span class="skill-name">TypeScript</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+                    <div class="skill-item"><span class="skill-name">Go</span><div class="skill-bar"><div class="skill-fill" data-w="70"></div></div><span class="skill-pct">70%</span></div>
+                    <div class="skill-item"><span class="skill-name">Rust</span><div class="skill-bar"><div class="skill-fill" data-w="60"></div></div><span class="skill-pct">60%</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>AI / ML</h3>
+                    <div class="skill-item"><span class="skill-name">PyTorch</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+                    <div class="skill-item"><span class="skill-name">LangChain</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+                    <div class="skill-item"><span class="skill-name">OpenAI API</span><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
+                    <div class="skill-item"><span class="skill-name">RAG</span><div class="skill-bar"><div class="skill-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>Backend</h3>
+                    <div class="skill-item"><span class="skill-name">FastAPI</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+                    <div class="skill-item"><span class="skill-name">Node.js</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+                    <div class="skill-item"><span class="skill-name">PostgreSQL</span><div class="skill-bar"><div class="skill-fill" data-w="80"></div></div><span class="skill-pct">80%</span></div>
+                    <div class="skill-item"><span class="skill-name">Docker</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>Tools</h3>
+                    <div class="skill-item"><span class="skill-name">Git</span><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div><span class="skill-pct">95%</span></div>
+                    <div class="skill-item"><span class="skill-name">Cursor</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+                    <div class="skill-item"><span class="skill-name">Kimi Code</span><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
+                    <div class="skill-item"><span class="skill-name">LaTeX</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/liangzhengtao">GitHub</a> · <a href="mailto:1392452425a@gmail.com">Email</a> · © 2026 梁正涛
+        </div>
+    </div>
+
+    <script>
+        // Animate cards on scroll
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card, .award-item').forEach(function(el) {
+            obs.observe(el);
+        });
+
+        // Skill bars
+        var skObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.skill-fill').forEach(function(b) {
+                        b.style.width = b.dataset.w + '%';
+                    });
+                    skObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.skill-grid').forEach(function(el) {
+            skObs.observe(el);
+        });
+    </script>
+</body>
+</html>
