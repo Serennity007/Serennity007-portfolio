@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁正涛 | Terminal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0d1117;
+            --bg-2: #161b22;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --green: #3fb950;
+            --blue: #58a6ff;
+            --purple: #bc8cff;
+            --orange: #d29922;
+            --red: #f85149;
+            --cyan: #39d353;
+            --pink: #f778ba;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scanline effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.03) 0px,
+                rgba(0, 0, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+        /* Terminal Window */
+        .terminal {
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 40px auto;
+            max-width: 1000px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            background: var(--bg);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .terminal-body {
+            padding: 24px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Prompt style */
+        .prompt {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .path {
+            color: var(--blue);
+        }
+
+        .command {
+            color: var(--text);
+        }
+
+        .comment {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .output {
+            color: var(--text-muted);
+            margin-left: 0;
+        }
+
+        .highlight {
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        .link {
+            color: var(--blue);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .link:hover {
+            color: var(--cyan);
+        }
+
+        /* Sections */
+        .section {
+            margin: 32px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .section-title {
+            color: var(--purple);
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 16px 8px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .project-card {
+            padding: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--green);
+            transform: translateY(-2px);
+        }
+
+        .project-name {
+            color: var(--green);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .project-link {
+            color: var(--blue);
+            font-size: 11px;
+            text-decoration: none;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        .project-link:hover { color: var(--cyan); }
+
+        /* Skills */
+        .skill-row {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .skill-name {
+            width: 120px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .skill-bar {
+            flex: 1;
+            height: 8px;
+            background: var(--bg);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 12px;
+        }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .skill-level {
+            font-size: 12px;
+            color: var(--text-muted);
+            width: 40px;
+            text-align: right;
+        }
+
+        /* Timeline */
+        .timeline-entry {
+            display: flex;
+            gap: 16px;
+            margin: 12px 0;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 8px;
+            border-left: 3px solid var(--green);
+        }
+
+        .timeline-date {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Awards */
+        .award-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 8px;
+            margin: 8px 0;
+            border-left: 3px solid var(--orange);
+        }
+
+        .award-icon { font-size: 24px; }
+        .award-text { font-size: 13px; font-weight: 500; }
+        .award-sub { font-size: 11px; color: var(--text-muted); }
+
+        /* Blinking cursor */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--green);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Typing animation */
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 2s steps(40, end);
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .project-grid { grid-template-columns: 1fr; }
+            .terminal { margin: 16px; }
+            .skill-name { width: 80px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <div class="terminal-title">liangzhengtao@github ~ /portfolio</div>
+        </div>
+        <div class="terminal-body">
+            <!-- Welcome -->
+            <div>
+                <span class="prompt">visitor@github</span>:<span class="path">~</span>$ <span class="command">cat about.md</span><span class="cursor"></span>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <span class="comment"># 梁正涛 | Liang Zhengtao</span><br>
+                <span class="comment"># AI Researcher & Developer</span><br>
+                <span class="comment"># 贵州大学 → 北京理工大学 | 专业第一</span>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number" data-target="45">0</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Skills</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color: var(--orange);">1/69</div>
+                    <div class="stat-label">Ranking</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color: var(--purple);">4.08</div>
+                    <div class="stat-label">GPA</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color: var(--blue);">6.5</div>
+                    <div class="stat-label">IELTS</div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="section">
+                <div class="section-title">📋 About Me</div>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
+                    贵州大学人工智能专业本科生，专业排名第一。2026 年入学北京理工大学 AI 学院读硕士。<br><br>
+                    研究方向：司法判决认知智能 + 多模态大模型安全对齐。CCF-BigData 2025 第一作者。<br><br>
+                    GitHub 上有 45+ 个开源项目，全部中英双语，免费开源。<br><br>
+                    雅思 6.5 / 六级 572 / 国家奖学金 / 华为 ICT 国家一等奖 / 新加坡国立大学交换
+                </p>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <div class="section-title">🎓 Education & Experience</div>
+                <div class="timeline-entry">
+                    <div class="timeline-date">2026-2029</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">北京理工大学</div>
+                        <div class="timeline-desc">AI 学院 · 智能科学与技术 · 硕士</div>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-date">贵阳</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">学而思 · 实习</div>
+                        <div class="timeline-desc">做教育产品，用 AI 改善教学</div>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-date">成都</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">彩虹集团 · 实习</div>
+                        <div class="timeline-desc">企业级项目开发</div>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-date">2022-2026</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">贵州大学</div>
+                        <div class="timeline-desc">AI 本科 · 专业第一 · GPA 4.08/5</div>
+                    </div>
+                </div>
+                <div class="timeline-entry" style="border-left-color: var(--blue);">
+                    <div class="timeline-date">2023 暑假</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">🇸🇬 新加坡国立大学</div>
+                        <div class="timeline-desc">千人海外留学计划 · AI + 量化金融</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Awards -->
+            <div class="section">
+                <div class="section-title">🏆 Awards</div>
+                <div class="award-row">
+                    <div class="award-icon">🥇</div>
+                    <div>
+                        <div class="award-text">华为 ICT 大赛 · 昇腾 AI · 国家一等奖</div>
+                        <div class="award-sub">全国总决赛冠军级别</div>
+                    </div>
+                </div>
+                <div class="award-row">
+                    <div class="award-icon">🌍</div>
+                    <div>
+                        <div class="award-text">华为 ICT 大赛 · 全球总决赛 · 三等奖</div>
+                        <div class="award-sub">代表中国赛区参赛</div>
+                    </div>
+                </div>
+                <div class="award-row" style="border-left-color: var(--purple);">
+                    <div class="award-icon">🎓</div>
+                    <div>
+                        <div class="award-text">国家奖学金</div>
+                        <div class="award-sub">国家级奖学金</div>
+                    </div>
+                </div>
+                <div class="award-row" style="border-left-color: var(--blue);">
+                    <div class="award-icon">🗣️</div>
+                    <div>
+                        <div class="award-text">雅思 6.5 / 六级 572</div>
+                        <div class="award-sub">学术英语读写能力</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="section">
+                <div class="section-title">🛠️ Skills</div>
+                <div class="skill-row">
+                    <span class="skill-name">Python</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 95%; background: var(--green);"></div></div>
+                    <span class="skill-level">95%</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-name">TypeScript</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 85%; background: var(--blue);"></div></div>
+                    <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-name">PyTorch</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 80%; background: var(--purple);"></div></div>
+                    <span class="skill-level">80%</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-name">React/Next.js</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 75%; background: var(--cyan);"></div></div>
+                    <span class="skill-level">75%</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-name">FastAPI</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 85%; background: var(--green);"></div></div>
+                    <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-name">Docker/K8s</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 70%; background: var(--blue);"></div></div>
+                    <span class="skill-level">70%</span>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="section">
+                <div class="section-title">💻 Featured Projects</div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-name">🧠 awesome-ai-rules</div>
+                        <div class="project-desc">20 AI coding rules for Cursor, Claude, Kimi Code</div>
+                        <a href="https://github.com/liangzhengtao/awesome-ai-rules" class="project-link">→ github.com</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">🎯 vibe-check</div>
+                        <div class="project-desc">npx vibe-check — Score project AI-readiness</div>
+                        <a href="https://github.com/liangzhengtao/vibe-check" class="project-link">→ github.com</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">🔍 agent-trace</div>
+                        <div class="project-desc">Trace AI agent costs, tokens, tool health</div>
+                        <a href="https://github.com/liangzhengtao/agent-trace" class="project-link">→ github.com</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">🛡️ awesome-ai-alignment</div>
+                        <div class="project-desc">12 AI safety and alignment skills</div>
+                        <a href="https://github.com/liangzhengtao/awesome-ai-alignment" class="project-link">→ github.com</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">📝 paper-grill</div>
+                        <div class="project-desc">Honest paper review — NeurIPS, ICML style</div>
+                        <a href="https://github.com/liangzhengtao/paper-grill" class="project-link">→ github.com</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">🌐 awesome-geo</div>
+                        <div class="project-desc">GEO guide for AI search optimization</div>
+                        <a href="https://github.com/liangzhengtao/awesome-geo" class="project-link">→ github.com</a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 16px;">
+                    <a href="https://github.com/liangzhengtao?tab=repositories" class="project-link" style="font-size: 13px;">
+                        → View all 45+ projects on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="section">
+                <div class="section-title">📬 Contact</div>
+                <p style="color: var(--text-muted); font-size: 13px;">
+                    <span class="prompt">$</span> echo "Let's connect!"<br>
+                    <span class="output">→ GitHub: <a href="https://github.com/liangzhengtao" class="link">github.com/liangzhengtao</a></span><br>
+                    <span class="output">→ Portfolio: <a href="https://liangzhengtao.github.io/liangzhengtao-portfolio" class="link">liangzhengtao.github.io</a></span><br>
+                    <span class="output">→ Resume: <a href="resume.html" class="link">中文简历</a> | <a href="resume-en.html" class="link">English</a></span>
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div style="text-align: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <span class="comment"># © 2026 梁正涛 · Built with terminal vibes</span>
+                <span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animated counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number[data-target]');
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.target);
+                let current = 0;
+                const increment = target / 40;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current) + '+';
+                    }
+                }, 50);
+            });
+        }
+
+        // Trigger when visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) observer.observe(statsGrid);
+    </script>
+</body>
+</html>
