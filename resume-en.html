@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhengtao Liang - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.5;
+            background: #f5f5f5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 48px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        @media print {
+            body { background: white; }
+            .page { box-shadow: none; padding: 32px 40px; }
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2563eb;
+            margin-bottom: 24px;
+        }
+        .header-left h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a2e;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        .header-left .subtitle {
+            font-size: 16px;
+            color: #2563eb;
+            font-weight: 500;
+        }
+        .header-right {
+            text-align: right;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .header-right a { color: #2563eb; text-decoration: none; }
+        .section { margin-bottom: 20px; }
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #2563eb;
+            border-bottom: 1.5px solid #e5e7eb;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+        .exp-item { margin-bottom: 16px; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .exp-title { font-size: 15px; font-weight: 600; color: #1a1a2e; }
+        .exp-date { font-size: 12px; color: #888; font-weight: 500; white-space: nowrap; }
+        .exp-subtitle { font-size: 13px; color: #2563eb; margin-top: 2px; }
+        .exp-desc { font-size: 13px; color: #444; margin-top: 6px; line-height: 1.6; }
+        .exp-desc li { margin-bottom: 4px; padding-left: 4px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .skill-category { margin-bottom: 8px; }
+        .skill-label { font-size: 12px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+        .skill-tag { font-size: 11px; padding: 2px 8px; background: #f0f4ff; color: #2563eb; border-radius: 4px; border: 1px solid #dbeafe; }
+        .award-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+        .award-icon { font-size: 24px; min-width: 30px; }
+        .award-title { font-size: 14px; font-weight: 600; }
+        .award-desc { font-size: 12px; color: #666; }
+        .project-item { margin-bottom: 12px; padding: 10px 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb; }
+        .project-name { font-size: 14px; font-weight: 600; color: #1a1a2e; }
+        .project-desc { font-size: 12px; color: #666; margin-top: 4px; }
+        .project-tags { display: flex; gap: 4px; margin-top: 6px; }
+        .project-tag { font-size: 10px; padding: 2px 6px; background: #2563eb; color: white; border-radius: 3px; }
+        .footer { margin-top: 20px; padding-top: 12px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 11px; color: #999; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="header-left">
+                <h1>Zhengtao Liang</h1>
+                <div class="subtitle">AI Researcher & Full-Stack Developer</div>
+            </div>
+            <div class="header-right">
+                <div>📍 Beijing Institute of Technology</div>
+                <div>📧 cse.ztliang22@gzu.edu.cn</div>
+                <div>🔗 <a href="https://github.com/liangzhengtao">github.com/liangzhengtao</a></div>
+                <div>🌐 <a href="https://liangzhengtao.github.io/liangzhengtao-portfolio">Portfolio</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Summary</div>
+            <p style="font-size: 13px; color: #444; line-height: 1.7;">
+                Master's student at Beijing Institute of Technology (2026-2029), specializing in multimodal large model safety alignment.
+                Winner of Huawei ICT Competition Ascend AI Track (National 1st Prize, Global 3rd Prize).
+                Maintains 37+ open-source projects on GitHub with 200+ reusable skills, all bilingual (EN/CN).
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Beijing Institute of Technology</div>
+                    <div class="exp-date">Sep 2026 - Jun 2029 (Expected)</div>
+                </div>
+                <div class="exp-subtitle">School of AI · Intelligent Science & Technology · Master's (Academic)</div>
+                <ul class="exp-desc">
+                    <li>Research: Multimodal Large Model Safety Alignment Methods</li>
+                    <li>Core member of research group, contributing to national-level projects</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">Guizhou University</div>
+                    <div class="exp-date">Sep 2022 - Jun 2026</div>
+                </div>
+                <div class="exp-subtitle">School of Computer Science · Artificial Intelligence · Bachelor's</div>
+                <ul class="exp-desc">
+                    <li>Thesis: Design and Implementation of Safety Alignment for Multimodal Large Models</li>
+                    <li>Huawei ICT Competition Ascend AI Track - National 1st Prize</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Awards</div>
+            <div class="award-item">
+                <div class="award-icon">🥇</div>
+                <div>
+                    <div class="award-title">Huawei ICT Competition · Ascend AI Track · National 1st Prize</div>
+                    <div class="award-desc">Top award at national finals, demonstrating AI model development and deployment skills</div>
+                </div>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">🌍</div>
+                <div>
+                    <div class="award-title">Huawei ICT Competition · Global Finals · 3rd Prize</div>
+                    <div class="award-desc">Represented China region at global finals, competing against top engineers worldwide</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Technical Skills</div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-label">Languages</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Go</span>
+                        <span class="skill-tag">Rust</span>
+                        <span class="skill-tag">LaTeX</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-label">AI / ML</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">MCP</span>
+                        <span class="skill-tag">RAG</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-label">Frontend</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Vue</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-label">Backend & DevOps</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Open Source Projects</div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                <div class="project-item">
+                    <div class="project-name">🧠 awesome-ai-rules</div>
+                    <div class="project-desc">20 AI coding rules for Cursor, Claude Code, Kimi Code</div>
+                    <div class="project-tags"><span class="project-tag">AI Tools</span><span class="project-tag">32 files</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-name">🎯 vibe-check</div>
+                    <div class="project-desc">npx vibe-check — Score project AI-readiness in 5s</div>
+                    <div class="project-tags"><span class="project-tag">CLI</span><span class="project-tag">36 tests</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-name">🔍 agent-trace</div>
+                    <div class="project-desc">Trace AI agent — costs, tokens, tool health</div>
+                    <div class="project-tags"><span class="project-tag">Debugging</span><span class="project-tag">4 agents</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-name">📝 paper-grill</div>
+                    <div class="project-desc">Honest paper review — NeurIPS, ICML, ACL style</div>
+                    <div class="project-tags"><span class="project-tag">Research</span><span class="project-tag">10 skills</span></div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 12px; font-size: 12px; color: #888;">
+                + 33 more projects at <a href="https://github.com/liangzhengtao" style="color: #2563eb;">github.com/liangzhengtao</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 Zhengtao Liang · Last updated: August 2026
+        </div>
+    </div>
+</body>
+</html>
