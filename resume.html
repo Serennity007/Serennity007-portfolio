@@ -21,186 +21,71 @@
             min-height: 297mm;
             margin: 0 auto;
             background: white;
-            padding: 40px 48px;
+            padding: 32px 40px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
         @media print {
             body { background: white; }
-            .page { box-shadow: none; padding: 32px 40px; }
+            .page { box-shadow: none; padding: 24px 32px; }
         }
-
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding-bottom: 20px;
+            padding-bottom: 16px;
             border-bottom: 3px solid #2563eb;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .header-left h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #1a1a2e;
             letter-spacing: -0.5px;
             margin-bottom: 4px;
         }
         .header-left .subtitle {
-            font-size: 16px;
+            font-size: 14px;
             color: #2563eb;
             font-weight: 500;
         }
         .header-right {
             text-align: right;
-            font-size: 13px;
+            font-size: 12px;
             color: #555;
             line-height: 1.8;
         }
-        .header-right a {
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        /* Section */
-        .section {
-            margin-bottom: 20px;
-        }
+        .header-right a { color: #2563eb; text-decoration: none; }
+        .section { margin-bottom: 16px; }
         .section-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: #2563eb;
             border-bottom: 1.5px solid #e5e7eb;
-            padding-bottom: 6px;
-            margin-bottom: 12px;
-        }
-
-        /* Experience */
-        .exp-item {
-            margin-bottom: 16px;
-        }
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-        .exp-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #1a1a2e;
-        }
-        .exp-date {
-            font-size: 12px;
-            color: #888;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .exp-subtitle {
-            font-size: 13px;
-            color: #2563eb;
-            margin-top: 2px;
-        }
-        .exp-desc {
-            font-size: 13px;
-            color: #444;
-            margin-top: 6px;
-            line-height: 1.6;
-        }
-        .exp-desc li {
-            margin-bottom: 4px;
-            padding-left: 4px;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        .skill-category {
-            margin-bottom: 8px;
-        }
-        .skill-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 4px;
-        }
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-        .skill-tag {
-            font-size: 11px;
-            padding: 2px 8px;
-            background: #f0f4ff;
-            color: #2563eb;
-            border-radius: 4px;
-            border: 1px solid #dbeafe;
-        }
-
-        /* Awards */
-        .award-item {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
+            padding-bottom: 4px;
             margin-bottom: 10px;
         }
-        .award-icon {
-            font-size: 24px;
-            min-width: 30px;
-        }
-        .award-title {
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .award-desc {
-            font-size: 12px;
-            color: #666;
-        }
-
-        /* Projects */
-        .project-item {
-            margin-bottom: 12px;
-            padding: 10px 14px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-        }
-        .project-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a2e;
-        }
-        .project-desc {
-            font-size: 12px;
-            color: #666;
-            margin-top: 4px;
-        }
-        .project-tags {
-            display: flex;
-            gap: 4px;
-            margin-top: 6px;
-        }
-        .project-tag {
-            font-size: 10px;
-            padding: 2px 6px;
-            background: #2563eb;
-            color: white;
-            border-radius: 3px;
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 20px;
-            padding-top: 12px;
-            border-top: 1px solid #e5e7eb;
-            text-align: center;
-            font-size: 11px;
-            color: #999;
-        }
+        .exp-item { margin-bottom: 12px; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .exp-title { font-size: 14px; font-weight: 600; color: #1a1a2e; }
+        .exp-date { font-size: 11px; color: #888; font-weight: 500; white-space: nowrap; }
+        .exp-subtitle { font-size: 12px; color: #2563eb; margin-top: 2px; }
+        .exp-desc { font-size: 12px; color: #444; margin-top: 4px; line-height: 1.6; }
+        .exp-desc li { margin-bottom: 3px; padding-left: 4px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .skill-category { margin-bottom: 6px; }
+        .skill-label { font-size: 11px; font-weight: 600; color: #1a1a2e; margin-bottom: 3px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+        .skill-tag { font-size: 10px; padding: 2px 6px; background: #f0f4ff; color: #2563eb; border-radius: 3px; border: 1px solid #dbeafe; }
+        .award-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
+        .award-icon { font-size: 16px; min-width: 20px; }
+        .award-title { font-size: 12px; font-weight: 600; }
+        .project-item { margin-bottom: 10px; padding: 8px 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #e5e7eb; }
+        .project-name { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+        .project-desc { font-size: 11px; color: #666; margin-top: 3px; }
+        .footer { margin-top: 16px; padding-top: 8px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 10px; color: #999; }
+        .highlight { color: #2563eb; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -209,24 +94,15 @@
         <div class="header">
             <div class="header-left">
                 <h1>梁正涛</h1>
-                <div class="subtitle">AI Researcher & Full-Stack Developer</div>
+                <div class="subtitle">AI Researcher & Developer</div>
             </div>
             <div class="header-right">
-                <div>📍 北京理工大学</div>
-                <div>📧 cse.ztliang22@gzu.edu.cn</div>
+                <div>📞 17684269881</div>
+                <div>📧 1392452425a@gmail.com</div>
+                <div>🎂 2003.05 · 共青团员</div>
                 <div>🔗 <a href="https://github.com/liangzhengtao">github.com/liangzhengtao</a></div>
                 <div>🌐 <a href="https://liangzhengtao.github.io/liangzhengtao-portfolio">Portfolio</a></div>
             </div>
-        </div>
-
-        <!-- Summary -->
-        <div class="section">
-            <div class="section-title">个人简介</div>
-            <p style="font-size: 13px; color: #444; line-height: 1.7;">
-                北京理工大学人工智能学院硕士研究生（2026-2029），研究方向为多模态大模型安全对齐。
-                华为 ICT 大赛昇腾 AI 赛道国家一等奖获得者。GitHub 上维护 39+ 个开源项目，
-                涵盖 AI 开发工具、科研技能、面试准备等领域，所有项目中英双语，累计 200+ 个可复用技能模块。
-            </p>
         </div>
 
         <!-- Education -->
@@ -234,69 +110,84 @@
             <div class="section-title">教育背景</div>
             <div class="exp-item">
                 <div class="exp-header">
-                    <div class="exp-title">北京理工大学</div>
-                    <div class="exp-date">2026.09 - 2029.06 (预计)</div>
+                    <div class="exp-title">贵州大学（211 & 双一流）</div>
+                    <div class="exp-date">2022.09 - 至今</div>
                 </div>
-                <div class="exp-subtitle">人工智能学院 · 智能科学与技术 · 学术硕士</div>
+                <div class="exp-subtitle">人工智能专业</div>
                 <ul class="exp-desc">
-                    <li>研究方向：多模态大模型的安全对齐方法</li>
-                    <li>导师课题组核心成员，参与多项国家级科研项目</li>
-                </ul>
-            </div>
-            <div class="exp-item">
-                <div class="exp-header">
-                    <div class="exp-title">贵州大学</div>
-                    <div class="exp-date">2022.09 - 2026.06</div>
-                </div>
-                <div class="exp-subtitle">计算机科学与技术学院 · 人工智能专业 · 学士</div>
-                <ul class="exp-desc">
-                    <li>毕业设计：多模态大模型的安全对齐方法设计与实现</li>
-                    <li>华为 ICT 大赛昇腾 AI 赛道国家一等奖</li>
+                    <li>加权平均成绩专业排名：<span class="highlight">2/69</span> · 综合测评专业排名：<span class="highlight">1/69</span> · GPA：<span class="highlight">4.08/5</span></li>
+                    <li>英语水平：CET4/6，具备扎实的学术英文阅读、写作能力，能流畅阅读英文文献，清晰、准确地表达研究成果</li>
                 </ul>
             </div>
         </div>
 
         <!-- Awards -->
         <div class="section">
-        <!-- Internships -->
-        <div class="section">
-            <div class="section-title">实习经历</div>
-            <div class="exp-item">
-                <div class="exp-header">
-                    <div class="exp-title">学而思（贵阳）</div>
-                    <div class="exp-date">实习</div>
+            <div class="section-title">获奖情况</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div>
+                    <h3 style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #2563eb;">省级奖项</h3>
+                    <div class="award-item"><div class="award-icon">🏆</div><div class="award-title">贵州省普通高校三好学生</div></div>
+                    <div class="award-item"><div class="award-icon">🎤</div><div class="award-title">贵州省首届"黔山之声"外语演讲大赛三等奖</div></div>
+                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">2024年"挑战杯"贵州省大学生创业计划三等奖</div></div>
+                    <div class="award-item"><div class="award-icon">🥇</div><div class="award-title">华为 ICT 大赛昇腾 AI 赛道国家一等奖</div></div>
+                    <div class="award-item"><div class="award-icon">🌍</div><div class="award-title">华为 ICT 大赛全球总决赛三等奖</div></div>
                 </div>
-                <div class="exp-subtitle">教育科技公司</div>
-                <ul class="exp-desc">
-                    <li>参与教育科技产品研发</li>
-                    <li>运用 AI 技术优化教学体验</li>
-                </ul>
-            </div>
-            <div class="exp-item">
-                <div class="exp-header">
-                    <div class="exp-title">彩虹集团（成都）</div>
-                    <div class="exp-date">实习</div>
+                <div>
+                    <h3 style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #2563eb;">校级奖项</h3>
+                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title">贵州大学一等奖学金（×2）</div></div>
+                    <div class="award-item"><div class="award-icon">⭐</div><div class="award-title">贵州大学三好学生（×2）</div></div>
+                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">贵州大学优秀学生社团骨干</div></div>
+                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">贵州大学优秀共青团员（×2）</div></div>
+                    <div class="award-item"><div class="award-icon">🌟</div><div class="award-title">贵州大学第十九届"十佳素质拓展大学生"</div></div>
+                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">"挑战杯"大学生创业计划校级一等奖（×2）</div></div>
+                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"外研社 国才杯"英语演讲、辩论、口译二、三等奖</div></div>
+                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"21世纪杯"全国英语演讲比赛校级三等奖</div></div>
                 </div>
-                <div class="exp-subtitle">科技企业</div>
-                <ul class="exp-desc">
-                    <li>参与企业级技术项目开发</li>
-                    <li>积累工业界实践经验</li>
-                </ul>
             </div>
         </div>
-            <div class="section-title">荣誉奖项</div>
-            <div class="award-item">
-                <div class="award-icon">🥇</div>
-                <div>
-                    <div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · 国家一等奖</div>
-                    <div class="award-desc">全国总决赛最高奖项，展示 AI 模型开发与部署能力</div>
+
+        <!-- Project Experience -->
+        <div class="section">
+            <div class="section-title">项目经历</div>
+
+            <div class="project-item">
+                <div class="project-name">🧠 面向司法判决的认知智能构建：大语言模型导向的知识-经验双轨融合与推理机制 <span class="highlight">（负责人）</span></div>
+                <div class="project-desc">
+                    <strong>2025.03 - 至今</strong> · CCF-BigData2025 第一作者在投<br>
+                    探索并构建一种基于大语言模型的法律判决预测框架，创新性融合法律知识与司法先例进行双重引导。<br>
+                    • 主导设计了知识与经验双引导的 LLM 融合预测架构<br>
+                    • 运用小型 LLM（7B）对案件事实进行深度分析，实现关键犯罪构成要素的精准提取<br>
+                    • 基于提取的要素并行启动双轨检索：Milvus 向量数据库检索相似司法先例，同步匹配法律条文知识库<br>
+                    • 将原始案情、法律知识及先例判决等多源信息融合，驱动大型 LLM（30B）生成综合性判决预测
                 </div>
             </div>
-            <div class="award-item">
-                <div class="award-icon">🌍</div>
-                <div>
-                    <div class="award-title">华为 ICT 大赛 · 全球总决赛 · 三等奖</div>
-                    <div class="award-desc">代表中国赛区参加全球总决赛，与全球顶尖选手同台竞技</div>
+
+            <div class="project-item">
+                <div class="project-name">🏛️ 政务服务智能问答系统 <span class="highlight">（负责人）</span></div>
+                <div class="project-desc">
+                    <strong>2024.03 - 至今</strong><br>
+                    负责构建基于大模型驱动的智能政务问答平台，旨在提升政府服务效率。<br>
+                    • 主导项目整体技术架构，规划后端服务与大模型集成方案<br>
+                    • 基于 Langchain 框架完成核心问答逻辑搭建<br>
+                    • 负责大语言模型（LLM）API 的选型、调用与编排<br>
+                    • 采用 FastAPI 构建后端服务，实现核心业务逻辑与 API 接口<br>
+                    • 完成项目初期原型系统搭建，实现核心问答功能并通过 Web 界面进行初步验证与展示
+                </div>
+            </div>
+        </div>
+
+        <!-- International Experience -->
+        <div class="section">
+            <div class="section-title">国际交流</div>
+            <div class="project-item">
+                <div class="project-name">🇸🇬 新加坡国立大学 (NUS)</div>
+                <div class="project-desc">
+                    <strong>2023.07 - 2023.08</strong><br>
+                    入选 2023 年贵州省"千人海外留学计划"并获专项资助（计算机学院重点推荐），赴新深度研修前沿人工智能理论与计算金融建模核心课程。<br>
+                    • 独立完成基于经典算法的"手写数字识别"项目<br>
+                    • 作为核心成员全程运用英语与国际团队高效协作，于金融工程数值方法创新应用项目中贡献关键力量<br>
+                    • 两项课程均以优异表现结业
                 </div>
             </div>
         </div>
@@ -346,36 +237,6 @@
                         <span class="skill-tag">GitHub Actions</span>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Projects -->
-        <div class="section">
-            <div class="section-title">开源项目精选</div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
-                <div class="project-item">
-                    <div class="project-name">🧠 awesome-ai-rules</div>
-                    <div class="project-desc">20 AI coding rules for Cursor, Claude Code, Kimi Code</div>
-                    <div class="project-tags"><span class="project-tag">AI Tools</span><span class="project-tag">32 files</span></div>
-                </div>
-                <div class="project-item">
-                    <div class="project-name">🎯 vibe-check</div>
-                    <div class="project-desc">npx vibe-check — Score project AI-readiness in 5s</div>
-                    <div class="project-tags"><span class="project-tag">CLI</span><span class="project-tag">36 tests</span></div>
-                </div>
-                <div class="project-item">
-                    <div class="project-name">🔍 agent-trace</div>
-                    <div class="project-desc">Trace AI agent — costs, tokens, tool health</div>
-                    <div class="project-tags"><span class="project-tag">Debugging</span><span class="project-tag">4 agents</span></div>
-                </div>
-                <div class="project-item">
-                    <div class="project-name">📝 paper-grill</div>
-                    <div class="project-desc">Honest paper review — NeurIPS, ICML, ACL style</div>
-                    <div class="project-tags"><span class="project-tag">Research</span><span class="project-tag">10 skills</span></div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 12px; font-size: 12px; color: #888;">
-                + 33 more projects at <a href="https://github.com/liangzhengtao" style="color: #2563eb;">github.com/liangzhengtao</a>
             </div>
         </div>
 

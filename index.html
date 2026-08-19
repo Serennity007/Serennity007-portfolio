@@ -506,26 +506,28 @@
             <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;" class="fade-in">
                 <div>
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted);">
-                        我是梁正涛，2026 年入学北京理工大学人工智能学院，攻读智能科学与技术硕士学位（3 年制），预计 2029 年毕业。
+                        我是梁正涛，贵州大学人工智能专业本科生，加权平均成绩排名 <strong style="color: var(--text)">2/69</strong>，综合测评排名 <strong style="color: var(--text)">1/69</strong>，GPA <strong style="color: var(--text)">4.08/5</strong>。
                     </p>
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); margin-top: 16px;">
-                        研究方向为<strong style="color: var(--text)">多模态大模型的安全对齐方法</strong>。本科毕业于贵州大学，在校期间获得华为 ICT 大赛昇腾 AI 赛道国家一等奖和全球赛三等奖。
+                        研究方向为<strong style="color: var(--text)">多模态大模型的安全对齐方法</strong>和<strong style="color: var(--text)">司法判决认知智能</strong>。主导设计了基于 LLM 的知识-经验双轨融合预测架构，论文 CCF-BigData2025 第一作者在投。
                     </p>
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); margin-top: 16px;">
                         我热爱开源，在 GitHub 上维护着 <strong style="color: var(--text)">39+ 个开源项目</strong>，涵盖 AI 开发工具、科研技能、面试准备、视频创作等多个领域。所有项目都是中英双语，免费开源。
                     </p>
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); margin-top: 16px;">
-                        语言能力：雅思 <strong style="color: var(--text)">6.5</strong> 分，英语六级 <strong style="color: var(--text)">572</strong> 分。获得<strong style="color: var(--text)">国家奖学金</strong>。
+                        语言能力：英语 CET4/6，雅思 <strong style="color: var(--text)">6.5</strong> 分，六级 <strong style="color: var(--text)">572</strong> 分。曾入选贵州省"千人海外留学计划"赴新加坡国立大学研修。
                     </p>
                 </div>
                 <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
                     <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--text-muted);">QUICK FACTS</h3>
                     <div style="font-size: 14px; line-height: 2;">
-                        <div>📍 北京理工大学</div>
-                        <div>🎓 AI 硕士 (2026-2029)</div>
-                        <div>🔬 多模态安全对齐</div>
+                        <div>📍 贵州大学（211 & 双一流）</div>
+                        <div>🎓 AI 本科 (2022-2026)</div>
+                        <div>📊 GPA 4.08/5 · 排名 2/69</div>
+                        <div>🔬 司法判决认知智能</div>
                         <div>🏆 华为 ICT 国家一等奖</div>
                         <div>🎓 国家奖学金</div>
+                        <div>🇸🇬 新加坡国立大学研修</div>
                         <div>🌐 雅思 6.5 / 六级 572</div>
                         <div>💻 39+ 开源项目</div>
                     </div>
@@ -623,7 +625,48 @@
     <section id="projects">
         <div class="container">
             <div class="section-title fade-in">Projects</div>
-            <div class="section-heading fade-in">开源项目精选</div>
+            <div class="section-heading fade-in">项目经历</div>
+
+            <!-- Research Projects -->
+            <div style="margin-bottom: 32px;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--accent);">🔬 研究项目</h3>
+
+                <div class="card fade-in" style="margin-bottom: 16px;">
+                    <div class="card-header">
+                        <div class="card-title">🧠 司法判决认知智能：知识-经验双轨融合</div>
+                        <span class="card-badge badge-purple">负责人</span>
+                    </div>
+                    <div class="card-desc">
+                        CCF-BigData 2025 第一作者在投。构建基于 LLM 的法律判决预测框架，创新性融合法律知识与司法先例进行双重引导。
+                        运用 7B LLM 提取犯罪要素，Milvus 检索先例，30B LLM 生成判决预测。
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">LLM</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">Milvus</span>
+                        <span class="tag">法律 AI</span>
+                    </div>
+                </div>
+
+                <div class="card fade-in" style="margin-bottom: 16px;">
+                    <div class="card-header">
+                        <div class="card-title">🏛️ 政务服务智能问答系统</div>
+                        <span class="card-badge badge-blue">负责人</span>
+                    </div>
+                    <div class="card-desc">
+                        基于大模型驱动的智能政务问答平台。使用 Langchain 框架搭建核心问答逻辑，FastAPI 构建后端服务，完成原型系统搭建。
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Langchain</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">LLM</span>
+                        <span class="tag">政务 AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Source Projects -->
+            <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--accent);">💻 开源项目精选</h3>
             <div class="card-grid">
                 <div class="card fade-in">
                     <div class="card-header">
