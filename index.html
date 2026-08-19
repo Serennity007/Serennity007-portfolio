@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0a0a0c">
     <title>梁正涛 — AI Researcher & Developer</title>
     <meta name="description" content="梁正涛 - 北京理工大学 AI 研究员，45+ 开源项目，华为 ICT 大赛国家一等奖">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,6 +144,34 @@
             color: var(--text);
             font-size: 24px;
             cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Mobile menu overlay */
+        @media (max-width: 768px) {
+            .nav-links.mobile-open {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10,10,12,0.98);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.mobile-open a {
+                font-size: 16px;
+                padding: 8px 0;
+            }
+
+            .nav-links.mobile-open .nav-cta {
+                text-align: center;
+                margin-top: 8px;
+            }
         }
 
         /* ---- Hero ---- */
@@ -544,12 +573,141 @@
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-btn { display: block; }
-            .hero { padding: 120px 0 80px; min-height: auto; }
-            .hero-stats { gap: 24px; }
-            .hero-stat-num { font-size: 36px; }
-            .card-grid { grid-template-columns: 1fr; }
-            .section { padding: 80px 0; }
-            h1 { letter-spacing: -2px; }
+
+            .hero {
+                padding: 100px 0 60px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: -2px;
+                line-height: 1.1;
+            }
+
+            .hero-desc {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 32px;
+            }
+
+            .hero-badge {
+                font-size: 11px;
+                padding: 6px 14px;
+                margin-bottom: 20px;
+            }
+
+            .hero-stats {
+                gap: 16px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-stat-num { font-size: 32px; }
+            .hero-stat-label { font-size: 11px; margin-top: 4px; }
+
+            .container { padding: 0 16px; }
+            .section { padding: 64px 0; }
+            .section + .section { border-top: 1px solid var(--border); }
+
+            h2 { font-size: 28px; letter-spacing: -1px; }
+            h3 { font-size: 18px; }
+
+            .eyebrow { font-size: 10px; letter-spacing: 2px; margin-bottom: 12px; }
+
+            /* About grid -> single column */
+            #about .container > div:last-child {
+                display: flex !important;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            #about .container > div:last-child > div:first-child p {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+
+            #about .container > div:last-child > div:last-child {
+                padding: 20px;
+            }
+
+            #about .container > div:last-child > div:last-child div {
+                font-size: 13px;
+                line-height: 2;
+            }
+
+            /* Cards */
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .card {
+                padding: 20px;
+                border-radius: 16px;
+            }
+
+            .card-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+                margin-bottom: 14px;
+                border-radius: 10px;
+            }
+
+            .card-title { font-size: 16px; }
+            .card-desc { font-size: 13px; }
+
+            /* Timeline */
+            .timeline { padding-left: 28px; }
+            .tl-item { padding-bottom: 28px; }
+            .tl-item::before { left: -22px; width: 8px; height: 8px; }
+            .tl-title { font-size: 16px; }
+            .tl-sub { font-size: 13px; }
+
+            /* Awards */
+            .award-row {
+                padding: 16px;
+                gap: 14px;
+                border-radius: 12px;
+            }
+
+            .award-emoji { font-size: 28px; min-width: 36px; }
+            .award-title { font-size: 14px; }
+            .award-sub { font-size: 12px; }
+
+            /* Skills grid -> single column */
+            #skills .container > div:last-child {
+                display: flex !important;
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .skill-row { padding: 10px 0; }
+            .skill-name { min-width: 90px; font-size: 13px; }
+            .skill-pct { font-size: 12px; min-width: 32px; }
+
+            /* CTA */
+            .cta { padding: 64px 0; }
+            .btn-group { flex-direction: column; align-items: center; }
+            .btn { width: 100%; justify-content: center; max-width: 280px; }
+
+            /* Marquee */
+            .marquee { padding: 14px 0; }
+            .marquee-item { padding: 0 24px; font-size: 12px; }
+
+            /* GitHub card */
+            .gh-card { padding: 20px; border-radius: 16px; margin-top: 24px; }
+
+            /* Footer */
+            .footer { padding: 32px 0; font-size: 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 40px; }
+            .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .hero-stat-num { font-size: 28px; }
+            .hero-stat-label { font-size: 10px; }
         }
     </style>
 </head>
@@ -559,7 +717,7 @@
     <nav class="nav" id="nav">
         <div class="nav-inner">
             <a href="#" class="nav-logo">ZT</a>
-            <button class="mobile-btn" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">☰</button>
+            <button class="mobile-btn" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">☰</button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
