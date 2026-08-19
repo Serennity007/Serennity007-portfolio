@@ -206,37 +206,157 @@
 
         .hero-content { position: relative; z-index: 1; }
 
-        /* ---- Tech Ring ---- */
+        /* ---- Tech Ring (Full-screen portal) ---- */
         .tech-ring-wrap {
-            position: absolute;
+            position: fixed;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 700px;
-            height: 700px;
+            width: 100vmin;
+            height: 100vmin;
             pointer-events: none;
-            z-index: 0;
-            opacity: 0.5;
+            z-index: 50;
+            opacity: 1;
         }
 
         .tech-ring {
             width: 100%;
             height: 100%;
             will-change: transform;
+            transform: scale(0.2) rotate(0deg);
+            transition: none;
         }
 
-        .ring-track { fill: none; stroke: rgba(167,139,250,0.07); stroke-width: 0.8; }
-        .ring-accent { fill: none; stroke: rgba(167,139,250,0.2); stroke-width: 1.2; stroke-dasharray: 8 4; }
-        .ring-dots { fill: rgba(167,139,250,0.4); }
-        .ring-text { fill: rgba(167,139,250,0.15); font-size: 9px; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; }
-        .ring-glow { fill: none; stroke: rgba(167,139,250,0.04); stroke-width: 60; }
+        .ring-track { fill: none; stroke: rgba(167,139,250,0.08); stroke-width: 0.8; }
+        .ring-accent { fill: none; stroke: rgba(167,139,250,0.22); stroke-width: 1.2; stroke-dasharray: 8 4; }
+        .ring-text { fill: rgba(167,139,250,0.12); font-size: 9px; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; }
+        .ring-glow { fill: none; stroke: rgba(167,139,250,0.03); stroke-width: 80; }
+
+        /* Iris blades */
+        .iris-blade {
+            fill: var(--bg);
+            transition: none;
+        }
+
+        /* Portal content sections */
+        .portal-sections {
+            position: relative;
+            z-index: 10;
+        }
+
+        .portal-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portal-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portal-card {
+            max-width: 600px;
+            background: rgba(22,22,26,0.85);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(167,139,250,0.12);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+        }
+
+        .portal-card h2 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .portal-card p {
+            font-size: 16px;
+            color: var(--text-2);
+            line-height: 1.8;
+        }
+
+        .portal-card .stat-row {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .portal-card .stat-item {
+            text-align: center;
+        }
+
+        .portal-card .stat-num {
+            font-size: 36px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .portal-card .stat-lbl {
+            font-size: 12px;
+            color: var(--text-3);
+            margin-top: 4px;
+        }
+
+        .portal-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: hint-bounce 2s ease-in-out infinite;
+            transition: opacity 0.5s;
+        }
+
+        .scroll-hint span {
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .scroll-hint-arrow {
+            width: 16px;
+            height: 16px;
+            border-right: 1.5px solid var(--accent);
+            border-bottom: 1.5px solid var(--accent);
+            transform: rotate(45deg);
+            opacity: 0.5;
+        }
+
+        @keyframes hint-bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
 
         @media (max-width: 768px) {
-            .tech-ring-wrap {
-                width: 360px;
-                height: 360px;
-                opacity: 0.3;
-            }
+            .portal-card { padding: 28px 20px; }
+            .portal-card h2 { font-size: 24px; }
+            .portal-card p { font-size: 14px; }
+            .portal-card .stat-num { font-size: 28px; }
+            .portal-card .stat-row { gap: 20px; }
         }
 
         .hero-badge {
@@ -735,74 +855,123 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-grid"></div>
+    <!-- Tech Ring (Fixed portal) -->
+    <div class="tech-ring-wrap" id="ringWrap">
+        <svg class="tech-ring" id="techRing" viewBox="0 0 700 700">
+            <circle class="ring-glow" cx="350" cy="350" r="340"/>
+            <circle class="ring-track" cx="350" cy="350" r="340"/>
+            <circle class="ring-track" cx="350" cy="350" r="300"/>
+            <circle class="ring-track" cx="350" cy="350" r="260"/>
+            <circle class="ring-track" cx="350" cy="350" r="200" style="stroke-dasharray: 2 6;"/>
+            <circle class="ring-accent" cx="350" cy="350" r="320"/>
+            <circle class="ring-accent" cx="350" cy="350" r="280" style="stroke-dasharray: 4 8;"/>
+            <circle class="ring-accent" cx="350" cy="350" r="230" style="stroke-dasharray: 2 12; stroke: rgba(167,139,250,0.08);"/>
+            <g id="ringTicks"></g>
+            <g id="ringDots"></g>
+            <text class="ring-text"><textPath href="#textCircle" startOffset="0%">AI RESEARCH · LLM · RAG · OPEN SOURCE · 45+ PROJECTS · PYTHON · PYTORCH · FASTAPI · MILVUS · LANGCHAIN · NLP · </textPath></text>
+            <circle id="textCircle" cx="350" cy="350" r="310" fill="none"/>
+            <line x1="320" y1="350" x2="380" y2="350" stroke="rgba(167,139,250,0.1)" stroke-width="0.5"/>
+            <line x1="350" y1="320" x2="350" y2="380" stroke="rgba(167,139,250,0.1)" stroke-width="0.5"/>
+            <circle cx="350" cy="350" r="4" fill="rgba(167,139,250,0.4)"/>
+            <text x="350" y="48" text-anchor="middle" fill="rgba(167,139,250,0.1)" font-size="9" font-family="JetBrains Mono" letter-spacing="3px">N</text>
+            <text x="350" y="662" text-anchor="middle" fill="rgba(167,139,250,0.1)" font-size="9" font-family="JetBrains Mono" letter-spacing="3px">S</text>
+            <text x="658" y="354" text-anchor="middle" fill="rgba(167,139,250,0.1)" font-size="9" font-family="JetBrains Mono" letter-spacing="3px">E</text>
+            <text x="42" y="354" text-anchor="middle" fill="rgba(167,139,250,0.1)" font-size="9" font-family="JetBrains Mono" letter-spacing="3px">W</text>
+        </svg>
+    </div>
 
-        <!-- Tech Ring -->
-        <div class="tech-ring-wrap">
-            <svg class="tech-ring" id="techRing" viewBox="0 0 700 700">
-                <!-- Outer glow -->
-                <circle class="ring-glow" cx="350" cy="350" r="330"/>
-                <!-- Outer track -->
-                <circle class="ring-track" cx="350" cy="350" r="330"/>
-                <!-- Middle track -->
-                <circle class="ring-track" cx="350" cy="350" r="280"/>
-                <!-- Inner track -->
-                <circle class="ring-track" cx="350" cy="350" r="230"/>
-                <!-- Innermost track -->
-                <circle class="ring-track" cx="350" cy="350" r="160" style="stroke-dasharray: 2 6;"/>
-                <!-- Accent dashed rings -->
-                <circle class="ring-accent" cx="350" cy="350" r="305"/>
-                <circle class="ring-accent" cx="350" cy="350" r="255" style="stroke-dasharray: 4 8;"/>
-                <circle class="ring-accent" cx="350" cy="350" r="195" style="stroke-dasharray: 2 12; stroke: rgba(167,139,250,0.1);"/>
-                <!-- Tick marks -->
-                <g id="ringTicks"></g>
-                <!-- Dots -->
-                <g id="ringDots"></g>
-                <!-- Circular text -->
-                <text class="ring-text">
-                    <textPath href="#textCircle" startOffset="0%">AI RESEARCH · LLM · RAG · OPEN SOURCE · 45+ PROJECTS · PYTHON · PYTORCH · FASTAPI · MILVUS · LANGCHAIN · </textPath>
-                </text>
-                <circle id="textCircle" cx="350" cy="350" r="310" fill="none"/>
-                <!-- Center cross -->
-                <line x1="320" y1="350" x2="380" y2="350" stroke="rgba(167,139,250,0.12)" stroke-width="0.5"/>
-                <line x1="350" y1="320" x2="350" y2="380" stroke="rgba(167,139,250,0.12)" stroke-width="0.5"/>
-                <!-- Center dot -->
-                <circle cx="350" cy="350" r="3" fill="rgba(167,139,250,0.3)"/>
-                <!-- Cardinal labels -->
-                <text x="350" y="52" text-anchor="middle" fill="rgba(167,139,250,0.12)" font-size="8" font-family="JetBrains Mono, monospace" letter-spacing="2px">N</text>
-                <text x="350" y="658" text-anchor="middle" fill="rgba(167,139,250,0.12)" font-size="8" font-family="JetBrains Mono, monospace" letter-spacing="2px">S</text>
-                <text x="652" y="354" text-anchor="middle" fill="rgba(167,139,250,0.12)" font-size="8" font-family="JetBrains Mono, monospace" letter-spacing="2px">E</text>
-                <text x="48" y="354" text-anchor="middle" fill="rgba(167,139,250,0.12)" font-size="8" font-family="JetBrains Mono, monospace" letter-spacing="2px">W</text>
-            </svg>
-        </div>
+    <!-- Scroll Hint -->
+    <div class="scroll-hint" id="scrollHint">
+        <span>Scroll</span>
+        <div class="scroll-hint-arrow"></div>
+    </div>
 
-        <div class="container hero-content">
-            <div class="hero-badge">✦ 贵州大学 → 北京理工大学 · 专业第一</div>
-            <h1>梁正涛</h1>
-            <p class="hero-desc">做 AI 研究，写开源代码，偶尔打比赛拿奖。研究方向是司法判决认知智能和多模态大模型安全对齐。</p>
-            <div class="hero-stats">
-                <div>
-                    <div class="hero-stat-num" data-count="45">0</div>
-                    <div class="hero-stat-label">Open Source Projects</div>
-                </div>
-                <div>
-                    <div class="hero-stat-num" data-count="500">0</div>
-                    <div class="hero-stat-label">Skills & Prompts</div>
-                </div>
-                <div>
-                    <div class="hero-stat-num">1/69</div>
-                    <div class="hero-stat-label">专业排名</div>
-                </div>
-                <div>
-                    <div class="hero-stat-num">4.08</div>
-                    <div class="hero-stat-label">GPA / 5.0</div>
+    <!-- Portal Sections (revealed through the ring) -->
+    <div class="portal-sections">
+
+        <!-- Hero (always visible at top) -->
+        <section class="hero" id="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-grid"></div>
+            <div class="container hero-content">
+                <div class="hero-badge">✦ 贵州大学 → 北京理工大学 · 专业第一</div>
+                <h1>梁正涛</h1>
+                <p class="hero-desc">做 AI 研究，写开源代码，偶尔打比赛拿奖。</p>
+            </div>
+        </section>
+
+        <!-- Portal: About -->
+        <div class="portal-section" id="portal-about">
+            <div class="portal-card">
+                <div class="portal-icon">🧠</div>
+                <h2>关于我</h2>
+                <p>贵州大学 AI 专业<strong>排名第一（1/69）</strong>，GPA <strong>4.08/5</strong>。2026 年入学<strong>北京理工大学</strong>攻读智能科学与技术硕士。研究方向是司法判决认知智能和多模态大模型安全对齐。</p>
+                <div class="stat-row">
+                    <div class="stat-item"><div class="stat-num">45+</div><div class="stat-lbl">开源项目</div></div>
+                    <div class="stat-item"><div class="stat-num">1/69</div><div class="stat-lbl">专业排名</div></div>
+                    <div class="stat-item"><div class="stat-num">4.08</div><div class="stat-lbl">GPA</div></div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Portal: Research -->
+        <div class="portal-section" id="portal-research">
+            <div class="portal-card">
+                <div class="portal-icon">🔬</div>
+                <h2>科研经历</h2>
+                <p><strong>司法判决认知智能</strong> — CCF-BigData 2025 第一作者。用 LLM 做法律判决预测，融合法律条文和历史案例。<strong>政务服务智能问答</strong> — Langchain + FastAPI，已跑通原型。</p>
+                <div class="stat-row">
+                    <div class="stat-item"><div class="stat-num">2</div><div class="stat-lbl">研究项目</div></div>
+                    <div class="stat-item"><div class="stat-num">1st</div><div class="stat-lbl">CCF 论文</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portal: Awards -->
+        <div class="portal-section" id="portal-awards">
+            <div class="portal-card">
+                <div class="portal-icon">🏆</div>
+                <h2>荣誉奖项</h2>
+                <p>华为 ICT 大赛<strong>昇腾 AI 赛道国家一等奖</strong>、全球总决赛三等奖。<strong>国家奖学金</strong>获得者。雅思 <strong>6.5</strong>，六级 <strong>572</strong>。新加坡国立大学交换。</p>
+                <div class="stat-row">
+                    <div class="stat-item"><div class="stat-num">🥇</div><div class="stat-lbl">国家一等奖</div></div>
+                    <div class="stat-item"><div class="stat-num">🌍</div><div class="stat-lbl">全球三等奖</div></div>
+                    <div class="stat-item"><div class="stat-num">🎓</div><div class="stat-lbl">国家奖学金</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portal: Skills -->
+        <div class="portal-section" id="portal-skills">
+            <div class="portal-card">
+                <div class="portal-icon">⚡</div>
+                <h2>技术栈</h2>
+                <p>Python · TypeScript · Go · Rust · PyTorch · Transformers · LangChain · FastAPI · Docker · Git · Cursor · Kimi Code</p>
+                <div class="stat-row">
+                    <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">编程语言</div></div>
+                    <div class="stat-item"><div class="stat-num">95%</div><div class="stat-lbl">Python</div></div>
+                    <div class="stat-item"><div class="stat-num">92%</div><div class="stat-lbl">AI/ML</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portal: Open Source -->
+        <div class="portal-section" id="portal-opensource">
+            <div class="portal-card">
+                <div class="portal-icon">💻</div>
+                <h2>开源项目</h2>
+                <p>agent-trace · token-meter · vibe-check · awesome-ai-rules · awesome-ai-alignment · paper-grill · awesome-geo · 共 45+ 个项目</p>
+                <div class="stat-row">
+                    <div class="stat-item"><div class="stat-num">45+</div><div class="stat-lbl">Projects</div></div>
+                    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-lbl">Skills</div></div>
+                </div>
+                <div style="margin-top: 24px;">
+                    <a href="https://github.com/liangzhengtao" target="_blank" class="btn btn-primary" style="font-size: 14px;">GitHub →</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <!-- Marquee -->
     <div class="marquee">
@@ -1043,119 +1212,115 @@
     </footer>
 
     <script>
-        // Nav scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Reveal on scroll
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-        // Skill bars
-        const skObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.querySelectorAll('.skill-fill').forEach(b => { b.style.width = b.dataset.w + '%'; });
-                    skObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.3 });
-        document.querySelectorAll('.skill-row').forEach(el => skObs.observe(el.parentElement));
-
-        // Counter animation
-        const cObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.querySelectorAll('[data-count]').forEach(el => {
-                        const t = +el.dataset.count;
-                        let c = 0;
-                        const i = t / 30;
-                        const id = setInterval(() => { c += i; if (c >= t) { el.textContent = t + '+'; clearInterval(id); } else el.textContent = Math.floor(c) + '+'; }, 40);
-                    });
-                    cObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        const hero = document.querySelector('.hero');
-        if (hero) cObs.observe(hero);
-
-        // Card mouse tracking
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const r = card.getBoundingClientRect();
-                card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-                card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-            });
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                const t = document.querySelector(this.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
         // Generate tech ring details
         (function() {
             const ticks = document.getElementById('ringTicks');
             const dots = document.getElementById('ringDots');
             if (!ticks || !dots) return;
             const cx = 350, cy = 350;
-
-            // Tick marks on outer ring (every 6 degrees)
             for (let i = 0; i < 60; i++) {
                 const angle = (i * 6 - 90) * Math.PI / 180;
-                const r1 = 326, r2 = i % 5 === 0 ? 314 : 320;
-                const x1 = cx + r1 * Math.cos(angle);
-                const y1 = cy + r1 * Math.sin(angle);
-                const x2 = cx + r2 * Math.cos(angle);
-                const y2 = cy + r2 * Math.sin(angle);
+                const r1 = 336, r2 = i % 5 === 0 ? 324 : 330;
                 const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-                line.setAttribute('x2', x2); line.setAttribute('y2', y2);
-                line.setAttribute('stroke', i % 5 === 0 ? 'rgba(167,139,250,0.25)' : 'rgba(167,139,250,0.1)');
+                line.setAttribute('x1', cx + r1 * Math.cos(angle));
+                line.setAttribute('y1', cy + r1 * Math.sin(angle));
+                line.setAttribute('x2', cx + r2 * Math.cos(angle));
+                line.setAttribute('y2', cy + r2 * Math.sin(angle));
+                line.setAttribute('stroke', i % 5 === 0 ? 'rgba(167,139,250,0.25)' : 'rgba(167,139,250,0.08)');
                 line.setAttribute('stroke-width', i % 5 === 0 ? '1.5' : '0.5');
                 ticks.appendChild(line);
             }
-
-            // Dots on middle ring (every 30 degrees)
             for (let i = 0; i < 12; i++) {
                 const angle = (i * 30 - 90) * Math.PI / 180;
-                const r = 280;
-                const x = cx + r * Math.cos(angle);
-                const y = cy + r * Math.sin(angle);
                 const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                circle.setAttribute('cx', x); circle.setAttribute('cy', y);
+                circle.setAttribute('cx', cx + 300 * Math.cos(angle));
+                circle.setAttribute('cy', cy + 300 * Math.sin(angle));
                 circle.setAttribute('r', i % 3 === 0 ? '4' : '2');
                 circle.setAttribute('fill', i % 3 === 0 ? 'rgba(167,139,250,0.5)' : 'rgba(167,139,250,0.2)');
                 dots.appendChild(circle);
             }
+        })();
 
-            // Rotate on scroll
-            const ring = document.getElementById('techRing');
-            const wrap = ring.parentElement;
-            let ticking = false;
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        const scrollY = window.scrollY;
-                        ring.style.transform = `rotate(${scrollY * 0.06}deg)`;
-                        // Scale down and fade as user scrolls
-                        const scale = Math.max(0.3, 1 - scrollY / 1200);
-                        const opacity = Math.max(0, 0.5 - scrollY / 1000);
-                        wrap.style.opacity = opacity;
-                        wrap.style.transform = `translate(-50%, -50%) scale(${scale})`;
-                        ticking = false;
-                    });
-                    ticking = true;
+        // Scroll-driven ring opening + portal sections
+        const ring = document.getElementById('techRing');
+        const ringWrap = document.getElementById('ringWrap');
+        const scrollHint = document.getElementById('scrollHint');
+        const portalSections = document.querySelectorAll('.portal-section');
+
+        function onScroll() {
+            const scrollY = window.scrollY;
+            const vh = window.innerHeight;
+            const totalScrollable = document.documentElement.scrollHeight - vh;
+            const progress = Math.min(1, scrollY / (totalScrollable * 0.4));
+
+            // Ring: scale from tiny to huge, rotate continuously
+            const scale = 0.1 + progress * 2;
+            const rotate = scrollY * 0.04;
+            ring.style.transform = 'scale(' + scale + ') rotate(' + rotate + 'deg)';
+
+            // Ring opacity
+            let ringOpacity;
+            if (progress < 0.1) ringOpacity = progress / 0.1;
+            else if (progress < 0.7) ringOpacity = 1;
+            else ringOpacity = Math.max(0, 1 - (progress - 0.7) / 0.3);
+            ringWrap.style.opacity = ringOpacity;
+
+            // Scroll hint
+            if (scrollHint) scrollHint.style.opacity = scrollY > 60 ? '0' : '1';
+
+            // Portal sections
+            portalSections.forEach(function(section, i) {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const viewCenter = scrollY + vh / 2;
+                if (viewCenter > sectionTop - vh * 0.3 && viewCenter < sectionTop + sectionHeight + vh * 0.3) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
                 }
             });
-        })();
+
+            // Nav
+            document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // Reveal
+        const obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+        // Skill bars
+        const skObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.skill-fill').forEach(function(b) { b.style.width = b.dataset.w + '%'; });
+                    skObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.skill-row').forEach(function(el) { skObs.observe(el.parentElement); });
+
+        // Card mouse
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                var r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                var t = document.querySelector(this.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
     </script>
 </body>
 </html>
