@@ -623,8 +623,8 @@
             <h1>梁正涛</h1>
             <p class="hero-sub">做 AI 研究，写开源代码，偶尔打比赛拿奖。研究方向是司法判决认知智能和多模态大模型安全对齐。</p>
             <div class="hero-stats">
-                <div><div class="hero-stat-num" data-count="45">0</div><div class="hero-stat-lbl">Open Source Projects</div></div>
-                <div><div class="hero-stat-num" data-count="500">0</div><div class="hero-stat-lbl">Skills & Prompts</div></div>
+                <div><div class="hero-stat-num">45+</div><div class="hero-stat-lbl">Open Source Projects</div></div>
+                <div><div class="hero-stat-num">500+</div><div class="hero-stat-lbl">Skills & Prompts</div></div>
                 <div><div class="hero-stat-num">1/69</div><div class="hero-stat-lbl">专业排名</div></div>
                 <div><div class="hero-stat-num">4.08</div><div class="hero-stat-lbl">GPA / 5.0</div></div>
             </div>
@@ -687,9 +687,9 @@
 
             <!-- Stat counters -->
             <div class="stat-grid anim">
-                <div class="stat-card"><div class="stat-card-num" data-count="45">0</div><div class="stat-card-lbl">Years of Experience</div></div>
+                <div class="stat-card"><div class="stat-card-num">4+</div><div class="stat-card-lbl">Years of Experience</div></div>
                 <div class="stat-card"><div class="stat-card-num">1/69</div><div class="stat-card-lbl">专业排名</div></div>
-                <div class="stat-card"><div class="stat-card-num" data-count="500">0</div><div class="stat-card-lbl">Skills & Prompts</div></div>
+                <div class="stat-card"><div class="stat-card-num">500+</div><div class="stat-card-lbl">Skills & Prompts</div></div>
             </div>
         </div>
     </section>
@@ -861,21 +861,6 @@
             });
         }, { threshold: 0.3 });
         document.querySelectorAll('.skill-row').forEach(function(el) { skObs.observe(el.parentElement); });
-
-        // Counter animation
-        var cObs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.querySelectorAll('[data-count]').forEach(function(el) {
-                        var t = +el.dataset.count, c = 0, i = t / 30;
-                        var id = setInterval(function() { c += i; if (c >= t) { el.textContent = t + '+'; clearInterval(id); } else el.textContent = Math.floor(c) + '+'; }, 40);
-                    });
-                    cObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        var hero = document.querySelector('.hero');
-        if (hero) cObs.observe(hero);
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(function(a) {
