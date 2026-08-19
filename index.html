@@ -198,6 +198,33 @@
         .anim { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .anim.visible { opacity: 1; transform: translateY(0); }
 
+        /* Staggered children */
+        .stagger > * { opacity: 0; transform: translateY(24px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(3) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(4) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(5) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(6) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+
+        /* Scroll progress bar */
+        .scroll-bar {
+            position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+            background: linear-gradient(90deg, var(--accent), var(--pink));
+            width: 0; transition: width 0.1s;
+            box-shadow: 0 0 8px rgba(167,139,250,0.4);
+        }
+
+        /* Typing cursor */
+        .typing-cursor {
+            display: inline-block; width: 2px; height: 1em; background: var(--accent);
+            margin-left: 2px; vertical-align: text-bottom; animation: blink 0.8s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Magnetic button */
+        .btn { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+
         /* ---- Responsive ---- */
         @media (max-width: 768px) {
             .hero { padding: 120px 0 64px; }
@@ -215,6 +242,9 @@
     </style>
 </head>
 <body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-bar" id="scrollBar"></div>
 
     <!-- Nav -->
     <nav class="nav" id="nav">
@@ -244,7 +274,7 @@
         <div class="container hero-content">
             <div class="hero-badge">✦ 贵州大学 → 北京理工大学 · 专业第一</div>
             <h1>梁正涛</h1>
-            <p class="hero-sub">做 AI 研究，写开源代码，偶尔打比赛拿奖。研究方向是司法判决认知智能和多模态大模型安全对齐。</p>
+            <p class="hero-sub"><span id="typingText"></span><span class="typing-cursor"></span></p>
             <div class="hero-stats">
                 <div><div class="hero-stat-num">45+</div><div class="hero-stat-lbl">Open Source Projects</div></div>
                 <div><div class="hero-stat-num">500+</div><div class="hero-stat-lbl">Skills & Prompts</div></div>
@@ -341,7 +371,7 @@
             <h2 class="section-title anim">项目经历</h2>
             <p class="section-desc anim">研究项目和精选开源项目</p>
             <h3 class="anim" style="margin-top:40px;margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">🔬 研究项目</h3>
-            <div class="card-grid anim" style="margin-bottom:40px;">
+            <div class="card-grid anim stagger" style="margin-bottom:40px;">
                 <div class="card" style="background:linear-gradient(135deg, rgba(167,139,250,0.08), rgba(244,114,182,0.05));">
                     <div class="card-icon">🧠</div>
                     <div class="card-title">司法判决认知智能</div>
@@ -356,7 +386,7 @@
                 </div>
             </div>
             <h3 class="anim" style="margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">💻 开源项目</h3>
-            <div class="card-grid anim">
+            <div class="card-grid anim stagger">
                 <div class="card"><div class="card-icon">🧠</div><div class="card-title">awesome-ai-rules</div><div class="card-desc">20 AI coding rules for Cursor, Claude Code, Kimi Code.</div><a href="https://github.com/liangzhengtao/awesome-ai-rules" target="_blank" class="card-link">GitHub →</a></div>
                 <div class="card"><div class="card-icon">⚡</div><div class="card-title">token-meter</div><div class="card-desc">Real-time token cost meter for AI coding agents.</div><a href="https://github.com/liangzhengtao/token-meter" target="_blank" class="card-link">GitHub →</a></div>
                 <div class="card"><div class="card-icon">🔍</div><div class="card-title">agent-trace</div><div class="card-desc">Trace your AI agent — costs, tokens, tool health.</div><a href="https://github.com/liangzhengtao/agent-trace" target="_blank" class="card-link">GitHub →</a></div>
@@ -540,16 +570,41 @@
             document.getElementById('themeBtn').textContent = saved === 'dark' ? '🌙' : '☀️';
         }
 
-        // Nav
+        // Scroll progress bar
+        var scrollBar = document.getElementById('scrollBar');
         window.addEventListener('scroll', function() {
-            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-        });
+            var scrollTop = window.scrollY;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollBar.style.width = progress + '%';
+            document.getElementById('nav').classList.toggle('scrolled', scrollTop > 50);
+        }, { passive: true });
+
+        // Typing effect
+        var typingTexts = [
+            '做 AI 研究，写开源代码，偶尔打比赛拿奖。',
+            '研究方向：司法判决认知智能 + 多模态安全对齐。',
+            '45+ 开源项目，全部中英双语，全部免费。',
+            '北京理工大学 · 智能科学与技术 · 硕士在读。'
+        ];
+        var ti = 0, ci = 0, del = false;
+        function typeEffect() {
+            var el = document.getElementById('typingText');
+            if (!el) return;
+            var t = typingTexts[ti];
+            el.textContent = del ? t.substring(0, --ci) : t.substring(0, ++ci);
+            var s = del ? 25 : 60;
+            if (!del && ci === t.length) { s = 2000; del = true; }
+            else if (del && ci === 0) { del = false; ti = (ti + 1) % typingTexts.length; s = 400; }
+            setTimeout(typeEffect, s);
+        }
+        setTimeout(typeEffect, 500);
 
         // Animate on scroll
         var obs = new IntersectionObserver(function(entries) {
             entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.anim').forEach(function(el) { obs.observe(el); });
+        document.querySelectorAll('.anim, .stagger').forEach(function(el) { obs.observe(el); });
 
         // Skill bars
         var skObs = new IntersectionObserver(function(entries) {
@@ -561,6 +616,44 @@
             });
         }, { threshold: 0.3 });
         document.querySelectorAll('.skill-row').forEach(function(el) { skObs.observe(el.parentElement); });
+
+        // Counter animation
+        var cObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var nums = e.target.querySelectorAll('.stat-card-num');
+                    nums.forEach(function(el) {
+                        var text = el.textContent;
+                        var match = text.match(/^(\d+)/);
+                        if (!match) return;
+                        var target = parseInt(match[1]);
+                        var suffix = text.replace(/^\d+/, '');
+                        var current = 0;
+                        var step = Math.max(1, Math.floor(target / 40));
+                        var id = setInterval(function() {
+                            current += step;
+                            if (current >= target) { el.textContent = target + suffix; clearInterval(id); }
+                            else el.textContent = current + suffix;
+                        }, 30);
+                    });
+                    cObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.stat-grid').forEach(function(el) { cObs.observe(el); });
+
+        // Magnetic buttons
+        document.querySelectorAll('.btn').forEach(function(btn) {
+            btn.addEventListener('mousemove', function(e) {
+                var r = btn.getBoundingClientRect();
+                var x = e.clientX - r.left - r.width / 2;
+                var y = e.clientY - r.top - r.height / 2;
+                btn.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.15) + 'px)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                btn.style.transform = '';
+            });
+        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(function(a) {
