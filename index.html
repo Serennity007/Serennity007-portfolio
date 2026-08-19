@@ -112,8 +112,18 @@
 
         /* ---- Cards ---- */
         .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 28px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card:hover { border-color: rgba(167,139,250,0.15); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.15); }
+        .card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 28px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
+        }
+        .card::after {
+            content: ''; position: absolute; inset: 0; border-radius: 24px;
+            background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(167,139,250,0.06), transparent 60%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none;
+        }
+        .card:hover { border-color: rgba(167,139,250,0.15); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+        .card:hover::after { opacity: 1; }
         .card-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(167,139,250,0.08); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px; }
         .card-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
         .card-desc { font-size: 14px; color: var(--text-2); line-height: 1.6; }
@@ -131,8 +141,10 @@
         .tl-sub { font-size: 13px; color: var(--text-2); }
 
         /* ---- Awards ---- */
-        .award-row { display: flex; gap: 16px; align-items: center; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 10px; transition: all 0.3s; }
-        .award-row:hover { border-color: rgba(167,139,250,0.15); transform: translateX(6px); }
+        .award-row { display: flex; gap: 16px; align-items: center; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 10px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+        .award-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--accent), var(--pink)); transform: scaleY(0); transition: transform 0.3s; }
+        .award-row:hover { border-color: rgba(167,139,250,0.15); transform: translateX(8px); box-shadow: -4px 0 20px rgba(167,139,250,0.08); }
+        .award-row:hover::before { transform: scaleY(1); }
         .award-emoji { font-size: 32px; min-width: 44px; text-align: center; }
         .award-title { font-size: 14px; font-weight: 600; }
         .award-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
@@ -672,6 +684,109 @@
             btn.style.background = '#22c55e';
             setTimeout(function() { btn.textContent = '发送消息 →'; btn.style.background = ''; }, 3000);
         }
+
+        // Particles background
+        (function() {
+            var canvas = document.createElement('canvas');
+            canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:0;';
+            document.body.prepend(canvas);
+            var ctx = canvas.getContext('2d');
+            var particles = [];
+            var particleCount = 60;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (var i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    r: Math.random() * 1.5 + 0.5,
+                    o: Math.random() * 0.3 + 0.1
+                });
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(167, 139, 250, ' + p.o + ')';
+                    ctx.fill();
+                }
+                // Draw lines between close particles
+                for (var i = 0; i < particles.length; i++) {
+                    for (var j = i + 1; j < particles.length; j++) {
+                        var dx = particles[i].x - particles[j].x;
+                        var dy = particles[i].y - particles[j].y;
+                        var dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = 'rgba(167, 139, 250, ' + (0.06 * (1 - dist / 120)) + ')';
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+        })();
+
+        // Custom cursor
+        (function() {
+            if (window.matchMedia('(max-width: 768px)').matches) return;
+            var dot = document.createElement('div');
+            var ring = document.createElement('div');
+            dot.style.cssText = 'position:fixed;width:6px;height:6px;background:#a78bfa;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,background 0.2s;mix-blend-mode:difference;';
+            ring.style.cssText = 'position:fixed;width:36px;height:36px;border:1.5px solid rgba(167,139,250,0.3);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s;';
+            document.body.appendChild(dot);
+            document.body.appendChild(ring);
+            var mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+            (function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); })();
+            document.querySelectorAll('a, button, .card, .stat-card, .award-row, .blog-card, .value-item').forEach(function(el) {
+                el.addEventListener('mouseenter', function() { dot.style.width = '40px'; dot.style.height = '40px'; dot.style.background = 'rgba(167,139,250,0.15)'; ring.style.width = '60px'; ring.style.height = '60px'; ring.style.borderColor = 'rgba(167,139,250,0.6)'; });
+                el.addEventListener('mouseleave', function() { dot.style.width = '6px'; dot.style.height = '6px'; dot.style.background = '#a78bfa'; ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(167,139,250,0.3)'; });
+            });
+            document.body.style.cursor = 'none';
+        })();
+
+        // Parallax on hero background
+        (function() {
+            var heroBg = document.querySelector('.hero-bg');
+            if (!heroBg) return;
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY;
+                if (scrollY < window.innerHeight) {
+                    heroBg.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+                }
+            }, { passive: true });
+        })();
+
+        // Card mouse glow
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                var r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+            });
+        });
     </script>
 </body>
 </html>
