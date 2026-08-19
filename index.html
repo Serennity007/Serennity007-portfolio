@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,18 +24,56 @@
             --purple: #a855f7;
         }
 
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f8f9fa;
+            --surface-2: #e9ecef;
+            --border: #dee2e6;
+            --text: #212529;
+            --text-muted: #6c757d;
+            --accent-glow: rgba(59, 130, 246, 0.1);
+        }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s, color 0.3s;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Navigation */
@@ -48,6 +86,11 @@
             border-bottom: 1px solid var(--border);
             z-index: 100;
             padding: 16px 0;
+            transition: background 0.3s;
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         nav .container {
@@ -67,6 +110,7 @@
             display: flex;
             gap: 32px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -77,6 +121,22 @@
         }
 
         .nav-links a:hover { color: var(--text); }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
 
         /* Hero */
         .hero {
@@ -95,6 +155,7 @@
             font-size: 13px;
             color: var(--accent);
             margin-bottom: 24px;
+            animation: pulse 2s infinite;
         }
 
         .hero h1 {
@@ -105,6 +166,11 @@
             background: linear-gradient(135deg, #fff 0%, #888 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .hero h1 {
+            background: linear-gradient(135deg, #1a1a2e 0%, #666 100%);
+            -webkit-background-clip: text;
         }
 
         .hero p {
@@ -119,6 +185,7 @@
             justify-content: center;
             gap: 48px;
             margin-top: 48px;
+            flex-wrap: wrap;
         }
 
         .stat { text-align: center; }
@@ -166,13 +233,13 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 24px;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
 
         .card:hover {
             border-color: var(--accent);
             box-shadow: 0 0 30px var(--accent-glow);
-            transform: translateY(-2px);
+            transform: translateY(-4px);
         }
 
         .card-header {
@@ -182,10 +249,7 @@
             margin-bottom: 12px;
         }
 
-        .card-title {
-            font-size: 16px;
-            font-weight: 600;
-        }
+        .card-title { font-size: 16px; font-weight: 600; }
 
         .card-badge {
             font-size: 11px;
@@ -205,20 +269,16 @@
             margin-bottom: 16px;
         }
 
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
+        .card-link {
+            font-size: 13px;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .tag {
-            font-size: 11px;
-            padding: 3px 8px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            color: var(--text-muted);
-        }
+        .card-link:hover { text-decoration: underline; }
 
         /* Timeline */
         .timeline {
@@ -233,7 +293,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: var(--border);
+            background: linear-gradient(to bottom, var(--accent), var(--purple));
         }
 
         .timeline-item {
@@ -260,35 +320,18 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        .timeline-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 4px 0;
-        }
-
-        .timeline-subtitle {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
+        .timeline-title { font-size: 18px; font-weight: 600; margin: 4px 0; }
+        .timeline-subtitle { font-size: 14px; color: var(--text-muted); }
 
         /* Skills */
-        .skill-group {
-            margin-bottom: 32px;
-        }
-
+        .skill-group { margin-bottom: 32px; }
         .skill-group-title {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--text-muted);
         }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .skill-tag {
             padding: 6px 14px;
             background: var(--surface);
@@ -296,11 +339,12 @@
             border-radius: 8px;
             font-size: 13px;
             transition: all 0.2s;
+            cursor: default;
         }
-
         .skill-tag:hover {
             border-color: var(--accent);
             background: var(--accent-glow);
+            transform: scale(1.05);
         }
 
         /* Awards */
@@ -313,36 +357,42 @@
             border-radius: 12px;
             padding: 24px;
             margin-bottom: 16px;
+            transition: all 0.3s;
         }
 
-        .award-icon {
-            font-size: 48px;
-            min-width: 60px;
-            text-align: center;
+        .award-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
         }
 
-        .award-title {
-            font-size: 18px;
-            font-weight: 600;
+        .award-icon { font-size: 48px; min-width: 60px; text-align: center; }
+        .award-title { font-size: 18px; font-weight: 600; }
+        .award-desc { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+
+        /* GitHub Contribution Graph */
+        .github-graph {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+            overflow-x: auto;
         }
 
-        .award-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 4px;
+        .github-graph img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
         }
 
         /* CTA */
-        .cta-section {
-            text-align: center;
-            padding: 80px 0;
-        }
-
+        .cta-section { text-align: center; padding: 80px 0; }
         .cta-buttons {
             display: flex;
             gap: 16px;
             justify-content: center;
             margin-top: 32px;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -355,6 +405,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -365,7 +416,8 @@
 
         .btn-primary:hover {
             background: #2563eb;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
 
         .btn-outline {
@@ -376,6 +428,7 @@
 
         .btn-outline:hover {
             border-color: var(--text);
+            background: var(--surface);
         }
 
         /* Footer */
@@ -403,13 +456,13 @@
             <a href="#" class="nav-logo">ZT</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#experience">Education</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#awards">Awards</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="resume.html">中文简历</a></li>
-                <li><a href="resume-en.html">English Resume</a></li>
+                <li><a href="resume.html">Resume</a></li>
                 <li><a href="https://github.com/liangzhengtao" target="_blank">GitHub</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()">🌓</button></li>
             </ul>
         </div>
     </nav>
@@ -417,14 +470,14 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge">
+            <div class="hero-badge fade-in">
                 <span>🎓</span>
                 <span>北京理工大学 · AI 硕士在读</span>
             </div>
-            <h1>梁正涛</h1>
-            <p>AI 研究员 & 全栈开发者。专注于多模态大模型安全对齐、AI Agent 架构、开源工具开发。</p>
+            <h1 class="fade-in">梁正涛</h1>
+            <p class="fade-in">AI 研究员 & 全栈开发者。专注于多模态大模型安全对齐、AI Agent 架构、开源工具开发。</p>
 
-            <div class="hero-stats">
+            <div class="hero-stats fade-in">
                 <div class="stat">
                     <div class="stat-value" style="color: var(--accent)">39+</div>
                     <div class="stat-label">Open Source Projects</div>
@@ -438,11 +491,7 @@
                     <div class="stat-label">华为 ICT 国家一等奖</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value" style="color: var(--purple)">🌍</div>
-                    <div class="stat-label">全球赛三等奖</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" style="color: #f59e0b">🎓</div>
+                    <div class="stat-value" style="color: var(--purple)">🎓</div>
                     <div class="stat-label">国家奖学金</div>
                 </div>
             </div>
@@ -452,9 +501,9 @@
     <!-- About -->
     <section id="about">
         <div class="container">
-            <div class="section-title">About</div>
-            <div class="section-heading">关于我</div>
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+            <div class="section-title fade-in">About</div>
+            <div class="section-heading fade-in">关于我</div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;" class="fade-in">
                 <div>
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted);">
                         我是梁正涛，2026 年入学北京理工大学人工智能学院，攻读智能科学与技术硕士学位（3 年制），预计 2029 年毕业。
@@ -485,12 +534,12 @@
         </div>
     </section>
 
-    <!-- Experience -->
+    <!-- Education -->
     <section id="experience">
         <div class="container">
-            <div class="section-title">Education</div>
-            <div class="section-heading">教育经历</div>
-            <div class="timeline">
+            <div class="section-title fade-in">Education</div>
+            <div class="section-heading fade-in">教育经历</div>
+            <div class="timeline fade-in">
                 <div class="timeline-item">
                     <div class="timeline-date">2026 - 2029 (预计)</div>
                     <div class="timeline-title">北京理工大学</div>
@@ -514,10 +563,10 @@
     <!-- Awards -->
     <section id="awards">
         <div class="container">
-            <div class="section-title">Awards</div>
-            <div class="section-heading">荣誉奖项</div>
+            <div class="section-title fade-in">Awards</div>
+            <div class="section-heading fade-in">荣誉奖项</div>
 
-            <div class="award-card">
+            <div class="award-card fade-in">
                 <div class="award-icon">🥇</div>
                 <div>
                   <div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · 国家一等奖</div>
@@ -525,15 +574,7 @@
                 </div>
             </div>
 
-            <div class="award-card">
-                <div class="award-icon">🎓</div>
-                <div>
-                  <div class="award-title">国家奖学金</div>
-                  <div class="award-desc">国家级奖学金，表彰学业成绩优异的学生</div>
-                </div>
-            </div>
-
-            <div class="award-card">
+            <div class="award-card fade-in">
                 <div class="award-icon">🌍</div>
                 <div>
                   <div class="award-title">华为 ICT 大赛 · 全球总决赛 · 三等奖</div>
@@ -541,7 +582,15 @@
                 </div>
             </div>
 
-            <div class="award-card">
+            <div class="award-card fade-in">
+                <div class="award-icon">🎓</div>
+                <div>
+                  <div class="award-title">国家奖学金</div>
+                  <div class="award-desc">国家级奖学金，表彰学业成绩优异的学生</div>
+                </div>
+            </div>
+
+            <div class="award-card fade-in">
                 <div class="award-icon">🗣️</div>
                 <div>
                   <div class="award-title">语言能力</div>
@@ -554,92 +603,77 @@
     <!-- Projects -->
     <section id="projects">
         <div class="container">
-            <div class="section-title">Projects</div>
-            <div class="section-heading">开源项目精选</div>
+            <div class="section-title fade-in">Projects</div>
+            <div class="section-heading fade-in">开源项目精选</div>
             <div class="card-grid">
-                <div class="card">
+                <div class="card fade-in">
                     <div class="card-header">
                         <div class="card-title">🧠 awesome-ai-rules</div>
                         <span class="card-badge badge-blue">AI Tools</span>
                     </div>
-                    <div class="card-desc">20 production-ready AI coding rules for Cursor, Claude Code, Kimi Code. Copy-paste, instant results.</div>
-                    <div class="card-tags">
-                        <span class="tag">cursor</span>
-                        <span class="tag">claude-code</span>
-                        <span class="tag">ai-rules</span>
-                    </div>
+                    <div class="card-desc">20 AI coding rules for Cursor, Claude Code, Kimi Code. Copy-paste, instant results.</div>
+                    <a href="https://github.com/liangzhengtao/awesome-ai-rules" target="_blank" class="card-link">View on GitHub →</a>
                 </div>
 
-                <div class="card">
+                <div class="card fade-in">
                     <div class="card-header">
                         <div class="card-title">🎯 vibe-check</div>
                         <span class="card-badge badge-green">CLI Tool</span>
                     </div>
-                    <div class="card-desc">npx vibe-check — Score your project's AI-readiness in 5 seconds. 7 categories, 84 points.</div>
-                    <div class="card-tags">
-                        <span class="tag">npx</span>
-                        <span class="tag">cli</span>
-                        <span class="tag">ai-tools</span>
-                    </div>
+                    <div class="card-desc">npx vibe-check — Score your project's AI-readiness in 5 seconds.</div>
+                    <a href="https://github.com/liangzhengtao/vibe-check" target="_blank" class="card-link">View on GitHub →</a>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">🚀 awesome-mcp-servers</div>
-                        <span class="card-badge badge-purple">MCP</span>
-                    </div>
-                    <div class="card-desc">9 verified MCP servers for AI coding assistants. One config file, real superpowers.</div>
-                    <div class="card-tags">
-                        <span class="tag">mcp</span>
-                        <span class="tag">cursor</span>
-                        <span class="tag">claude-code</span>
-                    </div>
-                </div>
-
-                <div class="card">
+                <div class="card fade-in">
                     <div class="card-header">
                         <div class="card-title">🔍 agent-trace</div>
                         <span class="card-badge badge-orange">Debugging</span>
                     </div>
-                    <div class="card-desc">Trace your AI agent — costs, tokens, tool health, every conversation timeline.</div>
-                    <div class="card-tags">
-                        <span class="tag">debugging</span>
-                        <span class="tag">ai-agents</span>
-                        <span class="tag">observability</span>
-                    </div>
+                    <div class="card-desc">Trace your AI agent — costs, tokens, tool health, every conversation.</div>
+                    <a href="https://github.com/liangzhengtao/agent-trace" target="_blank" class="card-link">View on GitHub →</a>
                 </div>
 
-                <div class="card">
+                <div class="card fade-in">
+                    <div class="card-header">
+                        <div class="card-title">🛡️ awesome-ai-alignment</div>
+                        <span class="card-badge badge-purple">Research</span>
+                    </div>
+                    <div class="card-desc">12 AI safety and alignment skills — RLHF, red teaming, evaluation.</div>
+                    <a href="https://github.com/liangzhengtao/awesome-ai-alignment" target="_blank" class="card-link">View on GitHub →</a>
+                </div>
+
+                <div class="card fade-in">
                     <div class="card-header">
                         <div class="card-title">📝 paper-grill</div>
                         <span class="card-badge badge-blue">Research</span>
                     </div>
-                    <div class="card-desc">Honest paper review skills — NeurIPS, ICML, ICLR, ACL, CVPR review styles.</div>
-                    <div class="card-tags">
-                        <span class="tag">academia</span>
-                        <span class="tag">review</span>
-                        <span class="tag">neurips</span>
-                    </div>
+                    <div class="card-desc">Honest paper review — NeurIPS, ICML, ICLR, ACL, CVPR styles.</div>
+                    <a href="https://github.com/liangzhengtao/paper-grill" target="_blank" class="card-link">View on GitHub →</a>
                 </div>
 
-                <div class="card">
+                <div class="card fade-in">
                     <div class="card-header">
-                        <div class="card-title">🎬 awesome-video-prompts</div>
-                        <span class="card-badge badge-green">Creative</span>
+                        <div class="card-title">🚀 awesome-mcp-servers</div>
+                        <span class="card-badge badge-green">MCP</span>
                     </div>
-                    <div class="card-desc">200+ video generation prompts for Sora, Runway, Pika, Kling. Copy, paste, create.</div>
-                    <div class="card-tags">
-                        <span class="tag">sora</span>
-                        <span class="tag">runway</span>
-                        <span class="tag">video-ai</span>
-                    </div>
+                    <div class="card-desc">9 verified MCP servers for AI coding assistants.</div>
+                    <a href="https://github.com/liangzhengtao/awesome-mcp-servers" target="_blank" class="card-link">View on GitHub →</a>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 32px;">
+            <div style="text-align: center; margin-top: 32px;" class="fade-in">
                 <a href="https://github.com/liangzhengtao?tab=repositories" target="_blank" class="btn btn-outline">
                     View all 39+ projects →
                 </a>
+            </div>
+
+            <!-- GitHub Contribution Graph -->
+            <div class="github-graph fade-in">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">
+                    📊 GitHub Activity
+                </h3>
+                <img src="https://github-readme-stats.vercel.app/api?username=liangzhengtao&show_icons=true&theme=radical&hide_border=true" alt="GitHub Stats" style="margin-bottom: 16px;">
+                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=liangzhengtao&layout=compact&theme=radical&hide_border=true" alt="Top Languages">
             </div>
         </div>
     </section>
@@ -647,10 +681,10 @@
     <!-- Skills -->
     <section id="skills">
         <div class="container">
-            <div class="section-title">Skills</div>
-            <div class="section-heading">技术栈</div>
+            <div class="section-title fade-in">Skills</div>
+            <div class="section-heading fade-in">技术栈</div>
 
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;" class="fade-in">
                 <div class="skill-group">
                     <div class="skill-group-title">Languages</div>
                     <div class="skill-tags">
@@ -670,8 +704,8 @@
                         <span class="skill-tag">Transformers</span>
                         <span class="skill-tag">LangChain</span>
                         <span class="skill-tag">OpenAI API</span>
-                        <span class="skill-tag">Local LLMs</span>
                         <span class="skill-tag">MCP</span>
+                        <span class="skill-tag">RAG</span>
                     </div>
                 </div>
 
@@ -722,12 +756,12 @@
     <!-- CTA -->
     <section class="cta-section">
         <div class="container">
-            <div class="section-title">Contact</div>
-            <div class="section-heading">Let's Connect</div>
-            <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">
+            <div class="section-title fade-in">Contact</div>
+            <div class="section-heading fade-in">Let's Connect</div>
+            <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;" class="fade-in">
                 如果你对我的研究或开源项目感兴趣，欢迎联系我。
             </p>
-            <div class="cta-buttons">
+            <div class="cta-buttons fade-in">
                 <a href="https://github.com/liangzhengtao" target="_blank" class="btn btn-primary">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                     GitHub
@@ -745,5 +779,46 @@
             <p>© 2026 梁正涛 · Built with ❤️ and open source</p>
         </div>
     </footer>
+
+    <script>
+        // Theme toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        // Fade in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
