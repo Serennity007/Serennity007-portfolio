@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — 梁正涛</title>
+    <meta name="description" content="梁正涛的技术博客：AI 研究、开源实践与工具心得">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        [data-theme="dark"] {
+            --bg: #050508; --bg-2: #0a0a12; --surface: #0c0c14; --surface-2: #13131e;
+            --border: rgba(0,212,255,0.10); --text: #e8eaf6; --text-2: #9aa3b2; --text-3: #5d6b82;
+            --accent: #00d4ff; --accent-2: #8b5cf6; --pink: #f472b6;
+            --glow: rgba(0,212,255,0.35); --grid: rgba(0,212,255,0.05);
+        }
+
+        [data-theme="light"] {
+            --bg: #f6f8fb; --bg-2: #edf0f6; --surface: #ffffff; --surface-2: #f2f5fa;
+            --border: rgba(8,120,140,0.14); --text: #101828; --text-2: #475467; --text-3: #8492a6;
+            --accent: #0891b2; --accent-2: #7c3aed; --pink: #db2777;
+            --glow: rgba(8,145,178,0.25); --grid: rgba(8,120,140,0.07);
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6;
+            -webkit-font-smoothing: antialiased; overflow-x: hidden;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        ::selection { background: rgba(0,212,255,0.25); }
+
+        /* Same tech-grid backdrop as the homepage */
+        body::before {
+            content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 44px 44px;
+            -webkit-mask-image: radial-gradient(ellipse 95% 75% at 50% 0%, #000 0%, transparent 78%);
+            mask-image: radial-gradient(ellipse 95% 75% at 50% 0%, #000 0%, transparent 78%);
+        }
+
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+        .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 96px; }
+
+        /* Top bar */
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+        .topbar a { color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+        .topbar a:hover { color: var(--accent); }
+        .topbar .prompt { color: var(--accent); }
+
+        /* Index list */
+        .page-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+        .page-desc { color: var(--text-3); font-size: 14px; margin-bottom: 36px; font-family: 'JetBrains Mono', monospace; }
+        .post-card { display: block; text-decoration: none; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; margin-bottom: 16px; transition: all 0.3s; }
+        .post-card:hover { border-color: rgba(0,212,255,0.3); transform: translateX(6px); }
+        .post-card-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); margin-bottom: 6px; }
+        .post-card-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .post-card-summary { font-size: 14px; color: var(--text-2); }
+        .post-card-tag { display: inline-block; margin-top: 10px; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--accent); border: 1px solid var(--border); border-radius: 100px; padding: 2px 10px; }
+
+        /* Article */
+        .article { font-size: 16px; line-height: 1.9; color: var(--text-2); overflow-wrap: anywhere; }
+        .article h1, .article h2, .article h3, .article h4 { color: var(--text); line-height: 1.4; margin: 36px 0 14px; letter-spacing: -0.5px; }
+        .article h1 { font-size: 28px; margin-top: 0; }
+        .article h2 { font-size: 22px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+        .article h3 { font-size: 18px; }
+        .article p { margin-bottom: 16px; }
+        .article a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+        .article a:hover { border-bottom-color: var(--accent); }
+        .article strong { color: var(--text); }
+        .article em { color: var(--text-3); }
+        .article ul, .article ol { margin: 0 0 16px 24px; }
+        .article li { margin-bottom: 6px; }
+        .article blockquote { border-left: 3px solid var(--accent); padding: 4px 16px; margin: 0 0 16px; color: var(--text-3); background: var(--surface); border-radius: 0 10px 10px 0; }
+        .article code { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; color: var(--accent); }
+        .article pre { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; overflow-x: auto; }
+        .article pre code { background: none; border: none; padding: 0; color: var(--text); font-size: 13px; line-height: 1.7; }
+        .article img { max-width: 100%; border-radius: 12px; }
+        .article hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+        .article table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 14px; }
+        .article th, .article td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+        .article th { background: var(--surface-2); color: var(--text); }
+
+        /* Status / error */
+        .status { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-3); padding: 48px 0; text-align: center; }
+        .status .err { color: var(--pink); }
+        .status a { color: var(--accent); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <a href="index.html"><span class="prompt">&gt;_</span> cd ~/portfolio</a>
+            <a href="blog.html">ls ./blog</a>
+        </div>
+        <main id="content" aria-live="polite"></main>
+    </div>
+
+    <script>
+        // Reuse the theme choice from the homepage
+        var saved = localStorage.getItem('theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+        // Post index (no ?post -> list view)
+        var POSTS = [
+            { name: 'how-i-built-45-opensource-projects', title: '我如何用 AI 做了 45+ 个开源项目', date: '2026.08', tag: '开源', summary: '从零开始，用 Cursor、Kimi Code、Claude Code 等 AI 工具，在半年内创建了 45+ 个开源项目的实战经验分享。' },
+            { name: 'legal-judgment-prediction-with-llm', title: '用 LLM 做法律判决预测：知识-经验双轨融合方法', date: '2026.07', tag: '研究', summary: 'CCF-BigData 2025 论文的技术解读，介绍如何将法律条文和司法先例结合起来提升 LLM 的判决预测能力。' },
+            { name: 'ai-coding-assistant-configuration-guide', title: 'AI 编程助手配置指南：让 AI 写出更好的代码', date: '2026.06', tag: '工具', summary: 'Cursor Rules、CLAUDE.md、AGENTS.md 的最佳实践，附 20 个框架的配置模板。' }
+        ];
+
+        var content = document.getElementById('content');
+
+        function esc(s) {
+            return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function renderIndex() {
+            document.title = 'Blog — 梁正涛';
+            var html = '<div class="page-title">技术文章</div>' +
+                '<div class="page-desc">// 分享研究心得和技术实践</div>';
+            POSTS.forEach(function(p) {
+                html += '<a class="post-card" href="blog.html?post=' + p.name + '">' +
+                    '<div class="post-card-date">' + p.date + '</div>' +
+                    '<div class="post-card-title">' + esc(p.title) + '</div>' +
+                    '<div class="post-card-summary">' + esc(p.summary) + '</div>' +
+                    '<span class="post-card-tag">' + esc(p.tag) + '</span></a>';
+            });
+            content.innerHTML = html;
+        }
+
+        function renderError(msg) {
+            content.innerHTML = '<div class="status"><span class="err">' + esc(msg) + '</span><br><br>' +
+                '<a href="blog.html">← 返回文章列表</a> · <a href="index.html">返回首页</a></div>';
+        }
+
+        function loadPost(name) {
+            if (!/^[a-z0-9-]+$/.test(name)) { renderError('无效的文章地址。'); return; }
+            var meta = POSTS.find(function(p) { return p.name === name; });
+            content.innerHTML = '<div class="status">$ cat blog/' + esc(name) + '.md <span class="prompt">…loading</span></div>';
+            fetch('blog/' + name + '.md')
+                .then(function(res) {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.text();
+                })
+                .then(function(md) {
+                    if (typeof marked === 'undefined') throw new Error('marked not loaded');
+                    document.title = (meta ? meta.title : name) + ' — 梁正涛';
+                    content.innerHTML = '<article class="article">' + marked.parse(md) + '</article>';
+                })
+                .catch(function() {
+                    renderError('文章加载失败：' + name + '.md 不存在或网络异常。');
+                });
+        }
+
+        var post = new URLSearchParams(window.location.search).get('post');
+        if (post) loadPost(post); else renderIndex();
+    </script>
+</body>
+</html>

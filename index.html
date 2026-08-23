@@ -80,6 +80,16 @@
         }
         .theme-btn:hover { border-color: var(--accent); }
 
+        .term-link { font-family: 'JetBrains Mono', monospace; font-size: 13px !important; color: var(--accent) !important; border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; transition: border-color 0.3s; }
+        .term-link:hover { border-color: var(--accent); }
+        .term-link::after { display: none; }
+
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+        .form-status { margin-top: 14px; font-size: 13px; font-family: 'JetBrains Mono', monospace; min-height: 18px; }
+        .form-status.ok { color: #22c55e; }
+        .form-status.err { color: var(--pink); }
+
         .mobile-btn { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; padding: 8px; }
 
         @media (max-width: 768px) {
@@ -358,6 +368,7 @@
                 <li><a href="resume-dark.html">暗夜简历</a></li>
                 <li><a href="resume-dynamic.html">动态简历</a></li>
                 <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button></li>
+                <li><a href="index-terminal.html" class="term-link" title="终端模式">&gt;_ 终端</a></li>
                 <li><a href="https://github.com/Serennity007" target="_blank" class="nav-cta">GitHub →</a></li>
             </ul>
         </div>
@@ -545,7 +556,7 @@
                 <div class="blog-card">
                     <div class="blog-date">2026.08</div>
                     <div>
-                        <a href="https://github.com/Serennity007/Serennity007-portfolio/blob/main/blog/how-i-built-45-opensource-projects.md" target="_blank" class="blog-title" style="text-decoration:none;display:block;">我如何用 AI 做了 45+ 个开源项目</a>
+                        <a href="blog.html?post=how-i-built-45-opensource-projects" class="blog-title" style="text-decoration:none;display:block;">我如何用 AI 做了 45+ 个开源项目</a>
                         <div class="blog-excerpt">从零开始，用 Cursor、Kimi Code、Claude Code 等 AI 工具，在半年内创建了 45+ 个开源项目的实战经验分享。</div>
                         <div class="blog-tag">开源</div>
                     </div>
@@ -553,7 +564,7 @@
                 <div class="blog-card">
                     <div class="blog-date">2026.07</div>
                     <div>
-                        <a href="https://github.com/Serennity007/Serennity007-portfolio/blob/main/blog/legal-judgment-prediction-with-llm.md" target="_blank" class="blog-title" style="text-decoration:none;display:block;">用 LLM 做法律判决预测：知识-经验双轨融合方法</a>
+                        <a href="blog.html?post=legal-judgment-prediction-with-llm" class="blog-title" style="text-decoration:none;display:block;">用 LLM 做法律判决预测：知识-经验双轨融合方法</a>
                         <div class="blog-excerpt">CCF-BigData 2025 论文的技术解读，介绍如何将法律条文和司法先例结合起来提升 LLM 的判决预测能力。</div>
                         <div class="blog-tag">研究</div>
                     </div>
@@ -561,7 +572,7 @@
                 <div class="blog-card">
                     <div class="blog-date">2026.06</div>
                     <div>
-                        <a href="https://github.com/Serennity007/Serennity007-portfolio/blob/main/blog/ai-coding-assistant-configuration-guide.md" target="_blank" class="blog-title" style="text-decoration:none;display:block;">AI 编程助手配置指南：让 AI 写出更好的代码</a>
+                        <a href="blog.html?post=ai-coding-assistant-configuration-guide" class="blog-title" style="text-decoration:none;display:block;">AI 编程助手配置指南：让 AI 写出更好的代码</a>
                         <div class="blog-excerpt">Cursor Rules、CLAUDE.md、AGENTS.md 的最佳实践，附 20 个框架的配置模板。</div>
                         <div class="blog-tag">工具</div>
                     </div>
@@ -650,20 +661,22 @@
                     </div>
                 </div>
                 <div class="anim">
-                    <form onsubmit="handleSubmit(event)">
+                    <!-- 启用表单直发邮箱：到 https://formspree.io 免费注册并新建表单，把下面的 YOUR_FORM_ID 替换成你的表单 ID（形如 abcdefgh）。未替换时会自动回退为打开访客的邮件客户端发送邮件。 -->
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
                         <div class="form-group">
-                            <label class="form-label">姓名</label>
-                            <input type="text" class="form-input" placeholder="你的名字" required>
+                            <label class="form-label" for="contactName">姓名</label>
+                            <input type="text" class="form-input" id="contactName" name="name" placeholder="你的名字" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">邮箱</label>
-                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                            <label class="form-label" for="contactEmail">邮箱</label>
+                            <input type="email" class="form-input" id="contactEmail" name="email" placeholder="your@email.com" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">消息</label>
-                            <textarea class="form-textarea" placeholder="想说什么..." required></textarea>
+                            <label class="form-label" for="contactMessage">消息</label>
+                            <textarea class="form-textarea" id="contactMessage" name="message" placeholder="想说什么..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">发送消息 →</button>
+                        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -809,13 +822,45 @@
             });
         });
 
-        // Contact form
+        // Contact form: Formspree fetch, with mailto fallback
+        var OWNER_EMAIL = '1392452425a@gmail.com';
+        function mailtoFallback(form, status, note) {
+            var subject = encodeURIComponent('Portfolio 留言 — ' + form.elements.name.value);
+            var body = encodeURIComponent(form.elements.message.value + '\n\n— ' + form.elements.name.value + ' (' + form.elements.email.value + ')');
+            window.location.href = 'mailto:' + OWNER_EMAIL + '?subject=' + subject + '&body=' + body;
+            status.className = 'form-status err';
+            status.textContent = note;
+        }
         function handleSubmit(e) {
             e.preventDefault();
-            var btn = e.target.querySelector('button');
-            btn.textContent = '已发送 ✓';
-            btn.style.background = '#22c55e';
-            setTimeout(function() { btn.textContent = '发送消息 →'; btn.style.background = ''; }, 3000);
+            var form = e.target;
+            var btn = form.querySelector('button[type="submit"]');
+            var status = document.getElementById('formStatus');
+            // 表单 ID 未配置时直接回退到邮件客户端
+            if (form.action.indexOf('YOUR_FORM_ID') !== -1) {
+                mailtoFallback(form, status, '表单服务尚未配置，已为你打开邮件客户端，直接发送邮件即可。');
+                return;
+            }
+            btn.disabled = true;
+            status.className = 'form-status';
+            status.textContent = '发送中…';
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(function(res) {
+                if (res.ok) {
+                    form.reset();
+                    status.className = 'form-status ok';
+                    status.textContent = '已发送 ✓ 感谢你的消息，我会尽快回复。';
+                } else {
+                    mailtoFallback(form, status, '发送失败，已为你打开邮件客户端作为替代。');
+                }
+            }).catch(function() {
+                mailtoFallback(form, status, '网络异常，已为你打开邮件客户端作为替代。');
+            }).finally(function() {
+                btn.disabled = false;
+            });
         }
 
         // Particles background
@@ -885,6 +930,8 @@
         // Custom cursor
         (function() {
             if (window.matchMedia('(max-width: 768px)').matches) return;
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             var dot = document.createElement('div');
             var ring = document.createElement('div');
             dot.style.cssText = 'position:fixed;width:6px;height:6px;background:#00d4ff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,background 0.2s;mix-blend-mode:difference;';
