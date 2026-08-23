@@ -94,7 +94,7 @@ AI-powered research paper analysis tool.
 
 ## 通用配置模板
 
-我整理了 20 个框架的配置模板，放在 [awesome-ai-rules](https://github.com/liangzhengtao/awesome-ai-rules) 仓库里：
+我整理了 20 个框架的配置模板，放在 [awesome-ai-rules](https://github.com/Serennity007/awesome-ai-rules) 仓库里：
 
 | 框架 | 配置文件 | 特点 |
 |------|---------|------|
@@ -167,7 +167,7 @@ def process_active_items(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 好的配置 = 好的 AI 输出。花 10 分钟写配置，省 10 小时改代码。
 
-所有配置模板：[awesome-ai-rules](https://github.com/liangzhengtao/awesome-ai-rules)
+所有配置模板：[awesome-ai-rules](https://github.com/Serennity007/awesome-ai-rules)
 
 ---
 

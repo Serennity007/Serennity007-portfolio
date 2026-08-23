@@ -96,4 +96,4 @@ git push origin main
 
 ---
 
-*如果你对 AI 编程感兴趣，欢迎关注我的 [GitHub](https://github.com/liangzhengtao)。*
+*如果你对 AI 编程感兴趣，欢迎关注我的 [GitHub](https://github.com/Serennity007)。*
