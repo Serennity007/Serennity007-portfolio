@@ -90,6 +90,28 @@
         .project-desc li { margin-bottom: 2px; }
         .highlight { color: #a78bfa; font-weight: 700; }
         .footer { margin-top: 16px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-size: 10px; color: #52525b; }
+
+        /* ---- Mobile: A4 sheet -> fluid phone layout ---- */
+        @media screen and (max-width: 840px) {
+            html { -webkit-text-size-adjust: 100%; }
+            .page {
+                width: 100%;
+                min-height: auto;
+                margin: 0;
+                padding: 64px 18px 28px;
+                box-shadow: none;
+                border: none;
+            }
+            .header { flex-direction: column; }
+            .header-right { text-align: left; margin-top: 12px; line-height: 2; }
+            .header-right a { word-break: break-all; }
+            .exp-header { flex-direction: column; align-items: flex-start; gap: 1px; }
+            .exp-date { white-space: normal; }
+            .skills-grid, .awards-grid { grid-template-columns: 1fr; gap: 14px; }
+            .award-category { margin-top: 4px; }
+            .project-item { padding: 12px; }
+            .footer { font-size: 11px; }
+        }
     </style>
 </head>
 <body>
