@@ -6,12 +6,10 @@ BIT M.S. student · 1 KSEM conference paper (CCF-C) · AI research and open-sour
 
 [Portfolio](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 
-Selected projects cover quant AI Skills, exam authoring and assessment, PowerPoint automation, a restaurant map demo, agent CLI tools, and finance RSS workflows. Each entry links to its public source.
+Selected projects cover quant AI Skills, exam authoring and assessment, PowerPoint automation, a restaurant map demo, and agent/Git CLI tools. Each entry links to its public source.
 
 Serve this folder locally with `python -m http.server 8080`. Static HTML/CSS/JavaScript; no build step. The main branch deploys through `.github/workflows/deploy.yml` to GitHub Pages.
 
 Resume variants: `resume.html`, `resume-en.html`, `resume-dark.html`, `resume-dynamic.html`. Keep publication wording and selected projects aligned across all four pages.
 
 Publication wording follows the owner’s instructions: venue and count only; no title, year, author order or publication-status claims.
-
-The visual system uses warm paper, forest green, brass accents and editorial typography. Main portfolio styles and interactions live in `assets/portfolio.css` and `assets/portfolio.js`; print-aware resume styles live in `assets/resume.css`, with the reading edition in `assets/resume-reading.css`. Keep evidence dates and links with the project claims.
