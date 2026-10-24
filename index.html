@@ -349,8 +349,8 @@
         .hero-content { padding-bottom: 48px; }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
     </style>
-<link rel="stylesheet" href="assets/navigation.css?v=20261025-nav1">
-<script src="assets/navigation.js?v=20261025-nav1" defer></script>
+<link rel="stylesheet" href="assets/navigation.css?v=20261025-showcase2">
+<script src="assets/navigation.js?v=20261025-showcase2" defer></script>
 </head>
 <body>
 
@@ -390,7 +390,7 @@
             <p style="font-size:16px;line-height:1.8;color:var(--text-2);margin:14px 0;">法律 AI 与多模态安全对齐 · KSEM（CCF-C）会议论文 1 篇<br>把 AI 工作流写成可运行的工具与应用。</p>
             <div style="display:flex;flex-wrap:wrap;gap:12px;margin:20px 0;"><a href="resume.html" class="btn btn-primary">查看简历 ↗</a><a href="#projects" class="btn btn-ghost">浏览代表项目</a><a href="#resumes" class="btn btn-ghost">选择简历版本</a></div>
             <div class="hero-stats">
-                <div><div class="hero-stat-num">41</div><div class="hero-stat-lbl">选股 Skill · GitHub Stars</div></div>
+                <div><div class="hero-stat-num">41</div><div class="hero-stat-lbl" title="截至 2026-10-24">选股 Skill · Stars（10/24）</div></div>
                 <div><div class="hero-stat-num">1</div><div class="hero-stat-lbl">KSEM · CCF-C Paper</div></div>
                 <div><div class="hero-stat-num">1/69</div><div class="hero-stat-lbl">专业排名</div></div>
                 <div><div class="hero-stat-num">4.14</div><div class="hero-stat-lbl">GPA / 5.0</div></div>
@@ -424,8 +424,9 @@
 
     <section class="section" id="resumes"><div class="container">
         <div class="eyebrow anim">Resume</div><h2 class="section-title anim">选择简历版本</h2>
-        <p class="section-desc anim">四个版本均可返回个人主页、切换版本和打印；保存 PDF 时在打印窗口选择“另存为 PDF”。</p>
+        <p class="section-desc anim">在线查看四种排版，或直接下载中英文 PDF。每个版本均支持返回主页、章节跳转、版本切换和打印。</p>
         <div class="resume-choice-grid"><a class="resume-choice" href="resume.html"><span class="resume-choice-label">ZH / PRINT</span><h3>中文打印版</h3><p>标准中文简历，适合快速查看、A4 打印或保存为 PDF。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-en.html"><span class="resume-choice-label">EN / PRINT</span><h3>English CV</h3><p>英文履历，适合英文阅读、交流与打印。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dark.html"><span class="resume-choice-label">DARK / READING</span><h3>暗夜简历</h3><p>深色排版，保留完整的科研、项目和获奖经历。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dynamic.html"><span class="resume-choice-label">INTERACTIVE / MOBILE</span><h3>动态简历</h3><p>交互式长页展示，支持章节跳转和移动端阅读。</p><span class="resume-choice-action">打开简历 ↗</span></a></div>
+<div class="resume-downloads"><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download>↓ 中文简历 PDF</a><a href="assets/resumes/Liang-Zhengtao-Resume-EN.pdf" download>↓ English CV PDF</a><span>更新于 2026-10-25</span></div>
     </div></section>
 
     <!-- About -->
@@ -516,13 +517,24 @@
             </div>
             <h3 class="anim" style="margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">💻 开源项目</h3>
             <div class="card-grid anim stagger">
-                <article class="card">
-                    <div class="card-icon">📊</div>
-                    <div class="card-title">AI 选股与量化投研工具链</div>
-                    <div class="card-desc"><strong>GitHub 41 Stars · 8 Forks（截至 2026-10-24）</strong><br>自主开发 30 个原创 Agent Skills、32 个 Python 脚本，实现 23 套投资方法参考框架，覆盖价值、成长、动量、宏观周期与资产配置。<br>串联财务筛选、因子评分、跨框架共识与含成本回测，输出分项得分、换手、持仓明细和输入哈希。<br>个人实测：35 项行为测试通过；AKShare 1.19.3 完成 600519 真实取数与筛选，覆盖 2021–2025 年报。</div>
-                    <div style="margin-top:12px;"><span class="tag">Python · akshare · pandas · Agent Skills</span></div>
-                    <a href="https://github.com/Serennity007/awesome-stock-quant-skills" target="_blank" rel="noopener noreferrer" class="card-link">awesome-stock-quant-skills ↗</a>
-                    <a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/c46da26575289ddaab5587d31e7f718f9ac22a2e/docs/validation.md" class="card-link">增强版验证 ↗</a> · <a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/c46da26575289ddaab5587d31e7f718f9ac22a2e/examples/verification/2026-10-24/buffett-check.json" class="card-link">真实取数记录 ↗</a>
+                <article class="card quant-feature" id="quant-research">
+                    <div class="quant-feature-main">
+                        <div class="quant-kicker">FEATURED / OPEN SOURCE</div>
+                        <h3 class="card-title">AI 选股与量化投研工具链</h3>
+                        <p class="card-desc">我把财务筛选、因子评分、多框架共识与含成本回测写成可运行的 Agent Skills，输出分项得分、换手、持仓明细和输入哈希。</p>
+                        <div class="quant-metrics"><span><strong>30</strong> 原创 Skills</span><span><strong>23</strong> 方法参考框架</span><span><strong>40</strong> 本地测试通过</span></div>
+                        <p class="card-desc">2026-10-24 使用 AKShare 1.19.3 完成 600519 真实取数与筛选，覆盖 2021–2025 年报；2026-10-25 完成 40 项本地测试。</p>
+                        <p class="quant-snapshot">GitHub 41 Stars · 8 Forks · 统计于 2026-10-24</p>
+                        <div class="quant-actions"><a href="https://github.com/Serennity007/awesome-stock-quant-skills" class="btn btn-primary" target="_blank" rel="noopener noreferrer">查看源码 ↗</a><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/docs/quickstart.md" class="btn btn-ghost">运行离线演示 ↗</a></div>
+                    </div>
+                    <div class="quant-console">
+                        <div class="quant-kicker">$ QUICK START</div>
+                        <p>安装演示依赖后，在仓库目录运行：</p>
+                        <code>python scripts/run_demo.py</code>
+                        <ul><li>多框架共识排序</li><li>交易成本与持仓核算</li><li>报告、CSV、输入哈希与日志</li></ul>
+                        <p>两个独立合成场景，用于复核计算。</p>
+                        <div class="quant-evidence"><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/docs/validation.md">验证范围 ↗</a><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/examples/verification/2026-10-24/buffett-check.json">真实取数记录 ↗</a></div>
+                    </div>
                 </article>
                 <article class="card">
                     <div class="card-icon">📝</div>
