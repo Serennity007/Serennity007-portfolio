@@ -351,6 +351,7 @@
     </style>
 <link rel="stylesheet" href="assets/navigation.css?v=20261025-showcase2">
 <script src="assets/navigation.js?v=20261025-showcase2" defer></script>
+<link rel="stylesheet" href="assets/portfolio.css?v=20261025-case1">
 </head>
 <body>
 
@@ -383,18 +384,29 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="container hero-content">
+            <div class="hero-copy">
             <div class="hero-badge">✦ 贵州大学 → 北京理工大学 · 专业第一</div>
             <h1 data-text="梁正涛">梁正涛</h1>
             <div class="hero-status"><span class="dot"></span>SYS.ONLINE · <em>ACTIVE</em> // GZ → BJ · CHINA // BUILD <em>2026.10</em></div>
             <p class="hero-sub"><span class="hero-sub-prompt">&gt;&nbsp;</span><span id="typingText"></span><span class="typing-cursor"></span></p>
-            <p style="font-size:16px;line-height:1.8;color:var(--text-2);margin:14px 0;">法律 AI 与多模态安全对齐 · KSEM（CCF-C）会议论文 1 篇<br>把 AI 工作流写成可运行的工具与应用。</p>
-            <div style="display:flex;flex-wrap:wrap;gap:12px;margin:20px 0;"><a href="resume.html" class="btn btn-primary">查看简历 ↗</a><a href="#projects" class="btn btn-ghost">浏览代表项目</a><a href="#resumes" class="btn btn-ghost">选择简历版本</a></div>
+            <p class="hero-intro">北京理工大学硕士在读，研究法律 AI 与多模态安全对齐。开发有源码、有运行记录的 AI 工具与应用。<br>KSEM（CCF-C）会议论文 1 篇。</p>
+            <div class="hero-actions"><a href="resume.html" class="btn btn-primary">查看简历 ↗</a><a href="#projects" class="btn btn-ghost">浏览代表项目</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">下载 PDF ↓</a></div>
             <div class="hero-stats">
                 <div><div class="hero-stat-num">41</div><div class="hero-stat-lbl" title="截至 2026-10-24">选股 Skill · Stars（10/24）</div></div>
                 <div><div class="hero-stat-num">1</div><div class="hero-stat-lbl">KSEM · CCF-C Paper</div></div>
                 <div><div class="hero-stat-num">1/69</div><div class="hero-stat-lbl">专业排名</div></div>
                 <div><div class="hero-stat-num">4.14</div><div class="hero-stat-lbl">GPA / 5.0</div></div>
             </div>
+            </div>
+            <aside class="build-window" aria-label="代表作品预览">
+                <div class="build-titlebar"><i class="window-dot"></i><i class="window-dot"></i><i class="window-dot"></i><span>~/projects/quant-research</span></div>
+                <div class="build-body"><div class="build-caption">SELECTED BUILD / 01</div><h2>AI 选股与<br>量化投研工具链</h2><p>从财务数据到共识排序，保留每一步可检查的结果。</p>
+                    <div class="build-facts"><div><strong>30</strong><span>原创 Agent Skills</span></div><div><strong>40</strong><span>本地测试通过</span></div></div>
+                    <p>真实取数 · 600519 / FY2021–2025<br>离线复现 · 共识排序 / 含成本回测</p>
+                    <div class="hero-proof">验证记录：2026-10-24 / 25</div>
+                    <a class="build-link" href="project-quant.html"><span>查看实现与实测产物</span><span aria-hidden="true">↗</span></a>
+                </div>
+            </aside>
         </div>
     </section>
 
@@ -421,13 +433,6 @@
             <div class="marquee-item">🌐 IELTS <em>6.5</em></div>
         </div>
     </div>
-
-    <section class="section" id="resumes"><div class="container">
-        <div class="eyebrow anim">Resume</div><h2 class="section-title anim">选择简历版本</h2>
-        <p class="section-desc anim">在线查看四种排版，或直接下载中英文 PDF。每个版本均支持返回主页、章节跳转、版本切换和打印。</p>
-        <div class="resume-choice-grid"><a class="resume-choice" href="resume.html"><span class="resume-choice-label">ZH / PRINT</span><h3>中文打印版</h3><p>标准中文简历，适合快速查看、A4 打印或保存为 PDF。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-en.html"><span class="resume-choice-label">EN / PRINT</span><h3>English CV</h3><p>英文履历，适合英文阅读、交流与打印。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dark.html"><span class="resume-choice-label">DARK / READING</span><h3>暗夜简历</h3><p>深色排版，保留完整的科研、项目和获奖经历。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dynamic.html"><span class="resume-choice-label">INTERACTIVE / MOBILE</span><h3>动态简历</h3><p>交互式长页展示，支持章节跳转和移动端阅读。</p><span class="resume-choice-action">打开简历 ↗</span></a></div>
-<div class="resume-downloads"><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download>↓ 中文简历 PDF</a><a href="assets/resumes/Liang-Zhengtao-Resume-EN.pdf" download>↓ English CV PDF</a><span>更新于 2026-10-25</span></div>
-    </div></section>
 
     <!-- About -->
     <section class="section" id="about">
@@ -491,9 +496,9 @@
     <!-- Projects -->
     <section class="section" id="projects">
         <div class="container">
-            <div class="eyebrow anim">Projects</div>
-            <h2 class="section-title anim">项目经历</h2>
-            <p class="section-desc anim">研究项目和精选开源项目</p>
+            <div class="eyebrow anim">Selected Work</div>
+            <h2 class="section-title anim">研究与工程作品</h2>
+            <p class="section-desc anim">从法律推理到量化研究、教学应用与开发者工具。展示我负责的实现和能够复核的结果。</p>
             <h3 class="anim" style="margin-top:40px;margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">🔬 研究项目</h3>
             <div class="card-grid anim stagger" style="margin-bottom:40px;">
                 <div class="card" style="background:linear-gradient(135deg, rgba(0,212,255,0.08), rgba(139,92,246,0.05));">
@@ -525,7 +530,7 @@
                         <div class="quant-metrics"><span><strong>30</strong> 原创 Skills</span><span><strong>23</strong> 方法参考框架</span><span><strong>40</strong> 本地测试通过</span></div>
                         <p class="card-desc">2026-10-24 使用 AKShare 1.19.3 完成 600519 真实取数与筛选，覆盖 2021–2025 年报；2026-10-25 完成 40 项本地测试。</p>
                         <p class="quant-snapshot">GitHub 41 Stars · 8 Forks · 统计于 2026-10-24</p>
-                        <div class="quant-actions"><a href="https://github.com/Serennity007/awesome-stock-quant-skills" class="btn btn-primary" target="_blank" rel="noopener noreferrer">查看源码 ↗</a><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/docs/quickstart.md" class="btn btn-ghost">运行离线演示 ↗</a></div>
+                        <div class="quant-actions"><a href="https://github.com/Serennity007/awesome-stock-quant-skills" class="btn btn-primary" target="_blank" rel="noopener noreferrer">查看源码 ↗</a><a href="project-quant.html" class="btn btn-ghost">项目拆解与实测 ↗</a></div>
                     </div>
                     <div class="quant-console">
                         <div class="quant-kicker">$ QUICK START</div>
@@ -672,6 +677,13 @@
             </div>
         </div>
     </section>
+
+    <section class="section" id="resumes"><div class="container">
+        <div class="eyebrow anim">Resume</div><h2 class="section-title anim">选择简历版本</h2>
+        <p class="section-desc anim">在线查看四种排版，或直接下载中英文 PDF。每个版本均支持返回主页、章节跳转、版本切换和打印。</p>
+        <div class="resume-choice-grid"><a class="resume-choice" href="resume.html"><span class="resume-choice-label">ZH / PRINT</span><h3>中文打印版</h3><p>标准中文简历，适合快速查看、A4 打印或保存为 PDF。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-en.html"><span class="resume-choice-label">EN / PRINT</span><h3>English CV</h3><p>英文履历，适合英文阅读、交流与打印。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dark.html"><span class="resume-choice-label">DARK / READING</span><h3>暗夜简历</h3><p>深色排版，保留完整的科研、项目和获奖经历。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dynamic.html"><span class="resume-choice-label">INTERACTIVE / MOBILE</span><h3>动态简历</h3><p>交互式长页展示，支持章节跳转和移动端阅读。</p><span class="resume-choice-action">打开简历 ↗</span></a></div>
+<div class="resume-downloads"><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download>↓ 中文简历 PDF</a><a href="assets/resumes/Liang-Zhengtao-Resume-EN.pdf" download>↓ English CV PDF</a><span>更新于 2026-10-25</span></div>
+    </div></section>
 
     <!-- Contact -->
     <section class="section" id="contact">
