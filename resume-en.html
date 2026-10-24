@@ -124,15 +124,39 @@
             .project-item { padding: 12px; }
             .footer { font-size: 11px; }
         }
+
+        #selected-projects a { color: inherit; overflow-wrap: anywhere; text-underline-offset: 3px; }
+        #publications .project-name, #publications .card-title { font-weight: 700; }
+        .project-item { break-inside: avoid; }
+        @media print {
+            body > nav, body > div[style*="position:fixed"], body > div[style*="position: fixed"] { display: none !important; }
+            .card, .award-item { opacity: 1 !important; transform: none !important; break-inside: avoid; }
+            .section { break-inside: auto; }
+            a { color: inherit; }
+        }
+            @media screen and (max-width: 840px) { nav[aria-label="Resume navigation"] { left: 8px; right: 8px !important; top: 8px !important; justify-content: center; flex-wrap: wrap; } }
+
+        @media print {
+            @page { size: A4; margin: 10mm 9mm; }
+            .page { width: auto; min-height: auto; padding: 0; box-shadow: none; }
+            .header { padding-bottom: 12px; margin-bottom: 14px; }
+            .section { margin-bottom: 12px; }
+            .section-title { margin-bottom: 8px; }
+            .project-item { margin-bottom: 8px; padding: 8px 12px; }
+            .exp-item { margin-bottom: 8px; }
+            .project-desc, .exp-desc { line-height: 1.5; }
+            .skills-grid { gap: 6px; }
+            .skill-tags { gap: 3px; }
+        }
     </style>
 </head>
 <body>
-    <div style="position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:6px;background:rgba(0,0,0,0.8);padding:6px 12px;border-radius:8px;font-size:11px;">
+    <nav aria-label="Resume navigation" style="position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:6px;background:rgba(0,0,0,0.8);padding:6px 12px;border-radius:8px;font-size:11px;">
         <a href="resume.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">中文</a>
         <a href="resume-en.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">EN</a>
         <a href="resume-dark.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">暗夜</a>
         <a href="resume-dynamic.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">动态</a>
-    </div>
+    <a href="index.html" style="color:white;text-decoration:none;padding:4px 8px;">Home</a><button type="button" onclick="window.print()" style="background:none;border:0;color:white;font:inherit;cursor:pointer;">Print / PDF</button></nav>
     <div class="page">
         <!-- Header -->
         <div class="header">
@@ -149,7 +173,10 @@
             </div>
         </div>
 
-        <!-- Education -->
+        <div class="section" id="publications"><div class="section-title">Publication</div>
+    <div class="project-item"><div class="project-name">1 KSEM conference paper (CCF-C)</div></div></div>
+
+<!-- Education -->
         <div class="section">
             <div class="section-title">Education</div>
 
@@ -184,22 +211,21 @@
             <div class="project-item">
                 <div class="project-name">Cognitive Intelligence for Judicial Verdicts: Knowledge-Experience Dual-Track Fusion <span class="highlight">(Project Lead)</span></div>
                 <div class="project-desc">
-                    <strong>Mar 2025 - Present</strong> · CCF-BigData 2025 (CCF-C conference), First Author · <span class="highlight">Accepted</span><br>
+                    <strong>Mar 2025 - Present</strong> · Legal AI · Knowledge and precedent retrieval<br>
                     <ul>
                         <li>Designed a novel RAG framework for legal verdict prediction, fusing legal knowledge with judicial precedents as dual guidance for LLMs</li>
                         <li>Engineered a multi-model pipeline: 7B LLM for crime element extraction → Milvus vector DB for precedent retrieval → 30B LLM for verdict generation</li>
-                        <li>Enhanced prediction accuracy and logical rigor through knowledge-experience dual-guided architecture</li>
+                        <li>Combined legal provisions and precedents with case facts as context for verdict generation</li>
                     </ul>
                 </div>
             </div>
 
             <div class="project-item">
-                <div class="project-name">Safety Alignment of Multimodal Large Language Models <span class="highlight">(First Author)</span></div>
+                <div class="project-name">Safety Alignment of Multimodal Large Language Models</div>
                 <div class="project-desc">
-                    <strong>2026 - Present</strong> · CCF-C conference paper under review, First Author<br>
+                    <strong>2026 - Present</strong> · Master's research focus<br>
                     <ul>
                         <li>Master's research focus: safety alignment methods for multimodal large language models</li>
-                        <li>Paper completed as first author and submitted to a CCF-C conference; currently under review</li>
                     </ul>
                 </div>
             </div>
@@ -217,7 +243,34 @@
             </div>
         </div>
 
-        <!-- Internship -->
+        <div class="section" id="selected-projects"><div class="section-title">Selected Open-Source Projects</div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/awesome-stock-quant-skills">Quant Research Skills</a></div>
+            <div class="project-desc">Turn investment research, factor screening and backtesting frameworks into AI Skills and Python scripts; separate original work from attributed third-party collections.<br><strong>Python · akshare · pandas · Agent Skills</strong> · <a href="https://github.com/Serennity007/awesome-stock-quant-skills">awesome-stock-quant-skills</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/paper-builder-system">Exam Builder &amp; Assessment System</a></div>
+            <div class="project-desc">Build a Flask + SQLite application for question banks, exam assembly, student answers, objective grading, teacher review and score reports, with offline math rendering and Excel import/export.<br><strong>Flask · SQLite · JavaScript · KaTeX</strong> · <a href="https://github.com/Serennity007/paper-builder-system">paper-builder-system</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/beiligong-ppt-skill">PPT Refactoring &amp; Validation Workflow</a></div>
+            <div class="project-desc">Standardize slide titles, colors and typography with Python; measure text overflow in PowerPoint, adjust font sizes and produce audit reports with regression checks.<br><strong>Python · python-pptx · PowerPoint</strong> · <a href="https://github.com/Serennity007/beiligong-ppt-skill">beiligong-ppt-skill</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/beijing-food-map-workspace">Beijing Guizhou Food Map</a></div>
+            <div class="project-desc">Provide a source snapshot with a React web app, API, SQLite data layer and Taro mini program for map-based restaurant discovery and feedback; the demo uses synthetic data.<br><strong>TypeScript · React · SQLite · Taro</strong> · <a href="https://github.com/Serennity007/beijing-food-map-workspace">beijing-food-map-workspace</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/agent-trace">AI Agent Session Analytics CLI</a></div>
+            <div class="project-desc">Parse local coding-agent session logs and report token usage, estimated costs and tool calls through terminal and JSON output.<br><strong>Node.js · JavaScript · CLI</strong> · <a href="https://github.com/Serennity007/agent-trace">agent-trace</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/git-format">Conventional Commits CLI</a></div>
+            <div class="project-desc">Read staged files, infer commit type and scope with rules, and generate Conventional Commits messages with dry-run and JSON output.<br><strong>Node.js · Git · CLI</strong> · <a href="https://github.com/Serennity007/git-format">git-format</a></div>
+        </div>
+</div>
+
+<!-- Internship -->
         <div class="section">
             <div class="section-title">Internship Experience</div>
 
@@ -261,31 +314,7 @@
             </div>
         </div>
 
-        <!-- Awards -->
-        <div class="section">
-            <div class="section-title">Honors & Awards</div>
-            <div class="awards-grid">
-                <div>
-                    <div class="award-category">National / Provincial</div>
-                    <div class="award-item"><div class="award-icon">🥇</div><div class="award-title">Huawei ICT Competition · Ascend AI Track · <span class="highlight">National 1st Prize</span></div></div>
-                    <div class="award-item"><div class="award-icon">🌍</div><div class="award-title">Huawei ICT Competition · <span class="highlight">Global Finals · 3rd Prize</span></div></div>
-                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title"><span class="highlight">National Scholarship</span> (国家级奖学金)</div></div>
-                    <div class="award-item"><div class="award-icon">🏆</div><div class="award-title">Provincial "Merit Student" of Guizhou</div></div>
-                    <div class="award-item"><div class="award-icon">🎤</div><div class="award-title">3rd Prize, "Voice of Guizhou" Foreign Language Speech Contest</div></div>
-                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">3rd Prize, "Challenge Cup" Provincial Entrepreneurship Competition</div></div>
-                </div>
-                <div>
-                    <div class="award-category">University Level</div>
-                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title">First-class Scholarship (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">⭐</div><div class="award-title">Merit Student (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">Outstanding Youth League Member (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">🌟</div><div class="award-title">"Top 10 Students of Quality Development"</div></div>
-                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">"Challenge Cup" University 1st Prize (×2)</div></div>
-                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"FLTRP · ETIC Cup" English Contests (2nd & 3rd)</div></div>
-                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"21st Century Cup" English Speaking (3rd)</div></div>
-                </div>
-            </div>
-        </div>
+<div class="section"><div class="section-title">Honors & Awards</div><div class="awards-grid"><div class="award-item"><div class="award-title">Huawei ICT Competition · National First Prize</div></div><div class="award-item"><div class="award-title">Huawei ICT Competition · Global Third Prize</div></div><div class="award-item"><div class="award-title">National Scholarship</div></div><div class="award-item"><div class="award-title">Guizhou Provincial Merit Student</div></div></div></div>
 
         <!-- Technical Skills -->
         <div class="section">
@@ -335,33 +364,8 @@
             </div>
         </div>
 
-        <!-- Open Source -->
-        <div class="section">
-            <div class="section-title">Open Source Contributions</div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-label">Developer Tools</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">agent-trace</span>
-                        <span class="skill-tag">token-meter</span>
-                        <span class="skill-tag">vibe-check</span>
-                        <span class="skill-tag">awesome-ai-rules</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-label">Research & Resources</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">awesome-ai-alignment</span>
-                        <span class="skill-tag">paper-grill</span>
-                        <span class="skill-tag">awesome-geo</span>
-                        <span class="skill-tag">45+ Projects Total</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="footer">
-            © 2026 Zhengtao Liang · <a href="https://github.com/Serennity007" style="color: #2563eb; text-decoration: none;">github.com/Serennity007</a> · Last updated: August 2026
+            © 2026 Zhengtao Liang · <a href="https://github.com/Serennity007" style="color: #2563eb; text-decoration: none;">github.com/Serennity007</a> · Last updated: October 2026
         </div>
     </div>
 </body>

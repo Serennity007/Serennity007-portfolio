@@ -312,6 +312,16 @@
             .skill-grid { grid-template-columns: 1fr; }
             .top-nav { display: none; }
         }
+
+        #selected-projects a { color: inherit; overflow-wrap: anywhere; text-underline-offset: 3px; }
+        #publications .project-name, #publications .card-title { font-weight: 700; }
+        .project-item { break-inside: avoid; }
+        @media print {
+            body > div[style*="position:fixed"], body > div[style*="position: fixed"] { display: none !important; }
+            .card, .award-item { opacity: 1 !important; transform: none !important; break-inside: avoid; }
+            .section { break-inside: auto; }
+            a { color: inherit; }
+        }
     </style>
 </head>
 <body>
@@ -344,10 +354,13 @@
         <div class="stat-row">
             <div class="stat-box"><div class="stat-num">1/69</div><div class="stat-lbl">专业排名</div></div>
             <div class="stat-box"><div class="stat-num">4.14</div><div class="stat-lbl">GPA / 5.0</div></div>
-            <div class="stat-box"><div class="stat-num">45+</div><div class="stat-lbl">开源项目</div></div>
+            <div class="stat-box"><div class="stat-num">6</div><div class="stat-lbl">代表项目</div></div>
         </div>
 
-        <!-- Education -->
+        <div class="section" id="publications"><div class="section-label">论文成果</div>
+    <div class="card"><div class="card-title">KSEM（CCF-C）会议论文 1 篇</div></div></div>
+
+<!-- Education -->
         <div class="section" id="edu">
             <div class="section-label">Education</div>
             <div class="card">
@@ -372,7 +385,7 @@
             <div class="section-label">Research</div>
             <div class="card">
                 <div class="card-header"><div class="card-title">🧠 司法判决认知智能</div><div class="card-date">2025.03 — 至今</div></div>
-                <div class="card-sub">CCF-BigData 2025 第一作者 · 项目负责人</div>
+                <div class="card-sub">法律 AI · 项目负责人</div>
                 <div class="card-text">
                     <ul>
                         <li>主导设计知识与经验双引导的 LLM 融合预测架构</li>
@@ -389,7 +402,34 @@
             </div>
         </div>
 
-        <!-- Internship -->
+        <div class="section" id="selected-projects"><div class="section-label">代表开源项目</div>
+<div class="card">
+            <div class="card-title"><a href="https://github.com/Serennity007/awesome-stock-quant-skills">量化研究 AI Skills</a></div>
+            <div class="card-text">将价值投资、因子筛选与回测框架写成 AI Skills 和 Python 脚本；区分原创技能与收录内容，保留来源与许可证。<br><strong>Python · akshare · pandas · Agent Skills</strong> · <a href="https://github.com/Serennity007/awesome-stock-quant-skills">awesome-stock-quant-skills</a></div>
+        </div>
+<div class="card">
+            <div class="card-title"><a href="https://github.com/Serennity007/paper-builder-system">国际课程组卷与在线考试系统</a></div>
+            <div class="card-text">基于 Flask + SQLite 实现题库、双栏组卷、在线答题、客观题判分、教师批阅与成绩分析；支持离线公式渲染和 Excel 导入导出。<br><strong>Flask · SQLite · JavaScript · KaTeX</strong> · <a href="https://github.com/Serennity007/paper-builder-system">paper-builder-system</a></div>
+        </div>
+<div class="card">
+            <div class="card-title"><a href="https://github.com/Serennity007/beiligong-ppt-skill">PPT 批量改造与验收工作流</a></div>
+            <div class="card-text">使用 Python 批量统一课件标题、配色和字号；调用 PowerPoint 实测文本越框并回退，配套静态验收报告与回归测试。<br><strong>Python · python-pptx · PowerPoint</strong> · <a href="https://github.com/Serennity007/beiligong-ppt-skill">beiligong-ppt-skill</a></div>
+        </div>
+<div class="card">
+            <div class="card-title"><a href="https://github.com/Serennity007/beijing-food-map-workspace">京城黔味地图</a></div>
+            <div class="card-text">提供 React 网页、API、SQLite 数据层及 Taro 小程序的完整源码快照；实现地图找店与反馈流程，线上使用合成演示数据。<br><strong>TypeScript · React · SQLite · Taro</strong> · <a href="https://github.com/Serennity007/beijing-food-map-workspace">beijing-food-map-workspace</a></div>
+        </div>
+<div class="card">
+            <div class="card-title"><a href="https://github.com/Serennity007/agent-trace">AI Agent 会话分析 CLI</a></div>
+            <div class="card-text">解析多种编码 Agent 的本地会话日志，汇总 token 用量、成本估算与工具调用；提供终端报告与 JSON 输出。<br><strong>Node.js · JavaScript · CLI</strong> · <a href="https://github.com/Serennity007/agent-trace">agent-trace</a></div>
+        </div>
+<div class="card">
+            <div class="card-title"><a href="https://github.com/Serennity007/git-format">Conventional Commits 工具</a></div>
+            <div class="card-text">读取暂存区文件并按规则推断提交类型与 scope，生成规范提交信息；支持 dry-run 预览和 JSON 输出。<br><strong>Node.js · Git · CLI</strong> · <a href="https://github.com/Serennity007/git-format">git-format</a></div>
+        </div>
+</div>
+
+<!-- Internship -->
         <div class="section">
             <div class="section-label">Internship</div>
             <div class="card">
@@ -405,7 +445,7 @@
         <!-- Awards -->
         <div class="section" id="awards">
             <div class="section-label">Awards</div>
-            <div class="award-item"><div class="award-emoji">🥇</div><div><div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · 国家一等奖</div><div class="award-sub">全国总决赛冠军级别</div></div></div>
+            <div class="award-item"><div class="award-emoji">🥇</div><div><div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · 国家一等奖</div><div class="award-sub">全国总决赛一等奖</div></div></div>
             <div class="award-item"><div class="award-emoji">🌍</div><div><div class="award-title">华为 ICT 大赛 · 全球总决赛 · 三等奖</div><div class="award-sub">代表中国赛区参加全球总决赛</div></div></div>
             <div class="award-item"><div class="award-emoji">🎓</div><div><div class="award-title">国家奖学金</div><div class="award-sub">国家级奖学金</div></div></div>
             <div class="award-item"><div class="award-emoji">🗣️</div><div><div class="award-title">雅思 6.5 · 六级 572</div><div class="award-sub">贵州省级三好学生</div></div></div>
@@ -417,31 +457,31 @@
             <div class="skill-grid">
                 <div class="skill-group">
                     <h3>Languages</h3>
-                    <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div><span class="skill-pct">95%</span></div>
-                    <div class="skill-item"><span class="skill-name">TypeScript</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
-                    <div class="skill-item"><span class="skill-name">Go</span><div class="skill-bar"><div class="skill-fill" data-w="70"></div></div><span class="skill-pct">70%</span></div>
-                    <div class="skill-item"><span class="skill-name">Rust</span><div class="skill-bar"><div class="skill-fill" data-w="60"></div></div><span class="skill-pct">60%</span></div>
+                    <div class="skill-item"><span class="skill-name">Python</span></div>
+                    <div class="skill-item"><span class="skill-name">TypeScript</span></div>
+                    <div class="skill-item"><span class="skill-name">Go</span></div>
+                    <div class="skill-item"><span class="skill-name">Rust</span></div>
                 </div>
                 <div class="skill-group">
                     <h3>AI / ML</h3>
-                    <div class="skill-item"><span class="skill-name">PyTorch</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
-                    <div class="skill-item"><span class="skill-name">LangChain</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
-                    <div class="skill-item"><span class="skill-name">OpenAI API</span><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
-                    <div class="skill-item"><span class="skill-name">RAG</span><div class="skill-bar"><div class="skill-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+                    <div class="skill-item"><span class="skill-name">PyTorch</span></div>
+                    <div class="skill-item"><span class="skill-name">LangChain</span></div>
+                    <div class="skill-item"><span class="skill-name">OpenAI API</span></div>
+                    <div class="skill-item"><span class="skill-name">RAG</span></div>
                 </div>
                 <div class="skill-group">
                     <h3>Backend</h3>
-                    <div class="skill-item"><span class="skill-name">FastAPI</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
-                    <div class="skill-item"><span class="skill-name">Node.js</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
-                    <div class="skill-item"><span class="skill-name">PostgreSQL</span><div class="skill-bar"><div class="skill-fill" data-w="80"></div></div><span class="skill-pct">80%</span></div>
-                    <div class="skill-item"><span class="skill-name">Docker</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+                    <div class="skill-item"><span class="skill-name">FastAPI</span></div>
+                    <div class="skill-item"><span class="skill-name">Node.js</span></div>
+                    <div class="skill-item"><span class="skill-name">PostgreSQL</span></div>
+                    <div class="skill-item"><span class="skill-name">Docker</span></div>
                 </div>
                 <div class="skill-group">
                     <h3>Tools</h3>
-                    <div class="skill-item"><span class="skill-name">Git</span><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div><span class="skill-pct">95%</span></div>
-                    <div class="skill-item"><span class="skill-name">Cursor</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
-                    <div class="skill-item"><span class="skill-name">Kimi Code</span><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
-                    <div class="skill-item"><span class="skill-name">LaTeX</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+                    <div class="skill-item"><span class="skill-name">Git</span></div>
+                    <div class="skill-item"><span class="skill-name">Cursor</span></div>
+                    <div class="skill-item"><span class="skill-name">Kimi Code</span></div>
+                    <div class="skill-item"><span class="skill-name">LaTeX</span></div>
                 </div>
             </div>
         </div>

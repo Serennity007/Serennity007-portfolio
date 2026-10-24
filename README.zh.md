@@ -1,40 +1,15 @@
 [English](README.md) | [中文](README.zh.md)
 
-# 梁正涛 - 个人主页
+# 梁正涛 — 作品集与简历
 
-梁正涛的个人作品集和简历网站，他是北京理工大学的 AI 研究员与开发者。
+北京理工大学硕士在读 · KSEM（CCF-C）会议论文 1 篇 · AI 研究与开源工程。
 
-## 特性
+[在线作品集](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 
-- **深色/浅色主题** — 支持深色和浅色模式切换
-- **响应式设计** — 针对桌面、平板和移动端优化
-- **双语简历** — 提供中文和英文版本
-- **现代 UI** — 简洁极简设计，流畅动画效果
-- **零依赖** — 纯 HTML/CSS/JS，无需构建工具
+代表项目涵盖量化 AI Skills、组卷与考试系统、PPT 自动化、地图演示应用及 Agent/Git CLI 工具，每项均附公开源码链接。
 
-## 页面说明
+本地运行：`python -m http.server 8080`。纯 HTML/CSS/JavaScript，无需构建。推送 main 后通过 `.github/workflows/deploy.yml` 部署至 GitHub Pages。
 
-| 页面 | 说明 |
-|------|------|
-| [`index.html`](index.html) | 主页，包含项目展示 |
-| [`resume.html`](resume.html) | 中文简历 |
-| [`resume-en.html`](resume-en.html) | 英文简历 |
+简历版本：`resume.html`、`resume-en.html`、`resume-dark.html`、`resume-dynamic.html`。论文表述与代表项目在四个页面保持一致。
 
-## 亮点
-
-- 39+ 开源项目
-- 华为 ICT 大赛国家一等奖
-- 北京理工大学 AI 研究
-
-## 快速开始
-
-直接在浏览器中打开 `index.html` 即可，无需服务器或构建步骤。
-
-```bash
-# 或者本地启动服务
-python -m http.server 8080
-```
-
-## 许可证
-
-MIT 许可证
+论文按本人要求仅写会议名称与篇数，不写题目、年份、作者顺序或录用/发表状态。

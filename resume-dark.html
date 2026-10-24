@@ -112,6 +112,16 @@
             .project-item { padding: 12px; }
             .footer { font-size: 11px; }
         }
+
+        #selected-projects a { color: inherit; overflow-wrap: anywhere; text-underline-offset: 3px; }
+        #publications .project-name, #publications .card-title { font-weight: 700; }
+        .project-item { break-inside: avoid; }
+        @media print {
+            body > div[style*="position:fixed"], body > div[style*="position: fixed"] { display: none !important; }
+            .card, .award-item { opacity: 1 !important; transform: none !important; break-inside: avoid; }
+            .section { break-inside: auto; }
+            a { color: inherit; }
+        }
     </style>
 </head>
 <body>
@@ -136,7 +146,10 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="publications"><div class="section-title">论文成果</div>
+    <div class="project-item"><div class="project-name">KSEM（CCF-C）会议论文 1 篇</div></div></div>
+
+<div class="section">
             <div class="section-title">教育背景</div>
             <div class="exp-item">
                 <div class="exp-header"><div class="exp-title">北京理工大学（985/211/双一流）</div><div class="exp-date">2026.09 - 2029.06</div></div>
@@ -158,7 +171,7 @@
             <div class="project-item">
                 <div class="project-name">🧠 面向司法判决的认知智能构建 <span class="highlight">（负责人）</span></div>
                 <div class="project-desc">
-                    <strong>2025.03 - 至今</strong> · CCF-BigData 2025 第一作者<br>
+                    <strong>2025.03 - 至今</strong> · 法律 AI · 知识与先例检索<br>
                     <ul><li>主导设计知识与经验双引导的 LLM 融合预测架构</li><li>7B LLM 提取犯罪要素 → Milvus 检索先例 → 30B LLM 生成判决</li></ul>
                 </div>
             </div>
@@ -168,7 +181,34 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="selected-projects"><div class="section-title">代表开源项目</div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/awesome-stock-quant-skills">量化研究 AI Skills</a></div>
+            <div class="project-desc">将价值投资、因子筛选与回测框架写成 AI Skills 和 Python 脚本；区分原创技能与收录内容，保留来源与许可证。<br><strong>Python · akshare · pandas · Agent Skills</strong> · <a href="https://github.com/Serennity007/awesome-stock-quant-skills">awesome-stock-quant-skills</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/paper-builder-system">国际课程组卷与在线考试系统</a></div>
+            <div class="project-desc">基于 Flask + SQLite 实现题库、双栏组卷、在线答题、客观题判分、教师批阅与成绩分析；支持离线公式渲染和 Excel 导入导出。<br><strong>Flask · SQLite · JavaScript · KaTeX</strong> · <a href="https://github.com/Serennity007/paper-builder-system">paper-builder-system</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/beiligong-ppt-skill">PPT 批量改造与验收工作流</a></div>
+            <div class="project-desc">使用 Python 批量统一课件标题、配色和字号；调用 PowerPoint 实测文本越框并回退，配套静态验收报告与回归测试。<br><strong>Python · python-pptx · PowerPoint</strong> · <a href="https://github.com/Serennity007/beiligong-ppt-skill">beiligong-ppt-skill</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/beijing-food-map-workspace">京城黔味地图</a></div>
+            <div class="project-desc">提供 React 网页、API、SQLite 数据层及 Taro 小程序的完整源码快照；实现地图找店与反馈流程，线上使用合成演示数据。<br><strong>TypeScript · React · SQLite · Taro</strong> · <a href="https://github.com/Serennity007/beijing-food-map-workspace">beijing-food-map-workspace</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/agent-trace">AI Agent 会话分析 CLI</a></div>
+            <div class="project-desc">解析多种编码 Agent 的本地会话日志，汇总 token 用量、成本估算与工具调用；提供终端报告与 JSON 输出。<br><strong>Node.js · JavaScript · CLI</strong> · <a href="https://github.com/Serennity007/agent-trace">agent-trace</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/git-format">Conventional Commits 工具</a></div>
+            <div class="project-desc">读取暂存区文件并按规则推断提交类型与 scope，生成规范提交信息；支持 dry-run 预览和 JSON 输出。<br><strong>Node.js · Git · CLI</strong> · <a href="https://github.com/Serennity007/git-format">git-format</a></div>
+        </div>
+</div>
+
+<div class="section">
             <div class="section-title">实习经历</div>
             <div class="exp-item">
                 <div class="exp-header"><div class="exp-title">学而思（好未来旗下）</div><div class="exp-date">贵阳</div></div>
@@ -214,7 +254,7 @@
                 <div class="skill-category"><div class="skill-label">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Go</span><span class="skill-tag">Rust</span><span class="skill-tag">LaTeX</span></div></div>
                 <div class="skill-category"><div class="skill-label">AI / ML</div><div class="skill-tags"><span class="skill-tag">PyTorch</span><span class="skill-tag">Transformers</span><span class="skill-tag">LangChain</span><span class="skill-tag">RAG</span><span class="skill-tag">MCP</span></div></div>
                 <div class="skill-category"><div class="skill-label">Backend</div><div class="skill-tags"><span class="skill-tag">FastAPI</span><span class="skill-tag">Node.js</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Docker</span></div></div>
-                <div class="skill-category"><div class="skill-label">开源项目</div><div class="skill-tags"><span class="skill-tag">agent-trace</span><span class="skill-tag">token-meter</span><span class="skill-tag">awesome-ai-rules</span><span class="skill-tag">45+ Projects</span></div></div>
+                <div class="skill-category"><div class="skill-label">开源项目</div><div class="skill-tags"><span class="skill-tag">agent-trace</span><span class="skill-tag">token-meter</span><span class="skill-tag">awesome-ai-rules</span><span class="skill-tag">Selected Projects</span></div></div>
             </div>
         </div>
 

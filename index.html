@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#050508">
     <title>梁正涛 — AI Researcher & Developer</title>
-    <meta name="description" content="梁正涛 - 北京理工大学 AI 研究员，45+ 开源项目，华为 ICT 大赛国家一等奖">
+    <meta name="description" content="梁正涛，北京理工大学硕士在读。KSEM（CCF-C）会议论文 1 篇，AI 开源工具与全栈应用开发。">
     <meta property="og:title" content="梁正涛 — AI Researcher & Developer">
-    <meta property="og:description" content="45+ 开源项目，华为 ICT 大赛国家一等奖，北京理工大学硕士">
+    <meta property="og:description" content="KSEM（CCF-C）会议论文 1 篇 · AI Skills、在线考试系统与开发者工具 · 北京理工大学硕士在读">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://serennity007.github.io/Serennity007-portfolio/">
     <meta name="twitter:card" content="summary_large_image">
@@ -344,6 +344,10 @@
             *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
             body::before { animation: none; }
         }
+        .card-link { overflow-wrap: anywhere; }
+        .tag { white-space: normal; overflow-wrap: anywhere; }
+        .hero-content { padding-bottom: 48px; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
     </style>
 </head>
 <body>
@@ -355,7 +359,7 @@
     <nav class="nav" id="nav">
         <div class="nav-inner">
             <a href="#" class="nav-logo">ZT</a>
-            <button class="mobile-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <button class="mobile-btn" aria-label="切换导航菜单" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))">☰</button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -367,7 +371,7 @@
                 <li><a href="resume-en.html">Resume</a></li>
                 <li><a href="resume-dark.html">暗夜简历</a></li>
                 <li><a href="resume-dynamic.html">动态简历</a></li>
-                <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button></li>
+                <li><button class="theme-btn" aria-label="切换明暗主题" onclick="toggleTheme()" id="themeBtn">🌙</button></li>
                 <li><a href="index-terminal.html" class="term-link" title="终端模式">&gt;_ 终端</a></li>
                 <li><a href="https://github.com/Serennity007" target="_blank" class="nav-cta">GitHub →</a></li>
             </ul>
@@ -380,11 +384,13 @@
         <div class="container hero-content">
             <div class="hero-badge">✦ 贵州大学 → 北京理工大学 · 专业第一</div>
             <h1 data-text="梁正涛">梁正涛</h1>
-            <div class="hero-status"><span class="dot"></span>SYS.ONLINE · <em>ACTIVE</em> // GZ → BJ · CHINA // BUILD <em>2026.08</em></div>
+            <div class="hero-status"><span class="dot"></span>SYS.ONLINE · <em>ACTIVE</em> // GZ → BJ · CHINA // BUILD <em>2026.10</em></div>
             <p class="hero-sub"><span class="hero-sub-prompt">&gt;&nbsp;</span><span id="typingText"></span><span class="typing-cursor"></span></p>
+            <p style="font-size:16px;line-height:1.8;color:var(--text-2);margin:14px 0;">法律 AI 与多模态安全对齐 · KSEM（CCF-C）会议论文 1 篇<br>把 AI 工作流写成可运行的工具与应用。</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;margin:20px 0;"><a href="resume.html" class="btn btn-primary">查看简历 ↗</a><a href="#projects" class="btn btn-ghost">浏览代表项目</a></div>
             <div class="hero-stats">
-                <div><div class="hero-stat-num">45+</div><div class="hero-stat-lbl">Open Source Projects</div></div>
-                <div><div class="hero-stat-num">500+</div><div class="hero-stat-lbl">Skills & Prompts</div></div>
+                <div><div class="hero-stat-num">6</div><div class="hero-stat-lbl">Selected Projects</div></div>
+                <div><div class="hero-stat-num">1</div><div class="hero-stat-lbl">KSEM · CCF-C Paper</div></div>
                 <div><div class="hero-stat-num">1/69</div><div class="hero-stat-lbl">专业排名</div></div>
                 <div><div class="hero-stat-num">4.14</div><div class="hero-stat-lbl">GPA / 5.0</div></div>
             </div>
@@ -395,22 +401,22 @@
     <div class="marquee">
         <div class="marquee-track">
             <div class="marquee-item">🧠 AI Research <em>LLM</em></div>
-            <div class="marquee-item">💻 Open Source <em>45+ Projects</em></div>
+            <div class="marquee-item">💻 Open Source <em>Selected Projects</em></div>
             <div class="marquee-item">🏆 Huawei ICT <em>National 1st</em></div>
             <div class="marquee-item">🎓 National Scholarship</div>
             <div class="marquee-item">🇸🇬 NUS Exchange</div>
             <div class="marquee-item">📊 GPA <em>4.14/5</em></div>
-            <div class="marquee-item">🔬 Legal AI <em>CCF-BigData</em></div>
-            <div class="marquee-item">📄 CCF-C Papers <em>2</em></div>
+            <div class="marquee-item">🔬 Legal AI <em>LLM / RAG</em></div>
+            <div class="marquee-item">📄 KSEM · CCF-C <em>1 Paper</em></div>
             <div class="marquee-item">🌐 IELTS <em>6.5</em></div>
             <div class="marquee-item">🧠 AI Research <em>LLM</em></div>
-            <div class="marquee-item">💻 Open Source <em>45+ Projects</em></div>
+            <div class="marquee-item">💻 Open Source <em>Selected Projects</em></div>
             <div class="marquee-item">🏆 Huawei ICT <em>National 1st</em></div>
             <div class="marquee-item">🎓 National Scholarship</div>
             <div class="marquee-item">🇸🇬 NUS Exchange</div>
             <div class="marquee-item">📊 GPA <em>4.14/5</em></div>
-            <div class="marquee-item">🔬 Legal AI <em>CCF-BigData</em></div>
-            <div class="marquee-item">📄 CCF-C Papers <em>2</em></div>
+            <div class="marquee-item">🔬 Legal AI <em>LLM / RAG</em></div>
+            <div class="marquee-item">📄 KSEM · CCF-C <em>1 Paper</em></div>
             <div class="marquee-item">🌐 IELTS <em>6.5</em></div>
         </div>
     </div>
@@ -422,9 +428,9 @@
             <h2 class="section-title anim">关于我</h2>
             <div class="two-col">
                 <div class="anim">
-                    <p style="font-size:16px;line-height:1.9;color:var(--text-2);">我是梁正涛，贵州大学人工智能专业本科生，<strong style="color:var(--text)">专业排名第一（1/69）</strong>，GPA <strong style="color:var(--text)">4.14/5</strong>。2026 年入学<strong style="color:var(--text)">北京理工大学</strong>人工智能学院，攻读智能科学与技术硕士。</p>
-                    <p style="font-size:16px;line-height:1.9;color:var(--text-2);margin-top:12px;">研究方向是<strong style="color:var(--text)">司法判决认知智能</strong>和<strong style="color:var(--text)">多模态大模型安全对齐</strong>。以第一作者完成 <strong style="color:var(--text)">2 篇 CCF-C 类会议论文</strong>：一篇已被 CCF-BigData 2025 录用，另一篇在投。</p>
-                    <p style="font-size:16px;line-height:1.9;color:var(--text-2);margin-top:12px;">GitHub 上有 <strong style="color:var(--text)">45+ 个开源项目</strong>，全部中英双语。雅思 <strong style="color:var(--text)">6.5</strong>，六级 <strong style="color:var(--text)">572</strong>。</p>
+                    <p style="font-size:16px;line-height:1.9;color:var(--text-2);">我是梁正涛，北京理工大学智能科学与技术硕士在读，贵州大学人工智能本科毕业，<strong style="color:var(--text)">专业排名第一（1/69）</strong>，GPA <strong style="color:var(--text)">4.14/5</strong>。目前在北京理工大学人工智能学院开展研究。</p>
+                    <p style="font-size:16px;line-height:1.9;color:var(--text-2);margin-top:12px;">研究方向是<strong style="color:var(--text)">司法判决认知智能</strong>和<strong style="color:var(--text)">多模态大模型安全对齐</strong>。有 <strong style="color:var(--text)">KSEM（CCF-C）会议论文 1 篇</strong>。</p>
+                    <p style="font-size:16px;line-height:1.9;color:var(--text-2);margin-top:12px;">开发 <strong style="color:var(--text)">AI Skills、教学应用与 Agent 工具</strong>，在 GitHub 公开源码和工作流。雅思 <strong style="color:var(--text)">6.5</strong>，六级 <strong style="color:var(--text)">572</strong>。</p>
                 </div>
                 <div class="anim" style="background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:28px;">
                     <h3 style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:3px;margin-bottom:18px;">Quick Facts</h3>
@@ -433,7 +439,7 @@
                         <div>🎓 贵州大学（211 本科）</div>
                         <div>📊 GPA 4.14/5 · 排名 1/69</div>
                         <div>🔬 法律 AI + 多模态安全</div>
-                        <div>📄 2 篇 CCF-C 会议论文（1 录用 · 1 在投）</div>
+                        <div>📄 KSEM（CCF-C）会议论文 1 篇</div>
                         <div>🏆 华为 ICT 国家一等奖</div>
                         <div>🎓 国家奖学金</div>
                         <div>🇸🇬 新加坡国立大学研修</div>
@@ -444,7 +450,7 @@
             <div class="stat-grid anim">
                 <div class="stat-card"><div class="stat-card-num">4+</div><div class="stat-card-lbl">Years Coding</div></div>
                 <div class="stat-card"><div class="stat-card-num">1/69</div><div class="stat-card-lbl">专业排名</div></div>
-                <div class="stat-card"><div class="stat-card-num">500+</div><div class="stat-card-lbl">Skills & Prompts</div></div>
+                <div class="stat-card"><div class="stat-card-num">6</div><div class="stat-card-lbl">代表项目</div></div>
             </div>
         </div>
     </section>
@@ -465,7 +471,7 @@
                 <div class="anim">
                     <div class="values-grid" style="grid-template-columns:1fr;">
                         <div class="value-item"><div class="value-num">01</div><div class="value-title">Research</div><div class="value-desc">司法判决认知智能，用 LLM 做法律判决预测</div></div>
-                        <div class="value-item"><div class="value-num">02</div><div class="value-title">Open Source</div><div class="value-desc">45+ 开源项目，全部中英双语，全部免费</div></div>
+                        <div class="value-item"><div class="value-num">02</div><div class="value-title">Open Source</div><div class="value-desc">AI Skills · 在线考试系统 · Agent 工具</div></div>
                         <div class="value-item"><div class="value-num">03</div><div class="value-title">Competition</div><div class="value-desc">华为 ICT 大赛国家一等奖、全球三等奖</div></div>
                         <div class="value-item"><div class="value-num">04</div><div class="value-title">Global</div><div class="value-desc">新加坡国立大学交换，全程英语协作</div></div>
                     </div>
@@ -485,13 +491,13 @@
                 <div class="card" style="background:linear-gradient(135deg, rgba(0,212,255,0.08), rgba(139,92,246,0.05));">
                     <div class="card-icon">🧠</div>
                     <div class="card-title">司法判决认知智能</div>
-                    <div class="card-desc">CCF-BigData 2025（CCF-C）第一作者，已录用。用 LLM 做法律判决预测，融合法律条文和历史案例。</div>
+                    <div class="card-desc">用 LLM 做法律判决预测：提取案件要素，结合 Milvus 先例检索与法律条文，构建知识与经验双轨推理流程。</div>
                     <div style="margin-top:10px;"><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Milvus</span><span class="tag">法律 AI</span></div>
                 </div>
                 <div class="card" style="background:linear-gradient(135deg, rgba(236,72,153,0.08), rgba(139,92,246,0.05));">
                     <div class="card-icon">🛡️</div>
                     <div class="card-title">多模态大模型安全对齐</div>
-                    <div class="card-desc">CCF-C 类会议论文在投，第一作者。硕士阶段研究方向，围绕多模态大模型的安全对齐方法展开。</div>
+                    <div class="card-desc">硕士阶段研究方向，围绕多模态大模型的安全对齐方法展开。</div>
                     <div style="margin-top:10px;"><span class="tag">多模态</span><span class="tag">安全对齐</span><span class="tag">LLM</span></div>
                 </div>
                 <div class="card" style="background:linear-gradient(135deg, rgba(139,92,246,0.08), rgba(34,211,238,0.05));">
@@ -503,44 +509,50 @@
             </div>
             <h3 class="anim" style="margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">💻 开源项目</h3>
             <div class="card-grid anim stagger">
-                <div class="card">
-                    <div style="height:140px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,#6366f1,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:36px;">🧠</div>
-                    <div class="card-title">awesome-ai-rules</div>
-                    <div class="card-desc">20 AI coding rules for Cursor, Claude Code, Kimi Code.</div>
-                    <a href="https://github.com/Serennity007/awesome-ai-rules" target="_blank" class="card-link">GitHub →</a>
-                </div>
-                <div class="card">
-                    <div style="height:140px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,#22c55e,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:36px;">⚡</div>
-                    <div class="card-title">token-meter</div>
-                    <div class="card-desc">Real-time token cost meter for AI coding agents.</div>
-                    <a href="https://github.com/Serennity007/token-meter" target="_blank" class="card-link">GitHub →</a>
-                </div>
-                <div class="card">
-                    <div style="height:140px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,#f59e0b,#ef4444);display:flex;align-items:center;justify-content:center;font-size:36px;">🔍</div>
-                    <div class="card-title">agent-trace</div>
-                    <div class="card-desc">Trace your AI agent — costs, tokens, tool health.</div>
-                    <a href="https://github.com/Serennity007/agent-trace" target="_blank" class="card-link">GitHub →</a>
-                </div>
-                <div class="card">
-                    <div style="height:140px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,#a855f7,#ec4899);display:flex;align-items:center;justify-content:center;font-size:36px;">🛡️</div>
-                    <div class="card-title">awesome-ai-alignment</div>
-                    <div class="card-desc">12 AI safety and alignment skills.</div>
-                    <a href="https://github.com/Serennity007/awesome-ai-alignment" target="_blank" class="card-link">GitHub →</a>
-                </div>
-                <div class="card">
-                    <div style="height:140px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,#ec4899,#f472b6);display:flex;align-items:center;justify-content:center;font-size:36px;">📝</div>
-                    <div class="card-title">paper-grill</div>
-                    <div class="card-desc">Honest paper review — NeurIPS, ICML, ICLR styles.</div>
-                    <a href="https://github.com/Serennity007/paper-grill" target="_blank" class="card-link">GitHub →</a>
-                </div>
-                <div class="card">
-                    <div style="height:140px;border-radius:14px;margin-bottom:18px;background:linear-gradient(135deg,#06b6d4,#22d3ee);display:flex;align-items:center;justify-content:center;font-size:36px;">🌐</div>
-                    <div class="card-title">awesome-geo</div>
-                    <div class="card-desc">GEO guide — get recommended by AI search engines.</div>
-                    <a href="https://github.com/Serennity007/awesome-geo" target="_blank" class="card-link">GitHub →</a>
-                </div>
+                <article class="card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">量化研究 AI Skills</div>
+                    <div class="card-desc">将价值投资、因子筛选与回测框架写成 AI Skills 和 Python 脚本；区分原创技能与收录内容，保留来源与许可证。</div>
+                    <div style="margin-top:12px;"><span class="tag">Python · akshare · pandas · Agent Skills</span></div>
+                    <a href="https://github.com/Serennity007/awesome-stock-quant-skills" target="_blank" rel="noopener noreferrer" class="card-link">awesome-stock-quant-skills ↗</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">📝</div>
+                    <div class="card-title">国际课程组卷与在线考试系统</div>
+                    <div class="card-desc">基于 Flask + SQLite 实现题库、双栏组卷、在线答题、客观题判分、教师批阅与成绩分析；支持离线公式渲染和 Excel 导入导出。</div>
+                    <div style="margin-top:12px;"><span class="tag">Flask · SQLite · JavaScript · KaTeX</span></div>
+                    <a href="https://github.com/Serennity007/paper-builder-system" target="_blank" rel="noopener noreferrer" class="card-link">paper-builder-system ↗</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">📐</div>
+                    <div class="card-title">PPT 批量改造与验收工作流</div>
+                    <div class="card-desc">使用 Python 批量统一课件标题、配色和字号；调用 PowerPoint 实测文本越框并回退，配套静态验收报告与回归测试。</div>
+                    <div style="margin-top:12px;"><span class="tag">Python · python-pptx · PowerPoint</span></div>
+                    <a href="https://github.com/Serennity007/beiligong-ppt-skill" target="_blank" rel="noopener noreferrer" class="card-link">beiligong-ppt-skill ↗</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🗺️</div>
+                    <div class="card-title">京城黔味地图</div>
+                    <div class="card-desc">提供 React 网页、API、SQLite 数据层及 Taro 小程序的完整源码快照；实现地图找店与反馈流程，线上使用合成演示数据。</div>
+                    <div style="margin-top:12px;"><span class="tag">TypeScript · React · SQLite · Taro</span></div>
+                    <a href="https://github.com/Serennity007/beijing-food-map-workspace" target="_blank" rel="noopener noreferrer" class="card-link">beijing-food-map-workspace ↗</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🔍</div>
+                    <div class="card-title">AI Agent 会话分析 CLI</div>
+                    <div class="card-desc">解析多种编码 Agent 的本地会话日志，汇总 token 用量、成本估算与工具调用；提供终端报告与 JSON 输出。</div>
+                    <div style="margin-top:12px;"><span class="tag">Node.js · JavaScript · CLI</span></div>
+                    <a href="https://github.com/Serennity007/agent-trace" target="_blank" rel="noopener noreferrer" class="card-link">agent-trace ↗</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">⌨️</div>
+                    <div class="card-title">Conventional Commits 工具</div>
+                    <div class="card-desc">读取暂存区文件并按规则推断提交类型与 scope，生成规范提交信息；支持 dry-run 预览和 JSON 输出。</div>
+                    <div style="margin-top:12px;"><span class="tag">Node.js · Git · CLI</span></div>
+                    <a href="https://github.com/Serennity007/git-format" target="_blank" rel="noopener noreferrer" class="card-link">git-format ↗</a>
+                </article>
             </div>
-            <div style="text-align:center;margin-top:36px;" class="anim"><a href="https://github.com/Serennity007?tab=repositories" target="_blank" class="btn btn-ghost">View all 45+ projects →</a></div>
+            <div style="text-align:center;margin-top:36px;" class="anim"><a href="https://github.com/Serennity007?tab=repositories" target="_blank" class="btn btn-ghost">查看全部仓库 →</a></div>
             <div class="gh-card anim">
                 <h3 style="font-size:14px;font-weight:600;margin-bottom:16px;">📊 GitHub Activity</h3>
                 <div style="min-height:160px;background:var(--surface-2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;" id="ghStatsLoading">
@@ -565,8 +577,8 @@
                 <div class="blog-card">
                     <div class="blog-date">2026.08</div>
                     <div>
-                        <a href="blog.html?post=how-i-built-45-opensource-projects" class="blog-title" style="text-decoration:none;display:block;">我如何用 AI 做了 45+ 个开源项目</a>
-                        <div class="blog-excerpt">从零开始，用 Cursor、Kimi Code、Claude Code 等 AI 工具，在半年内创建了 45+ 个开源项目的实战经验分享。</div>
+                        <a href="blog.html?post=how-i-built-45-opensource-projects" class="blog-title" style="text-decoration:none;display:block;">AI 辅助开源开发：早期实践</a>
+                        <div class="blog-excerpt">记录使用 AI 编码工具开发 CLI、整理项目文档与维护开源仓库的早期实践。</div>
                         <div class="blog-tag">开源</div>
                     </div>
                 </div>
@@ -574,7 +586,7 @@
                     <div class="blog-date">2026.07</div>
                     <div>
                         <a href="blog.html?post=legal-judgment-prediction-with-llm" class="blog-title" style="text-decoration:none;display:block;">用 LLM 做法律判决预测：知识-经验双轨融合方法</a>
-                        <div class="blog-excerpt">已录用的 CCF-BigData 2025（CCF-C）论文的技术解读，介绍如何将法律条文和司法先例结合起来提升 LLM 的判决预测能力。</div>
+                        <div class="blog-excerpt">法律 AI 项目方法介绍：结合案件要素、法律条文和司法先例，构建大语言模型判决预测流程。</div>
                         <div class="blog-tag">研究</div>
                     </div>
                 </div>
@@ -749,7 +761,7 @@
         var typingTexts = [
             '做 AI 研究，写开源代码，偶尔打比赛拿奖。',
             '研究方向：司法判决认知智能 + 多模态安全对齐。',
-            '45+ 开源项目，全部中英双语，全部免费。',
+            'AI Skills · 在线考试系统 · Agent 工具。',
             '北京理工大学 · 智能科学与技术 · 硕士在读。'
         ];
         var ti = 0, ci = 0, del = false;

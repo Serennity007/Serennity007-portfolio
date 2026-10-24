@@ -1,40 +1,15 @@
 [English](README.md) | [中文](README.zh.md)
 
-# Liang Zhengtao - Portfolio
+# Zhengtao Liang — Portfolio & Resume
 
-A personal portfolio and resume website for Liang Zhengtao (梁正涛), an AI researcher and developer at Beijing Institute of Technology.
+BIT M.S. student · 1 KSEM conference paper (CCF-C) · AI research and open-source engineering.
 
-## Features
+[Portfolio](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 
-- **Dark/Light Theme** — Toggle between dark and light modes
-- **Responsive Design** — Optimized for desktop, tablet, and mobile
-- **Bilingual Resume** — Available in both Chinese and English
-- **Modern UI** — Clean, minimal design with smooth animations
-- **Zero Dependencies** — Pure HTML/CSS/JS, no build tools required
+Selected projects cover quant AI Skills, exam authoring and assessment, PowerPoint automation, a restaurant map demo, and agent/Git CLI tools. Each entry links to its public source.
 
-## Pages
+Serve this folder locally with `python -m http.server 8080`. Static HTML/CSS/JavaScript; no build step. The main branch deploys through `.github/workflows/deploy.yml` to GitHub Pages.
 
-| Page | Description |
-|------|-------------|
-| [`index.html`](index.html) | Main portfolio page with project showcase |
-| [`resume.html`](resume.html) | Chinese resume (中文简历) |
-| [`resume-en.html`](resume-en.html) | English resume |
+Resume variants: `resume.html`, `resume-en.html`, `resume-dark.html`, `resume-dynamic.html`. Keep publication wording and selected projects aligned across all four pages.
 
-## Highlights
-
-- 39+ open-source projects
-- Huawei ICT Competition National First Prize
-- AI research at Beijing Institute of Technology
-
-## Getting Started
-
-Simply open `index.html` in a browser — no server or build step required.
-
-```bash
-# Or serve locally
-python -m http.server 8080
-```
-
-## License
-
-MIT License
+Publication wording follows the owner’s instructions: venue and count only; no title, year, author order or publication-status claims.

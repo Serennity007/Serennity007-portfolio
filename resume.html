@@ -124,15 +124,39 @@
             .project-item { padding: 12px; }
             .footer { font-size: 11px; }
         }
+
+        #selected-projects a { color: inherit; overflow-wrap: anywhere; text-underline-offset: 3px; }
+        #publications .project-name, #publications .card-title { font-weight: 700; }
+        .project-item { break-inside: avoid; }
+        @media print {
+            body > nav, body > div[style*="position:fixed"], body > div[style*="position: fixed"] { display: none !important; }
+            .card, .award-item { opacity: 1 !important; transform: none !important; break-inside: avoid; }
+            .section { break-inside: auto; }
+            a { color: inherit; }
+        }
+            @media screen and (max-width: 840px) { nav[aria-label="Resume navigation"] { left: 8px; right: 8px !important; top: 8px !important; justify-content: center; flex-wrap: wrap; } }
+
+        @media print {
+            @page { size: A4; margin: 10mm 9mm; }
+            .page { width: auto; min-height: auto; padding: 0; box-shadow: none; }
+            .header { padding-bottom: 12px; margin-bottom: 14px; }
+            .section { margin-bottom: 12px; }
+            .section-title { margin-bottom: 8px; }
+            .project-item { margin-bottom: 8px; padding: 8px 12px; }
+            .exp-item { margin-bottom: 8px; }
+            .project-desc, .exp-desc { line-height: 1.5; }
+            .skills-grid { gap: 6px; }
+            .skill-tags { gap: 3px; }
+        }
     </style>
 </head>
 <body>
-    <div style="position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:6px;background:rgba(0,0,0,0.8);padding:6px 12px;border-radius:8px;font-size:11px;">
+    <nav aria-label="Resume navigation" style="position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:6px;background:rgba(0,0,0,0.8);padding:6px 12px;border-radius:8px;font-size:11px;">
         <a href="resume.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">中文</a>
         <a href="resume-en.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">EN</a>
         <a href="resume-dark.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">暗夜</a>
         <a href="resume-dynamic.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">动态</a>
-    </div>
+    <a href="index.html" style="color:white;text-decoration:none;padding:4px 8px;">主页</a><button type="button" onclick="window.print()" style="background:none;border:0;color:white;font:inherit;cursor:pointer;">打印 / PDF</button></nav>
     <div class="page">
         <!-- Header -->
         <div class="header">
@@ -149,7 +173,10 @@
             </div>
         </div>
 
-        <!-- Education -->
+        <div class="section" id="publications"><div class="section-title">论文成果</div>
+    <div class="project-item"><div class="project-name">KSEM（CCF-C）会议论文 1 篇</div></div></div>
+
+<!-- Education -->
         <div class="section">
             <div class="section-title">教育背景</div>
 
@@ -184,10 +211,10 @@
             <div class="project-item">
                 <div class="project-name">🧠 面向司法判决的认知智能构建：大语言模型导向的知识-经验双轨融合与推理机制 <span class="highlight">（负责人）</span></div>
                 <div class="project-desc">
-                    <strong>2025.03 - 至今</strong> · CCF-BigData 2025（CCF-C 类会议）第一作者 · <span class="highlight">已录用</span><br>
+                    <strong>2025.03 - 至今</strong> · 法律 AI · 知识与先例检索<br>
                     <ul>
                         <li>主导设计了知识与经验双引导的 LLM 融合预测架构</li>
-                        <li>运用小型 LLM（7B）对案件事实进行深度分析，实现关键犯罪构成要素的精准提取</li>
+                        <li>运用小型 LLM（7B）对案件事实进行深度分析，提取关键犯罪构成要素</li>
                         <li>基于提取的要素并行启动双轨检索：Milvus 向量数据库检索相似司法先例，同步匹配法律条文知识库</li>
                         <li>将原始案情、法律知识及先例判决等多源信息融合，驱动大型 LLM（30B）生成综合性判决预测</li>
                     </ul>
@@ -195,12 +222,11 @@
             </div>
 
             <div class="project-item">
-                <div class="project-name">🛡️ 多模态大语言模型的安全对齐方法研究 <span class="highlight">（第一作者）</span></div>
+                <div class="project-name">🛡️ 多模态大语言模型的安全对齐方法研究</div>
                 <div class="project-desc">
-                    <strong>2026 至今</strong> · CCF-C 类会议论文在投 · 第一作者<br>
+                    <strong>2026 至今</strong> · 硕士阶段研究方向<br>
                     <ul>
                         <li>硕士阶段研究方向，围绕多模态大模型的安全对齐方法展开</li>
-                        <li>论文以第一作者完成并投稿至 CCF-C 类学术会议，目前在审</li>
                     </ul>
                 </div>
             </div>
@@ -218,7 +244,34 @@
             </div>
         </div>
 
-        <!-- Internship -->
+        <div class="section" id="selected-projects"><div class="section-title">代表开源项目</div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/awesome-stock-quant-skills">量化研究 AI Skills</a></div>
+            <div class="project-desc">将价值投资、因子筛选与回测框架写成 AI Skills 和 Python 脚本；区分原创技能与收录内容，保留来源与许可证。<br><strong>Python · akshare · pandas · Agent Skills</strong> · <a href="https://github.com/Serennity007/awesome-stock-quant-skills">awesome-stock-quant-skills</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/paper-builder-system">国际课程组卷与在线考试系统</a></div>
+            <div class="project-desc">基于 Flask + SQLite 实现题库、双栏组卷、在线答题、客观题判分、教师批阅与成绩分析；支持离线公式渲染和 Excel 导入导出。<br><strong>Flask · SQLite · JavaScript · KaTeX</strong> · <a href="https://github.com/Serennity007/paper-builder-system">paper-builder-system</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/beiligong-ppt-skill">PPT 批量改造与验收工作流</a></div>
+            <div class="project-desc">使用 Python 批量统一课件标题、配色和字号；调用 PowerPoint 实测文本越框并回退，配套静态验收报告与回归测试。<br><strong>Python · python-pptx · PowerPoint</strong> · <a href="https://github.com/Serennity007/beiligong-ppt-skill">beiligong-ppt-skill</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/beijing-food-map-workspace">京城黔味地图</a></div>
+            <div class="project-desc">提供 React 网页、API、SQLite 数据层及 Taro 小程序的完整源码快照；实现地图找店与反馈流程，线上使用合成演示数据。<br><strong>TypeScript · React · SQLite · Taro</strong> · <a href="https://github.com/Serennity007/beijing-food-map-workspace">beijing-food-map-workspace</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/agent-trace">AI Agent 会话分析 CLI</a></div>
+            <div class="project-desc">解析多种编码 Agent 的本地会话日志，汇总 token 用量、成本估算与工具调用；提供终端报告与 JSON 输出。<br><strong>Node.js · JavaScript · CLI</strong> · <a href="https://github.com/Serennity007/agent-trace">agent-trace</a></div>
+        </div>
+<div class="project-item">
+            <div class="project-name"><a href="https://github.com/Serennity007/git-format">Conventional Commits 工具</a></div>
+            <div class="project-desc">读取暂存区文件并按规则推断提交类型与 scope，生成规范提交信息；支持 dry-run 预览和 JSON 输出。<br><strong>Node.js · Git · CLI</strong> · <a href="https://github.com/Serennity007/git-format">git-format</a></div>
+        </div>
+</div>
+
+<!-- Internship -->
         <div class="section">
             <div class="section-title">实习经历</div>
 
@@ -262,31 +315,7 @@
             </div>
         </div>
 
-        <!-- Awards -->
-        <div class="section">
-            <div class="section-title">获奖情况</div>
-            <div class="awards-grid">
-                <div>
-                    <div class="award-category">国家级 / 省级</div>
-                    <div class="award-item"><div class="award-icon">🥇</div><div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · <span class="highlight">国家一等奖</span></div></div>
-                    <div class="award-item"><div class="award-icon">🌍</div><div class="award-title">华为 ICT 大赛 · <span class="highlight">全球总决赛 · 三等奖</span></div></div>
-                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title"><span class="highlight">国家奖学金</span></div></div>
-                    <div class="award-item"><div class="award-icon">🏆</div><div class="award-title">贵州省普通高校三好学生</div></div>
-                    <div class="award-item"><div class="award-icon">🎤</div><div class="award-title">贵州省首届"黔山之声"外语演讲大赛三等奖</div></div>
-                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">"挑战杯"贵州省大学生创业计划三等奖</div></div>
-                </div>
-                <div>
-                    <div class="award-category">校级</div>
-                    <div class="award-item"><div class="award-icon">🎓</div><div class="award-title">贵州大学一等奖学金（×2）</div></div>
-                    <div class="award-item"><div class="award-icon">⭐</div><div class="award-title">贵州大学三好学生（×2）</div></div>
-                    <div class="award-item"><div class="award-icon">🏅</div><div class="award-title">贵州大学优秀共青团员（×2）</div></div>
-                    <div class="award-item"><div class="award-icon">🌟</div><div class="award-title">贵州大学第十九届"十佳素质拓展大学生"</div></div>
-                    <div class="award-item"><div class="award-icon">🚀</div><div class="award-title">"挑战杯"校级一等奖（×2）</div></div>
-                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"外研社 国才杯"英语演讲、辩论、口译二、三等奖</div></div>
-                    <div class="award-item"><div class="award-icon">🗣️</div><div class="award-title">"21世纪杯"全国英语演讲比赛校级三等奖</div></div>
-                </div>
-            </div>
-        </div>
+<div class="section"><div class="section-title">荣誉奖项</div><div class="awards-grid"><div class="award-item"><div class="award-title">华为 ICT 大赛 · 国家一等奖</div></div><div class="award-item"><div class="award-title">华为 ICT 大赛 · 全球三等奖</div></div><div class="award-item"><div class="award-title">国家奖学金</div></div><div class="award-item"><div class="award-title">贵州省三好学生</div></div></div></div>
 
         <!-- Technical Skills -->
         <div class="section">
@@ -336,34 +365,8 @@
             </div>
         </div>
 
-        <!-- Open Source -->
-        <div class="section">
-            <div class="section-title">开源贡献</div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-label">开发者工具</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">agent-trace</span>
-                        <span class="skill-tag">token-meter</span>
-                        <span class="skill-tag">vibe-check</span>
-                        <span class="skill-tag">awesome-ai-rules</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-label">研究资源</div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">awesome-ai-alignment</span>
-                        <span class="skill-tag">paper-grill</span>
-                        <span class="skill-tag">awesome-geo</span>
-                        <span class="skill-tag">共 45+ 个项目</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
         <div class="footer">
-            © 2026 梁正涛 · <a href="https://github.com/Serennity007" style="color: #2563eb; text-decoration: none;">github.com/Serennity007</a> · 更新于 2026 年 8 月
+            © 2026 梁正涛 · <a href="https://github.com/Serennity007" style="color: #2563eb; text-decoration: none;">github.com/Serennity007</a> · 更新于 2026 年 10 月
         </div>
     </div>
 </body>
