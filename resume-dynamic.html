@@ -323,18 +323,21 @@
         }
         .flagship-project { border-left: 3px solid #2563eb; }
     </style>
+<link rel="stylesheet" href="assets/navigation.css?v=20261025-nav1">
+<script src="assets/navigation.js?v=20261025-nav1" defer></script>
+<style>.resume-section-nav + .stat-row { margin-top:28px; } .header { padding-bottom:32px; }</style>
 </head>
-<body>
+<body class="resume-print-dark">
 
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="grid-bg"></div>
 
-    <nav class="top-nav">
-        <a href="#edu">Education</a>
-        <a href="#research">Research</a>
-        <a href="#awards">Awards</a>
-        <a href="#skills">Skills</a>
+    <nav class="resume-toolbar" aria-label="Resume navigation">
+        <a class="resume-home" href="index.html" aria-label="返回个人主页">← 个人主页</a>
+        <details class="resume-versions"><summary>动态版 <span aria-hidden="true">⌄</span></summary><div class="resume-version-menu"><a href="resume.html">中文打印版</a><a href="resume-en.html">English CV</a><a href="resume-dark.html">暗夜简历</a><a href="resume-dynamic.html" aria-current="page">动态简历</a></div></details>
+        <a href="index.html#contact">联系我</a>
+        <button type="button" data-print-resume>打印 / PDF</button>
     </nav>
 
     <div class="container">
@@ -346,10 +349,11 @@
                 <div class="contact-item">📞 17684269881</div>
                 <div class="contact-item">📧 <a href="mailto:1392452425a@gmail.com">1392452425a@gmail.com</a></div>
                 <div class="contact-item">🔗 <a href="https://github.com/Serennity007">GitHub</a></div>
-                <div class="contact-item">🌐 <a href="https://serennity007.github.io/Serennity007-portfolio">Portfolio</a></div>
+                <div class="contact-item">🌐 <a href="index.html">Portfolio</a></div>
             </div>
         </div>
 
+<nav class="resume-section-nav" aria-label="简历目录"><a href="#edu">教育</a><a href="#research">科研</a><a href="#selected-projects">项目</a><a href="#awards">荣誉</a><a href="#skills">技能</a></nav>
         <!-- Stats -->
         <div class="stat-row">
             <div class="stat-box"><div class="stat-num">1/69</div><div class="stat-lbl">专业排名</div></div>
@@ -486,6 +490,7 @@
         </div>
 
         <div class="footer">
+<div class="resume-footer-nav"><a href="index.html">← 返回个人主页</a><a href="index.html#resumes">所有简历版本</a><a href="index.html#contact">联系我</a></div>
             <a href="https://github.com/Serennity007">GitHub</a> · <a href="mailto:1392452425a@gmail.com">Email</a> · © 2026 梁正涛
         </div>
     </div>

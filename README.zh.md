@@ -12,4 +12,6 @@
 
 简历版本：`resume.html`、`resume-en.html`、`resume-dark.html`、`resume-dynamic.html`。论文表述与代表项目在四个页面保持一致。
 
+每个简历版本都提供固定的返回主页、版本切换、联系与打印/PDF 入口，页尾也有返回链接。`index.html#resumes` 汇总四个版本。共用导航样式与交互在 `assets/navigation.css`、`assets/navigation.js`；打印时隐藏导航，深色版本使用浅底打印。
+
 论文按本人要求仅写会议名称与篇数，不写题目、年份、作者顺序或录用/发表状态。

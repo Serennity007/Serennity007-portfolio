@@ -133,7 +133,6 @@
             .section { break-inside: auto; }
             a { color: inherit; }
         }
-            @media screen and (max-width: 840px) { nav[aria-label="Resume navigation"] { left: 8px; right: 8px !important; top: 8px !important; justify-content: center; flex-wrap: wrap; } }
 
         @media print {
             @page { size: A4; margin: 10mm 9mm; }
@@ -149,14 +148,16 @@
         }
         .flagship-project { border-left: 3px solid #2563eb; }
     </style>
+<link rel="stylesheet" href="assets/navigation.css?v=20261025-nav1">
+<script src="assets/navigation.js?v=20261025-nav1" defer></script>
 </head>
 <body>
-    <nav aria-label="Resume navigation" style="position:fixed;top:16px;right:16px;z-index:100;display:flex;gap:6px;background:rgba(0,0,0,0.8);padding:6px 12px;border-radius:8px;font-size:11px;">
-        <a href="resume.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">中文</a>
-        <a href="resume-en.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">EN</a>
-        <a href="resume-dark.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">暗夜</a>
-        <a href="resume-dynamic.html" style="color:#999;text-decoration:none;padding:4px 8px;border-radius:4px;">动态</a>
-    <a href="index.html" style="color:white;text-decoration:none;padding:4px 8px;">Home</a><button type="button" onclick="window.print()" style="background:none;border:0;color:white;font:inherit;cursor:pointer;">Print / PDF</button></nav>
+    <nav class="resume-toolbar" aria-label="Resume navigation">
+        <a class="resume-home" href="index.html" aria-label="Return to personal homepage">← Home</a>
+        <details class="resume-versions"><summary>English CV <span aria-hidden="true">⌄</span></summary><div class="resume-version-menu"><a href="resume.html">中文打印版</a><a href="resume-en.html" aria-current="page">English CV</a><a href="resume-dark.html">暗夜简历</a><a href="resume-dynamic.html">动态简历</a></div></details>
+        <a href="index.html#contact">Contact</a>
+        <button type="button" data-print-resume>Print / PDF</button>
+    </nav>
     <div class="page">
         <!-- Header -->
         <div class="header">
@@ -169,7 +170,7 @@
                 <div>📧 1392452425a@gmail.com</div>
                 <div>🎂 Born May 2003 · Communist Youth League Member</div>
                 <div>🔗 <a href="https://github.com/Serennity007">github.com/Serennity007</a></div>
-                <div>🌐 <a href="https://serennity007.github.io/Serennity007-portfolio">Portfolio</a></div>
+                <div>🌐 <a href="index.html">Portfolio</a></div>
             </div>
         </div>
 
@@ -365,6 +366,7 @@
         </div>
 
         <div class="footer">
+<div class="resume-footer-nav"><a href="index.html">← Personal homepage</a><a href="index.html#resumes">All resume versions</a><a href="index.html#contact">Contact</a></div>
             © 2026 Zhengtao Liang · <a href="https://github.com/Serennity007" style="color: #2563eb; text-decoration: none;">github.com/Serennity007</a> · Last updated: October 2026
         </div>
     </div>
