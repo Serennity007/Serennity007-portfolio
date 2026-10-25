@@ -10,7 +10,7 @@ Selected projects cover quant AI Skills, exam authoring and assessment, PowerPoi
 
 Serve this folder locally with `python -m http.server 8080`. Static HTML/CSS/JavaScript; no build step. The main branch deploys through `.github/workflows/deploy.yml` to GitHub Pages.
 
-The homepage and interactive CV share pointer lighting, damped cursor feedback, card tilt and a persistent motion toggle. Touch and reduced-motion settings use a static view. See [motion behavior and checks](docs/motion.md); run `node --test tests/motion.test.cjs` for the controller tests.
+The homepage and interactive CV share ambient light, rotating wireframes, pointer lighting, damped cursor feedback, card tilt and a persistent motion toggle. Mouse tracking works in narrow desktop windows too; touch input hides the mouse follower and reduced-motion settings use a static view. See [motion behavior and checks](docs/motion.md); run `node --test tests/motion.test.cjs` for the controller tests.
 
 Resume variants: `resume.html`, `resume-en.html`, `resume-dark.html`, `resume-dynamic.html`. Keep publication wording and selected projects aligned across all four pages.
 

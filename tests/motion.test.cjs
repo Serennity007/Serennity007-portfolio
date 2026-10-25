@@ -71,7 +71,7 @@ function fixture(options = {}) {
     unobserve(node) { this.nodes = this.nodes.filter(x => x !== node); }
   }
   const context = {
-    document, Element, matchMedia, innerWidth: 1280, innerHeight: 900,
+    document, Element, matchMedia, innerWidth: options.width || 1280, innerHeight: 900,
     localStorage: {
       getItem: key => { if (options.noStorage) throw Error('blocked'); return storage.get(key); },
       setItem: (key, value) => { if (options.noStorage) throw Error('blocked'); storage.set(key, value); }
@@ -85,7 +85,7 @@ function fixture(options = {}) {
   };
   context.window = context;
   vm.runInNewContext(code, context);
-  const button = [...nav.children.flatMap(x => x.children), ...toolbar.children].find(x => x.classList.contains('motion-toggle'));
+  const button = body.children.find(x => x.classList.contains('motion-toggle'));
   function step() {
     const batch = [...frames.values()]; frames.clear(); now += 1000 / 60;
     batch.forEach(callback => callback(now));
@@ -165,15 +165,31 @@ test('system reduced motion takes priority and responds to live changes', () => 
   f.media('reduce', false); assert.equal(f.root.dataset.motion, 'on');
   f.move(450, 150); f.media('reduce', true); assert.equal(f.frames.size, 0); assert.equal(f.timers.size, 0);
 });
-test('coarse and narrow screen policy uses a static view', () => {
-  const f = fixture({ coarse: true }); assert.equal(f.root.dataset.motion, 'off'); f.move(300, 200); assert.equal(f.frames.size, 0);
+test('452px desktop sidebars retain ambient motion and mouse tracking', () => {
+  const f = fixture({ width: 452 });
+  assert.equal(f.root.dataset.motion, 'on'); assert.equal(f.button.disabled, false);
+  f.move(300, 200); f.settle();
+  assert.equal(f.root.dataset.pointerMotion, 'on'); assert.equal(f.root.dataset.pointerActive, 'true');
+});
+test('touch devices retain ambient motion without a ghost mouse follower', () => {
+  const f = fixture({ coarse: true, width: 390 }); f.settle();
+  assert.equal(f.root.dataset.motion, 'on'); assert.equal(f.root.dataset.pointerMotion, 'off');
+  f.move(300, 200, f.card, 'touch'); f.settle();
+  assert.equal(f.root.dataset.pointerActive, undefined); assert.equal(f.root.dataset.pointerMotion, 'off');
+});
+test('actual mouse input enables tracking even when the device media query is coarse', () => {
+  const f = fixture({ coarse: true, width: 452 });
+  f.move(300, 200); f.settle();
+  assert.equal(f.root.dataset.pointerMotion, 'on'); assert.equal(f.root.dataset.pointerActive, 'true');
 });
 test('touch input on a hybrid laptop removes the mouse follower', () => {
   const f = fixture(); f.move(300, 200); f.settle();
   assert.equal(f.root.dataset.pointerActive, 'true');
   f.document.send('pointerdown', { pointerType: 'touch' }); f.settle();
   assert.equal(f.root.dataset.pointerActive, undefined);
+  assert.equal(f.root.dataset.pointerMotion, 'off');
   f.move(300, 200, f.card, 'touch'); assert.equal(f.root.dataset.pointerActive, undefined);
+  f.move(300, 200); f.settle(); assert.equal(f.root.dataset.pointerMotion, 'on');
 });
 test('print cancels tracking and returns to interactive policy afterwards', () => {
   const f = fixture(); f.move(450, 150); f.media('print', true);

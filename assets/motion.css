@@ -6,9 +6,11 @@
 html[data-theme="light"] { --motion-color: #087c99; }
 html:has(.hud-cv) { --motion-color: #60e3ff; }
 .motion-toggle {
+  position: fixed; left: 16px; bottom: 16px; z-index: 220;
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
   min-height: 36px; padding: 8px 11px; border: 1px solid var(--border, #2b4f63);
-  border-radius: 6px; color: var(--text-2, #a7bacb); background: transparent;
+  border-radius: 6px; color: var(--text-2, #a7bacb); background: var(--surface, #09131f);
+  box-shadow: 0 4px 22px #0003; min-height: 40px;
   font: 500 11px/1.5 'JetBrains Mono', 'Noto Sans SC', monospace;
   white-space: nowrap; cursor: pointer;
 }
@@ -19,21 +21,43 @@ html:has(.hud-cv) { --motion-color: #60e3ff; }
 .motion-toggle:disabled { cursor: default; opacity: .65; }
 .motion-toggle:focus-visible { outline: 2px solid var(--motion-color); outline-offset: 4px; }
 .motion-decoration { pointer-events: none !important; user-select: none; }
+.motion-ambient {
+  position: fixed; width: 650px; height: 650px; left: 68%; top: 28%;
+  margin: -325px 0 0 -325px; border-radius: 50%; z-index: 2;
+  background: radial-gradient(circle, color-mix(in srgb, var(--motion-color) 9%, transparent), transparent 66%);
+  animation: motion-ambient-drift 14s ease-in-out infinite alternate;
+}
+@keyframes motion-ambient-drift {
+  from { transform: translate3d(-70px, -35px, 0) scale(.9); }
+  to { transform: translate3d(75px, 90px, 0) scale(1.16); }
+}
+@keyframes motion-orbit-spin { to { rotate: 360deg; } }
+@keyframes motion-cv-spin { from { transform: rotate(-32deg); } to { transform: rotate(328deg); } }
+html[data-motion="on"] .motion-orbital .orbit-path { transform-origin: 270px 270px; animation: motion-orbit-spin 36s linear infinite; }
+html[data-motion="on"] .hud-cv .cv-orbit::after { animation: motion-cv-spin 22s linear infinite; }
+html[data-motion="on"] .hud-cv .cv-orbit::before { animation: motion-orbit-spin 32s linear infinite reverse; }
+html[data-pointer-motion="off"] .motion-field,
+html[data-pointer-motion="off"] .motion-reticle { display: none; }
+html[data-motion-paused="true"] .motion-decoration,
+html[data-motion-paused="true"] .motion-decoration *,
+html[data-motion-paused="true"] .cv-orbit::before,
+html[data-motion-paused="true"] .cv-orbit::after { animation-play-state: paused !important; }
 .motion-field {
   position: fixed; left: 0; top: 0; width: 620px; height: 620px;
   margin: -310px 0 0 -310px; z-index: 3; border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--motion-color) 8%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--motion-color) 14%, transparent), transparent 65%);
   opacity: 0; transition: opacity 240ms; contain: strict;
 }
 .motion-reticle {
-  position: fixed; left: 0; top: 0; width: 44px; height: 44px; margin: -22px 0 0 -22px;
+  position: fixed; left: 0; top: 0; width: 52px; height: 52px; margin: -26px 0 0 -26px;
   z-index: 9999; color: var(--motion-color); opacity: 0; transition: opacity 150ms;
 }
 .motion-reticle svg { width: 100%; height: 100%; overflow: visible; }
 .motion-reticle .motion-reticle-ring { transform-origin: center; transition: scale 180ms var(--motion-ease); }
 .motion-reticle[data-interactive="true"] .motion-reticle-ring { scale: 1.35; }
-.motion-reticle path { opacity: .7; }
-.motion-reticle circle { opacity: .35; }
+.motion-reticle path { opacity: .95; filter: drop-shadow(0 0 3px currentColor); }
+.motion-reticle circle { opacity: .6; }
+.motion-reticle .motion-pointer-core { opacity: 1; }
 html[data-pointer-active="true"] .motion-field,
 html[data-pointer-active="true"] .motion-reticle { opacity: 1; }
 
@@ -48,28 +72,28 @@ html[data-pointer-active="true"] .motion-reticle { opacity: 1; }
   opacity: 0; transition: opacity 240ms;
 }
 html[data-motion="on"] .motion-card[data-motion-hover="true"] > .motion-sheen { opacity: 1; }
-@media screen and (min-width: 769px) and (hover: hover) and (pointer: fine) {
-  html[data-motion="on"] .motion-card {
+@media screen {
+  html[data-pointer-motion="on"] .motion-card {
     transform: perspective(1000px) rotateX(var(--motion-rx)) rotateY(var(--motion-ry));
     transition: border-color 220ms, box-shadow 220ms;
   }
-  html[data-motion="on"] .motion-card[data-motion-hover="true"] {
+  html[data-pointer-motion="on"] .motion-card[data-motion-hover="true"] {
     border-color: color-mix(in srgb, var(--motion-color) 55%, transparent);
     box-shadow: 0 18px 50px #0002, 0 0 24px color-mix(in srgb, var(--motion-color) 6%, transparent);
   }
-  html[data-motion="on"] .motion-card::after { opacity: 0; }
-  html[data-motion="on"] .motion-magnet {
+  html[data-pointer-motion="on"] .motion-card::after { opacity: 0; }
+  html[data-pointer-motion="on"] .motion-magnet {
     translate: var(--motion-tx, 0px) var(--motion-ty, 0px);
     transition: background-color 180ms, border-color 180ms, box-shadow 180ms;
   }
-  html[data-motion="on"] .hero-bg {
+  html[data-pointer-motion="on"] .hero-bg {
     transform: translate3d(var(--motion-hx, 0px), var(--motion-hy, 0px), 0);
     inset: -24px;
   }
-  html[data-motion="on"] .cv-orbit {
+  html[data-pointer-motion="on"] .cv-orbit {
     transform: perspective(500px) rotateX(var(--motion-orbit-x, 0deg)) rotateY(var(--motion-orbit-y, 0deg));
   }
-  html[data-motion="on"] .cv-orbit span { translate: var(--motion-zt-x, 0px) var(--motion-zt-y, 0px); }
+  html[data-pointer-motion="on"] .cv-orbit span { translate: var(--motion-zt-x, 0px) var(--motion-zt-y, 0px); }
 }
 
 /* A code-drawn wireframe behind the first screen; its two axes track the pointer. */
@@ -96,7 +120,7 @@ html[data-motion="on"] .motion-reveal.is-revealed,
 html[data-motion="on"] .motion-reveal:focus-within { opacity: 1; translate: 0 0; }
 html[data-motion="on"] .motion-reveal.motion-card { transition: opacity 600ms var(--motion-ease), translate 600ms var(--motion-ease), border-color 220ms, box-shadow 220ms; }
 
-/* The old autonomous glitch and drifting grid compete with the pointer response. */
+/* Keep the original glitch quiet; the wireframe and ambient field provide idle motion. */
 body::before, .hero h1::before, .hero h1::after { animation: none; }
 html[data-motion="off"] { scroll-behavior: auto !important; }
 html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="off"] *::after {
@@ -110,10 +134,9 @@ html[data-motion="off"] .typing-cursor { display: none; }
 html[data-motion="off"] .hero-bg { transform: none; }
 .motion-reveal { scroll-margin-top: 95px; }
 @media (max-width: 900px) { .motion-orbital { right: -190px; top: 250px; opacity: .14; } }
-@media (max-width: 768px), (hover: none), (pointer: coarse) {
-  .motion-field, .motion-reticle, .motion-orbital { display: none; }
-  .motion-toggle { min-height: 34px; }
-  .resume-toolbar .motion-toggle { display: none; }
+@media (max-width: 768px) {
+  .motion-orbital { width: 440px; height: 440px; right: -200px; top: 120px; opacity: .22; }
+  .motion-toggle { left: 12px; bottom: max(12px, env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }

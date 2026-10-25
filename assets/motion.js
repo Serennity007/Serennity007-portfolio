@@ -3,12 +3,13 @@
   'use strict';
   const root = document.documentElement;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const fine = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)');
+  const fine = matchMedia('(any-hover: hover) and (any-pointer: fine)');
   const print = matchMedia('print');
   const key = 'zt-motion';
   let preference = 'on';
   try { preference = localStorage.getItem(key) === 'off' ? 'off' : 'on'; } catch (_) { /* Storage is optional. */ }
   let enabled = false;
+  let lastInput = null;
   let frame = 0;
   let previousTime = 0;
   let pointerKnown = false;
@@ -49,14 +50,13 @@
   button.type = 'button';
   button.className = 'motion-toggle';
   button.setAttribute('aria-label', '鼠标跟随与页面动效');
-  const homeNav = document.querySelector('.nav-links');
-  if (homeNav) {
-    const item = document.createElement('li');
-    item.append(button);
-    homeNav.insertBefore(item, homeNav.querySelector('li:has(.theme-btn)'));
-  } else {
-    document.querySelector('.resume-toolbar')?.append(button);
-  }
+  // Keep this reachable when the navigation collapses in a narrow desktop sidebar.
+  document.body.append(button);
+
+  const ambient = document.createElement('div');
+  ambient.className = 'motion-ambient motion-decoration';
+  ambient.setAttribute('aria-hidden', 'true');
+  document.body.append(ambient);
 
   const field = document.createElement('div');
   field.className = 'motion-field motion-decoration';
@@ -64,7 +64,7 @@
   const reticle = document.createElement('div');
   reticle.className = 'motion-reticle motion-decoration';
   reticle.setAttribute('aria-hidden', 'true');
-  reticle.innerHTML = '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor"><g class="motion-reticle-ring"><path d="M8 15V8h7M29 8h7v7M36 29v7h-7M15 36H8v-7"/><circle cx="22" cy="22" r="15" stroke-dasharray="1 5"/></g></svg>';
+  reticle.innerHTML = '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><g class="motion-reticle-ring"><path d="M8 15V8h7M29 8h7v7M36 29v7h-7M15 36H8v-7"/><circle cx="22" cy="22" r="15" stroke-dasharray="1 5"/></g><circle class="motion-pointer-core" cx="22" cy="22" r="1.5" fill="currentColor" stroke="none"/></svg>';
   document.body.append(field, reticle);
   const hero = document.querySelector('.hero-bg');
   if (hero) {
@@ -125,7 +125,9 @@
     schedule();
   }
   function pointerMove(event) {
-    if (event.pointerType === 'touch') { clearPointer(); return; }
+    if (event.pointerType === 'touch') { touchInput(); return; }
+    lastInput = 'mouse';
+    root.dataset.pointerMotion = enabled ? 'on' : 'off';
     if (!enabled) return;
     if (!pointerKnown) {
       point.rx = event.clientX; point.ry = event.clientY;
@@ -136,6 +138,11 @@
     root.dataset.pointerActive = 'true';
     locate(event.target);
     schedule();
+  }
+  function touchInput() {
+    lastInput = 'touch';
+    root.dataset.pointerMotion = 'off';
+    clearPointer();
   }
   function draw(time) {
     frame = 0;
@@ -218,12 +225,15 @@
     typingTimer = setTimeout(typeNext, delay);
   }
   function updatePolicy() {
-    enabled = preference !== 'off' && !reduced.matches && fine.matches && !print.matches;
+    // Window width describes layout, not the presence of a physical mouse.
+    enabled = preference !== 'off' && !reduced.matches && !print.matches;
     root.dataset.motion = enabled ? 'on' : 'off';
+    root.dataset.pointerMotion = enabled && (lastInput === 'mouse' || lastInput === null && fine.matches) ? 'on' : 'off';
+    root.dataset.motionReason = enabled ? 'enabled' : reduced.matches ? 'reduced-motion' : print.matches ? 'print' : 'user-off';
     button.setAttribute('aria-pressed', String(enabled));
-    button.disabled = reduced.matches || !fine.matches;
+    button.disabled = reduced.matches;
     button.textContent = enabled ? '动效：开' : '动效：关';
-    button.title = reduced.matches ? '已遵循系统的减少动态效果设置' : !fine.matches ? '触屏或窄屏使用静态效果' : '切换鼠标跟随、卡片景深和页面动效';
+    button.title = reduced.matches ? '已遵循系统的减少动态效果设置' : '切换页面动画；移动鼠标即可启用跟随，窄窗口也支持';
     clearTimeout(typingTimer);
     cancelAnimationFrame(frame); frame = 0; previousTime = 0;
     clearPointer();
@@ -251,7 +261,7 @@
     if (event.key === key) { preference = event.newValue === 'off' ? 'off' : 'on'; updatePolicy(); }
   });
   document.addEventListener('pointermove', pointerMove, { passive: true });
-  document.addEventListener('pointerdown', event => { if (event.pointerType === 'touch') clearPointer(); }, { passive: true });
+  document.addEventListener('pointerdown', event => { if (event.pointerType === 'touch') touchInput(); }, { passive: true });
   document.documentElement.addEventListener('pointerleave', clearPointer);
   document.addEventListener('pointercancel', clearPointer);
   document.addEventListener('keydown', event => { if (event.key === 'Tab') clearPointer(); });
@@ -261,6 +271,7 @@
   if ('ResizeObserver' in window) new ResizeObserver(() => { layoutDirty = true; schedule(); }).observe(document.body);
   document.fonts?.ready.then(() => { layoutDirty = true; schedule(); });
   document.addEventListener('visibilitychange', () => {
+    root.dataset.motionPaused = String(document.hidden);
     clearTimeout(typingTimer);
     cancelAnimationFrame(frame); frame = 0; previousTime = 0;
     clearPointer();

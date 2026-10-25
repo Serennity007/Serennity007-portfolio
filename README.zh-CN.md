@@ -10,7 +10,7 @@
 
 本地运行：`python -m http.server 8080`。纯 HTML/CSS/JavaScript，无需构建。推送 main 后通过 `.github/workflows/deploy.yml` 部署至 GitHub Pages。
 
-主页与交互简历共用鼠标跟随光场、阻尼光标、卡片倾斜和动效开关；手机及系统减少动画设置使用静态排版。详见[动效说明与检查方法](docs/motion.md)，运行 `node --test tests/motion.test.cjs` 可检查控制器逻辑。
+主页与交互简历共用流动光场、旋转线框、鼠标跟随、阻尼光标、卡片倾斜和动效开关；窄桌面窗口也支持鼠标跟随，触屏隐藏鼠标光标，系统减少动画设置使用静态排版。详见[动效说明与检查方法](docs/motion.md)，运行 `node --test tests/motion.test.cjs` 可检查控制器逻辑。
 
 简历版本：`resume.html`、`resume-en.html`、`resume-dark.html`、`resume-dynamic.html`。论文表述与代表项目在四个页面保持一致。
 
