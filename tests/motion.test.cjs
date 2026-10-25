@@ -27,7 +27,7 @@ class Element extends Events {
   get className() { return [...this.classes].join(' '); }
   append(...nodes) { nodes.forEach(node => { node.parentElement = this; this.children.push(node); }); }
   insertBefore(node) { this.append(node); }
-  setAttribute(k, v) { this.attributes[k] = v; if (k.startsWith('data-')) this.dataset[this.camel(k.slice(5))] = v; }
+  setAttribute(k, v) { this.attributes[k] = v; if (k === 'class') this.className = v; if (k.startsWith('data-')) this.dataset[this.camel(k.slice(5))] = v; }
   removeAttribute(k) { delete this.attributes[k]; if (k.startsWith('data-')) delete this.dataset[this.camel(k.slice(5))]; }
   camel(k) { return k.replace(/-([a-z])/g, (_, s) => s.toUpperCase()); }
   getAttribute(k) { return this.attributes[k] ?? null; }
@@ -48,6 +48,7 @@ function fixture(options = {}) {
   card.append(magnet); body.append(card, scene, nav, toolbar, reveal);
   document.documentElement = root; document.body = body; document.hidden = false;
   document.createElement = () => new Element();
+  document.createElementNS = () => new Element();
   document.getElementById = () => typing;
   document.querySelectorAll = s => s.startsWith('.card,') ? [card] : s.startsWith('.btn,') ? [magnet] : [reveal];
   document.querySelector = s => s.startsWith('.hero-bg,') ? scene : s === '.hero-bg' ? (options.cv ? null : scene) : s === '.nav-links' ? (options.cv ? null : nav) : toolbar;
@@ -211,4 +212,45 @@ test('each reveal is unobserved once visible, regardless of list length', () => 
   assert.ok(f.reveal.classList.contains('motion-reveal'));
   observer.callback([{ target: f.reveal, isIntersecting: true }]);
   assert.ok(f.reveal.classList.contains('is-revealed')); assert.equal(observer.nodes.length, 0);
+});
+
+test('the pointer ribbon follows reversals with finite geometry and disappears at rest', () => {
+  const f = fixture({ width: 452 }); f.move(100, 100); f.settle();
+  const ribbon = f.body.children.find(node => node.classList.contains('motion-ribbon'));
+  f.move(400, 600); f.step(); f.step();
+  assert.equal(ribbon.style.opacity, '1');
+  const first = ribbon.children[1].getAttribute('d');
+  assert.ok(first.startsWith('M')); assert.ok(!/NaN|Infinity/.test(first));
+  f.move(50, 140); f.step();
+  assert.notEqual(ribbon.children[1].getAttribute('d'), first);
+  f.settle(); assert.equal(ribbon.style.opacity, '0'); assert.equal(f.frames.size, 0);
+});
+test('turning motion off removes an active ribbon without another frame', () => {
+  const f = fixture(); f.move(100, 100); f.settle(); f.move(600, 400); f.step();
+  const ribbon = f.body.children.find(node => node.classList.contains('motion-ribbon'));
+  assert.equal(ribbon.style.opacity, '1'); f.button.send('click');
+  assert.equal(ribbon.style.opacity, '0'); assert.equal(f.frames.size, 0);
+});
+test('leaving and reentering does not flash a ribbon at the previous pointer position', () => {
+  const f = fixture(); f.move(100, 100); f.settle(); f.move(600, 400); f.step();
+  const ribbon = f.body.children.find(node => node.classList.contains('motion-ribbon'));
+  assert.equal(ribbon.style.opacity, '1'); f.events.send('blur');
+  assert.equal(ribbon.style.opacity, '0'); f.move(200, 200); f.step();
+  assert.equal(ribbon.style.opacity, '0'); f.settle();
+});
+test('surface highlights and shadows follow opposite corners and return to neutral', () => {
+  const f = fixture(); f.move(120, 120); f.settle();
+  const before = parseFloat(f.card.style.getPropertyValue('--motion-specular'));
+  assert.ok(before < 50); assert.ok(parseFloat(f.card.style.getPropertyValue('--motion-shadow-x')) > 0);
+  f.move(480, 380); f.settle();
+  assert.ok(parseFloat(f.card.style.getPropertyValue('--motion-specular')) > 50);
+  assert.ok(parseFloat(f.card.style.getPropertyValue('--motion-shadow-x')) < 0);
+  f.move(800, 800, f.body); f.settle();
+  assert.equal(parseFloat(f.card.style.getPropertyValue('--motion-specular')), 50);
+  assert.equal(parseFloat(f.card.style.getPropertyValue('--motion-shadow-x')), 0);
+});
+test('the compact CV scene is decorative and belongs to the existing header', () => {
+  const f = fixture({ cv: true, width: 452 });
+  const sigil = f.scene.children.find(node => node.classList.contains('motion-cv-sigil'));
+  assert.ok(sigil); assert.equal(sigil.getAttribute('aria-hidden'), 'true');
 });

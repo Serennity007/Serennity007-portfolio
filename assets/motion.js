@@ -29,13 +29,17 @@
   ];
   typingCount = phrases[0].length;
   const point = { x: 0, y: 0, rx: 0, ry: 0, vx: 0, vy: 0 };
+  const tail = Array.from({ length: 6 }, () => ({ x: 0, y: 0 }));
   const pose = { x: 0, y: 0 };
   const cards = [...document.querySelectorAll('.card, .build-window, .resume-choice, .stat-card, .value-item')].map(node => {
     node.classList.add('motion-card');
     const sheen = document.createElement('span');
     sheen.className = 'motion-sheen motion-decoration';
     sheen.setAttribute('aria-hidden', 'true');
-    node.append(sheen);
+    const edge = document.createElement('span');
+    edge.className = 'motion-edge motion-decoration';
+    edge.setAttribute('aria-hidden', 'true');
+    node.append(sheen, edge);
     return { node, rect: null, x: 0, y: 0, targetX: 0, targetY: 0 };
   });
   const cardMap = new Map(cards.map(card => [card.node, card]));
@@ -66,13 +70,23 @@
   reticle.setAttribute('aria-hidden', 'true');
   reticle.innerHTML = '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><g class="motion-reticle-ring"><path d="M8 15V8h7M29 8h7v7M36 29v7h-7M15 36H8v-7"/><circle cx="22" cy="22" r="15" stroke-dasharray="1 5"/></g><circle class="motion-pointer-core" cx="22" cy="22" r="1.5" fill="currentColor" stroke="none"/></svg>';
   document.body.append(field, reticle);
+  const svgNode = (tag, attributes) => {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attributes).forEach(([name, value]) => node.setAttribute(name, value));
+    return node;
+  };
+  const ribbon = svgNode('svg', { class: 'motion-ribbon motion-decoration', 'aria-hidden': 'true', width: '100%', height: '100%' });
+  const ribbonGlow = svgNode('path', { class: 'motion-ribbon-glow', fill: 'none' });
+  const ribbonLine = svgNode('path', { class: 'motion-ribbon-line', fill: 'none' });
+  ribbon.append(ribbonGlow, ribbonLine);
+  document.body.append(ribbon);
   const hero = document.querySelector('.hero-bg');
-  if (hero) {
+  if (scene) {
     const orbital = document.createElement('div');
-    orbital.className = 'motion-orbital motion-decoration';
+    orbital.className = 'motion-orbital motion-decoration' + (hero ? '' : ' motion-cv-sigil');
     orbital.setAttribute('aria-hidden', 'true');
-    orbital.innerHTML = '<svg viewBox="0 0 540 540"><g class="orbit-path"><circle cx="270" cy="270" r="220"/><circle cx="270" cy="270" r="195" stroke-dasharray="1 16"/><ellipse cx="270" cy="270" rx="220" ry="70"/><ellipse cx="270" cy="270" rx="220" ry="150"/><ellipse cx="270" cy="270" rx="70" ry="220"/><ellipse cx="270" cy="270" rx="150" ry="220"/><path d="M30 270h480M270 30v480" stroke-dasharray="2 10"/><circle class="orbit-equator" cx="270" cy="270" r="244"/></g><g class="orbit-core"><circle cx="50" cy="270" r="3"/><circle cx="270" cy="50" r="3"/><circle cx="490" cy="270" r="3"/></g></svg>';
-    hero.append(orbital);
+    orbital.innerHTML = '<svg viewBox="0 0 540 540"><defs><linearGradient id="motion-orbit-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a5f3fc" stop-opacity=".95"/><stop offset=".48" stop-color="#22d3ee" stop-opacity=".15"/><stop offset="1" stop-color="#a5b4fc" stop-opacity=".7"/></linearGradient><radialGradient id="motion-orbit-halo"><stop stop-color="#00d4ff" stop-opacity=".12"/><stop offset="1" stop-color="#00d4ff" stop-opacity="0"/></radialGradient></defs><circle cx="270" cy="270" r="260" fill="url(#motion-orbit-halo)"/><g class="orbit-path"><circle cx="270" cy="270" r="210"/><circle cx="270" cy="270" r="232" stroke-dasharray="1 17"/><ellipse cx="270" cy="270" rx="210" ry="68"/><ellipse cx="270" cy="270" rx="210" ry="145"/><ellipse cx="270" cy="270" rx="68" ry="210"/><ellipse cx="270" cy="270" rx="145" ry="210"/><path d="M37 270h466M270 37v466" stroke-dasharray="1 12"/></g><g class="orbit-shell" stroke="url(#motion-orbit-metal)" fill="none"><ellipse cx="270" cy="270" rx="253" ry="96" transform="rotate(-28 270 270)"/><circle cx="270" cy="270" r="246" stroke-dasharray="80 90 12 110"/><path d="M24 255v-15h15M501 285h15v15"/></g><g class="orbit-core"><circle cx="60" cy="270" r="3"/><circle cx="270" cy="60" r="2"/><circle cx="480" cy="270" r="3"/></g></svg>';
+    (hero || scene).append(orbital);
   }
 
   const revealNodes = [...new Set(document.querySelectorAll('.anim:not(.stagger), .stagger > *, .hud-cv .header, .hud-cv .section'))];
@@ -120,6 +134,7 @@
   }
   function clearPointer() {
     pointerKnown = false;
+    ribbon.style.opacity = '0';
     root.removeAttribute('data-pointer-active');
     locate(null);
     schedule();
@@ -132,6 +147,7 @@
     if (!pointerKnown) {
       point.rx = event.clientX; point.ry = event.clientY;
       point.vx = point.vy = 0;
+      tail.forEach(item => { item.x = event.clientX; item.y = event.clientY; });
     }
     pointerKnown = true;
     point.x = event.clientX; point.y = event.clientY;
@@ -178,6 +194,26 @@
       else moving = true;
       reticle.style.transform = `translate3d(${point.rx.toFixed(2)}px, ${point.ry.toFixed(2)}px, 0)`;
       field.style.transform = `translate3d(${point.x.toFixed(2)}px, ${point.y.toFixed(2)}px, 0)`;
+      // One short, smooth ribbon follows the same spring; it disappears at rest.
+      tail[0].x = point.rx; tail[0].y = point.ry;
+      let tailMoving = false;
+      const tailAmount = 1 - Math.exp(-22 * dt);
+      for (let index = 1; index < tail.length; index++) {
+        const current = tail[index], previous = tail[index - 1];
+        current.x = converge(current.x, previous.x, tailAmount);
+        current.y = converge(current.y, previous.y, tailAmount);
+        tailMoving ||= current.x !== point.x || current.y !== point.y;
+      }
+      const format = value => value.toFixed(2);
+      let path = `M${format(tail[0].x)} ${format(tail[0].y)}`;
+      for (let index = 1; index < tail.length - 1; index++) {
+        const current = tail[index], next = tail[index + 1];
+        path += ` Q${format(current.x)} ${format(current.y)} ${format((current.x + next.x) / 2)} ${format((current.y + next.y) / 2)}`;
+      }
+      path += ` L${format(tail[tail.length - 1].x)} ${format(tail[tail.length - 1].y)}`;
+      ribbonGlow.setAttribute('d', path); ribbonLine.setAttribute('d', path);
+      ribbon.style.opacity = tailMoving ? '1' : '0';
+      moving ||= tailMoving;
     }
     cards.forEach(card => {
       const wasMoving = card.x !== card.targetX || card.y !== card.targetY;
@@ -186,6 +222,9 @@
       const tilt = document.body.classList.contains('hud-cv') ? 3 : card.node.classList.contains('build-window') ? 9 : 5;
       card.node.style.setProperty('--motion-rx', `${(-card.y * tilt).toFixed(3)}deg`);
       card.node.style.setProperty('--motion-ry', `${(card.x * tilt).toFixed(3)}deg`);
+      card.node.style.setProperty('--motion-specular', `${((card.x + .5) * 100).toFixed(2)}%`);
+      card.node.style.setProperty('--motion-sheen-angle', `${(110 + card.x * 36 - card.y * 18).toFixed(2)}deg`);
+      card.node.style.setProperty('--motion-shadow-x', `${(-card.x * 16).toFixed(2)}px`);
       if (card === activeCard && card.rect) {
         card.node.style.setProperty('--motion-gx', `${((card.targetX + .5) * card.rect.width).toFixed(1)}px`);
         card.node.style.setProperty('--motion-gy', `${((card.targetY + .5) * card.rect.height).toFixed(1)}px`);

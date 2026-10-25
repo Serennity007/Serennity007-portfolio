@@ -8,9 +8,9 @@ html:has(.hud-cv) { --motion-color: #60e3ff; }
 .motion-toggle {
   position: fixed; left: 16px; bottom: 16px; z-index: 220;
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  min-height: 36px; padding: 8px 11px; border: 1px solid var(--border, #2b4f63);
+  min-height: 40px; padding: 8px 11px; border: 1px solid var(--border, #2b4f63);
   border-radius: 6px; color: var(--text-2, #a7bacb); background: var(--surface, #09131f);
-  box-shadow: 0 4px 22px #0003; min-height: 40px;
+  box-shadow: 0 4px 22px #0003;
   font: 500 11px/1.5 'JetBrains Mono', 'Noto Sans SC', monospace;
   white-space: nowrap; cursor: pointer;
 }
@@ -37,7 +37,8 @@ html[data-motion="on"] .motion-orbital .orbit-path { transform-origin: 270px 270
 html[data-motion="on"] .hud-cv .cv-orbit::after { animation: motion-cv-spin 22s linear infinite; }
 html[data-motion="on"] .hud-cv .cv-orbit::before { animation: motion-orbit-spin 32s linear infinite reverse; }
 html[data-pointer-motion="off"] .motion-field,
-html[data-pointer-motion="off"] .motion-reticle { display: none; }
+html[data-pointer-motion="off"] .motion-reticle,
+html[data-pointer-motion="off"] .motion-ribbon { display: none; }
 html[data-motion-paused="true"] .motion-decoration,
 html[data-motion-paused="true"] .motion-decoration *,
 html[data-motion-paused="true"] .cv-orbit::before,
@@ -45,7 +46,8 @@ html[data-motion-paused="true"] .cv-orbit::after { animation-play-state: paused 
 .motion-field {
   position: fixed; left: 0; top: 0; width: 620px; height: 620px;
   margin: -310px 0 0 -310px; z-index: 3; border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--motion-color) 14%, transparent), transparent 65%);
+  background: radial-gradient(ellipse at 44% 44%, color-mix(in srgb, var(--motion-color) 14%, transparent), transparent 54%),
+    radial-gradient(ellipse at 64% 62%, #818cf80a, transparent 50%);
   opacity: 0; transition: opacity 240ms; contain: strict;
 }
 .motion-reticle {
@@ -58,6 +60,14 @@ html[data-motion-paused="true"] .cv-orbit::after { animation-play-state: paused 
 .motion-reticle path { opacity: .95; filter: drop-shadow(0 0 3px currentColor); }
 .motion-reticle circle { opacity: .6; }
 .motion-reticle .motion-pointer-core { opacity: 1; }
+.motion-ribbon {
+  position: fixed; inset: 0; z-index: 9997; overflow: hidden;
+  opacity: 0; transition: opacity 240ms; color: var(--motion-color);
+}
+.motion-ribbon path { stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+.motion-ribbon-glow { stroke-width: 8; opacity: .08; }
+.motion-ribbon-line { stroke-width: 1.5; opacity: .5; }
+html:not([data-pointer-active="true"]) .motion-ribbon { visibility: hidden; }
 html[data-pointer-active="true"] .motion-field,
 html[data-pointer-active="true"] .motion-reticle { opacity: 1; }
 
@@ -67,11 +77,25 @@ html[data-pointer-active="true"] .motion-reticle { opacity: 1; }
 }
 .motion-sheen {
   position: absolute; inset: 0; border-radius: inherit; z-index: -1;
-  background: radial-gradient(480px circle at var(--motion-gx, 50%) var(--motion-gy, 50%),
-    color-mix(in srgb, var(--motion-color) 13%, transparent), transparent 68%);
+  background: linear-gradient(var(--motion-sheen-angle, 110deg),
+      transparent calc(var(--motion-specular, 50%) - 24%), #c8eeff0e var(--motion-specular, 50%),
+      transparent calc(var(--motion-specular, 50%) + 24%)),
+    radial-gradient(480px circle at var(--motion-gx, 50%) var(--motion-gy, 50%),
+      color-mix(in srgb, var(--motion-color) 13%, transparent), transparent 68%);
   opacity: 0; transition: opacity 240ms;
 }
+.motion-edge {
+  position: absolute; inset: 0; border-radius: inherit; z-index: 2; padding: 1px;
+  background: radial-gradient(220px circle at var(--motion-gx, 50%) var(--motion-gy, 50%),
+    #c7f6ff, color-mix(in srgb, var(--motion-color) 50%, transparent) 32%, transparent 75%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0; transition: opacity 280ms;
+}
 html[data-motion="on"] .motion-card[data-motion-hover="true"] > .motion-sheen { opacity: 1; }
+html[data-motion="on"] .motion-card[data-motion-hover="true"] > .motion-edge { opacity: .85; }
 @media screen {
   html[data-pointer-motion="on"] .motion-card {
     transform: perspective(1000px) rotateX(var(--motion-rx)) rotateY(var(--motion-ry));
@@ -79,7 +103,8 @@ html[data-motion="on"] .motion-card[data-motion-hover="true"] > .motion-sheen { 
   }
   html[data-pointer-motion="on"] .motion-card[data-motion-hover="true"] {
     border-color: color-mix(in srgb, var(--motion-color) 55%, transparent);
-    box-shadow: 0 18px 50px #0002, 0 0 24px color-mix(in srgb, var(--motion-color) 6%, transparent);
+    box-shadow: var(--motion-shadow-x, 0px) 20px 52px #0003,
+      inset 0 1px 0 #d5f6ff12, 0 0 24px color-mix(in srgb, var(--motion-color) 6%, transparent);
   }
   html[data-pointer-motion="on"] .motion-card::after { opacity: 0; }
   html[data-pointer-motion="on"] .motion-magnet {
@@ -109,6 +134,8 @@ html[data-motion="on"] .motion-card[data-motion-hover="true"] > .motion-sheen { 
 .motion-orbital .orbit-path { fill: none; stroke: currentColor; stroke-width: .6; }
 .motion-orbital .orbit-equator { stroke-width: 1; stroke-dasharray: 3 12; }
 .motion-orbital .orbit-core { fill: currentColor; }
+.motion-orbital .orbit-shell { stroke-width: 1.05; transform-origin: 270px 270px; animation: motion-orbit-spin 52s linear infinite reverse; }
+.motion-cv-sigil { display: none; }
 
 /* The non-JS document is visible. Only observed, not-yet-seen nodes opt into an entrance. */
 html[data-motion="on"] .motion-reveal {
@@ -137,6 +164,8 @@ html[data-motion="off"] .hero-bg { transform: none; }
 @media (max-width: 768px) {
   .motion-orbital { width: 440px; height: 440px; right: -200px; top: 120px; opacity: .22; }
   .motion-toggle { left: 12px; bottom: max(12px, env(safe-area-inset-bottom)); }
+  .hud-cv .cv-header-core { position: relative; z-index: 1; }
+  .motion-cv-sigil { display: block; width: 190px; height: 190px; right: -12px; top: 0; opacity: .23; mask-image: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
