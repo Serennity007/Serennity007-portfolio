@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>梁正涛 - 动态简历</title>
+    <title>梁正涛 · 科幻交互简历</title>
     <meta name="description" content="梁正涛的教育、科研与开源项目经历。KSEM（CCF-C）会议论文 1 篇，提供中文和英文 PDF 简历。">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
@@ -328,16 +328,19 @@
 <script src="assets/navigation.js?v=20261025-showcase2" defer></script>
 <style>.resume-section-nav + .stat-row { margin-top:28px; } .header { padding-bottom:32px; }</style>
 <link rel="stylesheet" href="assets/portfolio.css?v=20261025-case1">
+<link rel="stylesheet" href="assets/resume-hud.css?v=20261025-hud1">
+<script src="assets/resume-hud.js?v=20261025-hud1" defer></script>
 </head>
-<body class="resume-print-dark">
+<body class="resume-print-dark hud-cv">
 
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="grid-bg"></div>
 
+<aside class="cv-rail cv-decoration"><div class="cv-rail-label">CV / CHAPTER INDEX</div><nav aria-label="章节快速导航"><a href="#edu"><span>01</span>教育</a><a href="#research"><span>02</span>科研</a><a href="#selected-projects"><span>03</span>项目</a><a href="#internships"><span>04</span>实习</a><a href="#awards"><span>05</span>荣誉</a><a href="#skills"><span>06</span>技能</a></nav><div class="cv-reading" data-cv-reading hidden>READING PROGRESS<progress value="0" max="100" aria-label="简历阅读进度" data-cv-progress></progress><span data-cv-percent>0%</span></div></aside>
     <nav class="resume-toolbar" aria-label="Resume navigation">
         <a class="resume-home" href="index.html" aria-label="返回个人主页">← 个人主页</a>
-        <details class="resume-versions"><summary>动态版 <span aria-hidden="true">⌄</span></summary><div class="resume-version-menu"><a href="resume.html">中文打印版</a><a href="resume-en.html">English CV</a><a href="resume-dark.html">暗夜简历</a><a href="resume-dynamic.html" aria-current="page">动态简历</a></div></details>
+        <details class="resume-versions"><summary>交互版 <span aria-hidden="true">⌄</span></summary><div class="resume-version-menu"><a href="resume.html">中文打印版</a><a href="resume-en.html">English CV</a><a href="resume-dark.html">科幻档案版</a><a href="resume-dynamic.html" aria-current="page">科幻交互版</a></div></details>
         <a href="index.html#contact">联系我</a>
         <button type="button" data-print-resume>打印 / PDF</button>
     </nav>
@@ -345,17 +348,21 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
+            <div class="cv-header-core"><div class="cv-identity cv-decoration"><span>ZT /</span> RESEARCH &amp; ENGINEERING<br>PROFILE.CV / 2026.10</div>
             <h1>梁正涛</h1>
-            <div class="subtitle">AI 研究 · LLM / RAG · 开源工程</div>
+            <div class="subtitle">AI 研究 · LLM / RAG · 开源工程</div><p class="cv-focus cv-decoration">法律 AI · 多模态安全 · Agent Skills</p>
             <div class="contact-row">
                 <div class="contact-item">📞 <a href="tel:+8617684269881">17684269881</a></div>
                 <div class="contact-item">📧 <a href="mailto:1392452425a@gmail.com">1392452425a@gmail.com</a></div>
                 <div class="contact-item">🔗 <a href="https://github.com/Serennity007">GitHub</a></div>
                 <div class="contact-item">🌐 <a href="index.html">Portfolio</a></div>
             </div>
+            </div>
+<aside class="cv-header-aside cv-decoration" aria-label="研究与工程"><div class="cv-orbit" aria-hidden="true"><span>ZT</span></div><p>RESEARCH / ENGINEERING</p></aside>
         </div>
 
-<nav class="resume-section-nav" aria-label="简历目录"><a href="#edu">教育</a><a href="#research">科研</a><a href="#selected-projects">项目</a><a href="#awards">荣誉</a><a href="#skills">技能</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download>下载 PDF</a></nav>
+<a class="cv-highlight cv-decoration" href="#selected-projects"><span>FEATURED / PROJECT_01</span><strong>AI 选股与量化投研工具链</strong><small>30 ORIGINAL SKILLS / 40 LOCAL TESTS · 2026-10-25</small><b aria-hidden="true">↓</b></a>
+<nav class="resume-section-nav" aria-label="简历目录"><a href="#edu">教育</a><a href="#research">科研</a><a href="#selected-projects">项目</a><a href="#internships">实习</a><a href="#awards">荣誉</a><a href="#skills">技能</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download>下载 PDF</a></nav>
         <!-- Stats -->
         <div class="stat-row">
             <div class="stat-box"><div class="stat-num">1/69</div><div class="stat-lbl">专业排名</div></div>
@@ -365,7 +372,7 @@
 
 <!-- Education -->
         <div class="section" id="edu">
-            <div class="section-label">Education</div>
+            <div class="section-label" data-index="01" data-code="EDUCATION">Education</div>
             <div class="card">
                 <div class="card-header"><div class="card-title">北京理工大学</div><div class="card-date">2026 — 2029</div></div>
                 <div class="card-sub">人工智能学院 · 智能科学与技术 · 学术硕士</div>
@@ -385,7 +392,7 @@
 
         <!-- Research -->
         <div class="section" id="research">
-            <div class="section-label">Research</div>
+            <div class="section-label" data-index="02" data-code="RESEARCH">Research</div>
             <p class="card-text" style="margin-bottom:14px;">科研成果：<strong>KSEM（CCF-C）会议论文 1 篇</strong>。</p>
             <div class="card">
                 <div class="card-header"><div class="card-title">🧠 司法判决认知智能</div><div class="card-date">2025.03 — 至今</div></div>
@@ -406,7 +413,7 @@
             </div>
         </div>
 
-        <div class="section" id="selected-projects"><div class="section-label">代表开源项目</div>
+        <div class="section" id="selected-projects"><div class="section-label" data-index="03" data-code="OPEN SOURCE">代表开源项目</div>
 <div class="card flagship-project">
             <div class="card-title"><a href="https://github.com/Serennity007/awesome-stock-quant-skills">AI 选股与量化投研工具链</a> · <strong>41 Stars</strong></div>
             <div class="card-text"><strong>GitHub 41 Stars · 8 Forks（截至 2026-10-24）</strong><br>
@@ -436,8 +443,8 @@
 </div>
 
 <!-- Internship -->
-        <div class="section">
-            <div class="section-label">Internship</div>
+        <div class="section" id="internships">
+            <div class="section-label" data-index="04" data-code="EXPERIENCE">Internship</div>
             <div class="card">
                 <div class="card-header"><div class="card-title">学而思（好未来）</div><div class="card-date">贵阳</div></div>
                 <div class="card-sub">教育产品开发 · 用 AI 改善教学体验</div>
@@ -450,7 +457,7 @@
 
         <!-- Awards -->
         <div class="section" id="awards">
-            <div class="section-label">Awards</div>
+            <div class="section-label" data-index="05" data-code="HONORS">Awards</div>
             <div class="award-item"><div class="award-emoji">🥇</div><div><div class="award-title">华为 ICT 大赛 · 昇腾 AI 赛道 · 国家一等奖</div><div class="award-sub">全国总决赛一等奖</div></div></div>
             <div class="award-item"><div class="award-emoji">🎓</div><div><div class="award-title">国家奖学金</div><div class="award-sub">国家级奖学金</div></div></div>
             <div class="award-item"><div class="award-emoji">🗣️</div><div><div class="award-title">雅思 6.5 · 六级 572</div><div class="award-sub">贵州省级三好学生</div></div></div>
@@ -458,7 +465,7 @@
 
         <!-- Skills -->
         <div class="section" id="skills">
-            <div class="section-label">Skills</div>
+            <div class="section-label" data-index="06" data-code="TOOLKIT">Skills</div>
             <div class="skill-grid">
                 <div class="skill-group">
                     <h3>Languages</h3>
@@ -497,35 +504,5 @@
         </div>
     </div>
 
-    <script>
-        // Animate cards on scroll
-        var obs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.card, .award-item').forEach(function(el) {
-            obs.observe(el);
-        });
-
-        // Skill bars
-        var skObs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.querySelectorAll('.skill-fill').forEach(function(b) {
-                        b.style.width = b.dataset.w + '%';
-                    });
-                    skObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.skill-grid').forEach(function(el) {
-            skObs.observe(el);
-        });
-    </script>
 </body>
 </html>
