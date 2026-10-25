@@ -345,6 +345,8 @@
 <link rel="stylesheet" href="assets/portfolio.css?v=20261025-case1">
 <link rel="stylesheet" href="assets/motion.css?v=20261026-pointer3">
 <script src="assets/motion.js?v=20261026-pointer3" defer></script>
+<link rel="stylesheet" href="assets/workbench.css?v=20261026-desk1">
+<script src="assets/workbench.js?v=20261026-desk1" defer></script>
 </head>
 <body>
 
@@ -383,7 +385,7 @@
             <div class="hero-status"><span class="dot"></span>SYS.ONLINE · <em>ACTIVE</em> // GZ → BJ · CHINA // BUILD <em>2026.10</em></div>
             <p class="hero-sub"><span class="hero-sub-prompt">&gt;&nbsp;</span><span id="typingText">做 AI 研究，写开源代码，偶尔打比赛拿奖。</span><span class="typing-cursor" aria-hidden="true"></span></p>
             <p class="hero-intro">北京理工大学硕士在读，研究法律 AI 与多模态安全对齐。开发有源码、有运行记录的 AI 工具与应用。<br>KSEM（CCF-C）会议论文 1 篇。</p>
-            <div class="hero-actions"><a href="resume-dynamic.html" class="btn btn-primary">查看科幻简历 ↗</a><a href="#projects" class="btn btn-ghost">浏览代表项目</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">下载 PDF ↓</a></div>
+            <div class="hero-actions"><a href="resume-dynamic.html" class="btn btn-primary">查看科幻简历 ↗</a><a href="#workbench" class="btn btn-ghost">交互作品台 ↓</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">下载 PDF ↓</a></div>
             <div class="hero-stats">
                 <div><div class="hero-stat-num">41</div><div class="hero-stat-lbl" title="截至 2026-10-24">选股 Skill · Stars（10/24）</div></div>
                 <div><div class="hero-stat-num">1</div><div class="hero-stat-lbl">KSEM · CCF-C Paper</div></div>
@@ -391,13 +393,50 @@
                 <div><div class="hero-stat-num">4.14</div><div class="hero-stat-lbl">GPA / 5.0</div></div>
             </div>
             </div>
-            <aside class="build-window" aria-label="代表作品预览">
-                <div class="build-titlebar"><i class="window-dot"></i><i class="window-dot"></i><i class="window-dot"></i><span>~/projects/quant-research</span></div>
-                <div class="build-body"><div class="build-caption">SELECTED BUILD / 01</div><h2>AI 选股与<br>量化投研工具链</h2><p>从财务数据到共识排序，保留每一步可检查的结果。</p>
-                    <div class="build-facts"><div><strong>30</strong><span>原创 Agent Skills</span></div><div><strong>40</strong><span>本地测试通过</span></div></div>
-                    <p>真实取数 · 600519 / FY2021–2025<br>离线复现 · 共识排序 / 含成本回测</p>
-                    <div class="hero-proof">验证记录：2026-10-24 / 25</div>
-                    <a class="build-link" href="project-quant.html"><span>查看实现与实测产物</span><span aria-hidden="true">↗</span></a>
+            <aside class="build-window workbench" id="workbench" aria-label="工程作品交互展示">
+                <div class="build-titlebar"><i class="window-dot"></i><i class="window-dot"></i><i class="window-dot"></i><span>~/zhengtao/projects</span></div>
+                <div class="build-body">
+                    <div class="bench-tabs" role="tablist" aria-label="切换工程作品" data-bench-controls hidden>
+                        <button id="bench-tab-quant" type="button" role="tab" aria-selected="true" aria-controls="bench-panel" data-bench-project="quant">选股投研</button>
+                        <button id="bench-tab-futures" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="bench-panel" data-bench-project="futures">期货研究</button>
+                        <button id="bench-tab-ppt" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="bench-panel" data-bench-project="ppt">PPT 自动化</button>
+                    </div>
+                    <div id="bench-panel" role="tabpanel" aria-labelledby="bench-tab-quant" data-bench-panel>
+                        <div class="build-caption" data-bench-index>01 / QUANT RESEARCH</div>
+                        <h2 data-bench-title>AI 选股与量化投研工具链</h2>
+                        <p class="bench-lead" data-bench-lead>我把财务筛选、共识排序和含成本回测写成脚本，保留每一步的输入与计算结果。</p>
+                        <div class="bench-path" role="group" aria-label="查看实现阶段" data-bench-controls hidden>
+                            <button type="button" data-bench-stage="0" aria-pressed="false"><i aria-hidden="true">01</i><span>数据口径</span></button>
+                            <button type="button" data-bench-stage="1" aria-pressed="true"><i aria-hidden="true">02</i><span>排名合成</span></button>
+                            <button type="button" data-bench-stage="2" aria-pressed="false"><i aria-hidden="true">03</i><span>持仓核算</span></button>
+                        </div>
+                        <div class="bench-detail">
+                            <h3 data-bench-step-title>保留原始分数，解释排序</h3>
+                            <p data-bench-step-body>先算框架内百分位，再等权平均。并列原始分使用平均排名，结果同时保留覆盖数和输入哈希。</p>
+                            <a data-bench-source href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/0e23df9fbde7d3d9362c52ef9d448daa9e15c668/my-skills/master-ensemble/scripts/ensemble.py">查看这一步的源码 ↗</a>
+                        </div>
+                        <div class="bench-demo" data-bench-demo>
+                            <div class="bench-demo-label"><strong>合成数据 · 浏览器试算</strong><span>共识分 / 100</span></div>
+                            <div class="bench-presets" role="group" aria-label="切换合成样本" data-bench-controls hidden>
+                                <button type="button" data-bench-sample="default" aria-pressed="true">默认样本</button>
+                                <button type="button" data-bench-sample="momentum" aria-pressed="false">改变动量</button>
+                                <button type="button" data-bench-sample="tied" aria-pressed="false">制造并列</button>
+                            </div>
+                            <div class="bench-scores" aria-label="合成样本共识得分">
+                                <div class="bench-score" data-bench-row="000003"><span class="bench-score-code">000003</span><div class="bench-score-meta"><small data-bench-raw>质量 30 / 动量 20</small><div class="bench-track"><b data-bench-fill style="width:83.333%"></b></div></div><output data-bench-score>83.3</output></div>
+                                <div class="bench-score" data-bench-row="000001"><span class="bench-score-code">000001</span><div class="bench-score-meta"><small data-bench-raw>质量 10 / 动量 30</small><div class="bench-track"><b data-bench-fill style="width:66.667%"></b></div></div><output data-bench-score>66.7</output></div>
+                                <div class="bench-score" data-bench-row="000002"><span class="bench-score-code">000002</span><div class="bench-score-meta"><small data-bench-raw>质量 20 / 动量 10</small><div class="bench-track"><b data-bench-fill style="width:50%"></b></div></div><output data-bench-score>50.0</output></div>
+                            </div>
+                            <p class="bench-note">框架内百分位 → 两框架等权平均。默认样本来自仓库示例，其余为网页交互变体；不访问行情。</p>
+                        </div>
+                        <div class="bench-artifacts" data-bench-artifacts hidden>
+                            <div class="bench-demo-label"><strong>可检查的产物</strong><span>源文件与计算口径</span></div>
+                            <ul data-bench-files></ul><p class="bench-note" data-bench-artifact-note></p>
+                        </div>
+                        <div class="bench-links"><a data-bench-evidence href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/0e23df9fbde7d3d9362c52ef9d448daa9e15c668/docs/validation.md">真实取数与验证记录 ↗</a><a data-bench-repo href="https://github.com/Serennity007/awesome-stock-quant-skills">完整仓库 ↗</a></div>
+                        <p class="bench-stamp">交互式项目拆解 · 源码核对 2026-10-26</p>
+                    </div>
+                    <p class="bench-status" role="status" data-bench-status></p>
                 </div>
             </aside>
         </div>

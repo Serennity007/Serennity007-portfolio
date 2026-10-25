@@ -1,0 +1,49 @@
+/* Source-backed, progressively enhanced project desk. */
+.hero .hero-content { align-items: start; }
+.workbench { scroll-margin-top: 100px; border-radius: 14px; }
+.workbench [hidden] { display: none !important; }
+.workbench .build-body { padding: 22px 24px; }
+.bench-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 5px; padding: 4px; margin-bottom: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; }
+.workbench button { font: inherit; cursor: pointer; }
+.bench-tabs button { border: 0; background: transparent; color: var(--text-2); padding: 10px 3px; font-size: 11px; border-radius: 5px; white-space: nowrap; }
+.bench-tabs button[aria-selected=true] { color: var(--accent); background: color-mix(in srgb,var(--accent) 10%,var(--surface)); box-shadow: inset 0 0 0 1px color-mix(in srgb,var(--accent) 25%,transparent); }
+.workbench .build-body h2 { font-size: 22px; line-height: 1.45; margin: 11px 0 9px; }
+.workbench .bench-lead { font-size: 12px; line-height: 1.85; min-height: 45px; }
+.bench-path { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin: 18px 0 12px; position: relative; }
+.bench-path::before { content: ''; position: absolute; top: 16px; left: 12%; right: 12%; height: 1px; background: var(--border); pointer-events: none; }
+.bench-path button { position: relative; display: flex; align-items: center; flex-direction: column; gap: 8px; padding: 0 0 9px; color: var(--text-2); background: none; border: 0; border-radius: 4px; font-size: 10px; }
+.bench-path i { display: grid; place-items: center; width: 32px; height: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; font: normal 10px 'JetBrains Mono',monospace; transition: border-color .2s, box-shadow .2s; }
+.bench-path button[aria-pressed=true] { color: var(--accent); }
+.bench-path button[aria-pressed=true] i { border-color: var(--accent); box-shadow: 0 0 18px var(--glow); }
+.bench-detail { min-height: 138px; padding: 15px 16px; border: 1px solid var(--border); border-left-color: var(--accent); background: color-mix(in srgb,var(--accent) 3%,var(--bg)); border-radius: 5px; }
+.bench-detail h3 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+.workbench .bench-detail p { font-size: 11px; line-height: 1.85; }
+.bench-detail a { display: inline-block; font: 10px/1.8 'JetBrains Mono',monospace; color: var(--accent); text-decoration: none; margin-top: 9px; }
+.bench-demo, .bench-artifacts { padding-top: 19px; min-height: 228px; }
+.bench-demo-label { display: flex; gap: 10px; justify-content: space-between; color: var(--text-2); font-size: 10px; line-height: 1.8; margin-bottom: 10px; }
+.bench-demo-label strong { color: var(--accent); font-weight: 500; }
+.bench-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.bench-presets button { background: none; color: var(--text-2); border: 1px solid var(--border); border-radius: 4px; padding: 5px 9px; font-size: 10px; }
+.bench-presets button[aria-pressed=true] { color: var(--text); border-color: var(--accent); background: color-mix(in srgb,var(--accent) 6%,transparent); }
+.bench-scores { display: flex; flex-direction: column; gap: 10px; }
+.bench-score { display: grid; grid-template-columns: 54px minmax(0,1fr) 34px; align-items: center; gap: 10px; font: 10px/1.7 'JetBrains Mono',monospace; }
+.bench-score-code { color: var(--text); }
+.bench-score-meta { display: flex; flex-direction: column; min-width: 0; }
+.bench-score-meta small { color: var(--text-2); font: 9px/1.6 'JetBrains Mono','Noto Sans SC',monospace; }
+.bench-track { height: 3px; overflow: hidden; margin-top: 4px; border-radius: 2px; background: var(--border); }
+.bench-track b { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg,var(--accent),#9fa9f5); transition: width .55s cubic-bezier(.16,1,.3,1); }
+.bench-score output { text-align: right; color: var(--accent); font: inherit; }
+.workbench .bench-note { font-size: 10px; line-height: 1.8; color: var(--text-2); margin-top: 12px; }
+.bench-artifacts ul { list-style: none; padding: 0; margin: 0; }
+.bench-artifacts li { position: relative; padding: 11px 0 11px 17px; border-bottom: 1px solid var(--border); color: var(--text-2); font: 10px/1.8 'JetBrains Mono','Noto Sans SC',monospace; overflow-wrap: anywhere; }
+.bench-artifacts li::before { content: '↳'; position: absolute; left: 0; color: var(--accent); }
+.bench-links { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 15px; margin-top: 14px; border-top: 1px solid var(--border); }
+.bench-links a { color: var(--accent); text-decoration: none; font-size: 11px; }
+.workbench .bench-stamp { color: var(--text-2); font: 9px/1.8 'JetBrains Mono','Noto Sans SC',monospace; margin-top: 10px; }
+.bench-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.workbench button:focus-visible,.workbench a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.cv-workbench-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; margin: -8px 0 24px; font-size: 11px; border: 1px solid #20394b; border-radius: 4px; color: #8bd6f0; text-decoration: none; background: #60e3ff06; }
+.cv-workbench-link span { color: #a7bacb; font: 9px 'JetBrains Mono',monospace; }
+@media(max-width:480px) { .workbench .build-body { padding: 20px; } .workbench .build-body h2 { font-size: 20px; } .bench-detail { min-height: 145px; padding: 13px; } .bench-links a { font-size: 10px; } .bench-demo-label { font-size: 9px; } }
+@media(prefers-reduced-motion:reduce) { .workbench *, .workbench *::before { transition: none!important; animation: none!important; } }
+@media print { .bench-tabs, .bench-path, .bench-presets, .cv-workbench-link { display: none!important; } .workbench { break-inside: avoid; } }
