@@ -1,4 +1,4 @@
-[English](README.md) | [中文](README.zh.md)
+[English](README.md) · [简体中文](README.zh-CN.md)
 
 # 梁正涛 — 作品集与简历
 
@@ -15,3 +15,5 @@
 每个简历版本都提供固定的返回主页、版本切换、联系与打印/PDF 入口，页尾也有返回链接。`index.html#resumes` 汇总四个版本。共用导航样式与交互在 `assets/navigation.css`、`assets/navigation.js`；打印时隐藏导航，深色版本使用浅底打印。
 
 论文按本人要求仅写会议名称与篇数，不写题目、年份、作者顺序或录用/发表状态。
+
+语言范围：本仓库提供中英文指南及独立的中英文简历页面，采用静态网站交付，不包装为桌面 Release；部分主页品牌和项目内容仍为中文。

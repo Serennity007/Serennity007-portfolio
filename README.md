@@ -1,4 +1,4 @@
-[English](README.md) | [中文](README.zh.md)
+[English](README.md) · [简体中文](README.zh-CN.md)
 
 # Zhengtao Liang — Portfolio & Resume
 
@@ -15,3 +15,5 @@ Resume variants: `resume.html`, `resume-en.html`, `resume-dark.html`, `resume-dy
 Every resume includes a persistent homepage link, version switcher, contact link, Print/PDF action and footer return links. `index.html#resumes` lists all four editions. Shared navigation styles and behavior live in `assets/navigation.css` and `assets/navigation.js`; print hides navigation, and dark editions print with a light background.
 
 Publication wording follows the owner’s instructions: venue and count only; no title, year, author order or publication-status claims.
+
+Language scope: this repository has English and Chinese guides and separate English/Chinese resume pages. It is a static website, not a desktop Release. Some homepage branding and project content remain Chinese.
