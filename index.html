@@ -279,17 +279,8 @@
         .footer a:hover { color: var(--text); }
 
         /* ---- Animate ---- */
-        .anim { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-        .anim.visible { opacity: 1; transform: translateY(0); }
-
-        /* Staggered children */
-        .stagger > * { opacity: 0; transform: translateY(24px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
-        .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
-        .stagger.visible > *:nth-child(3) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-        .stagger.visible > *:nth-child(4) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
-        .stagger.visible > *:nth-child(5) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
-        .stagger.visible > *:nth-child(6) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+        /* Content remains readable if the optional motion controller fails to load. */
+        .anim, .stagger > * { opacity: 1; transform: none; }
 
         /* Scroll progress bar */
         .scroll-bar {
@@ -352,6 +343,8 @@
 <link rel="stylesheet" href="assets/navigation.css?v=20261025-showcase2">
 <script src="assets/navigation.js?v=20261025-showcase2" defer></script>
 <link rel="stylesheet" href="assets/portfolio.css?v=20261025-case1">
+<link rel="stylesheet" href="assets/motion.css?v=20261026-pointer1">
+<script src="assets/motion.js?v=20261026-pointer1" defer></script>
 </head>
 <body>
 
@@ -388,7 +381,7 @@
             <div class="hero-badge">✦ 贵州大学 → 北京理工大学 · 专业第一</div>
             <h1 data-text="梁正涛">梁正涛</h1>
             <div class="hero-status"><span class="dot"></span>SYS.ONLINE · <em>ACTIVE</em> // GZ → BJ · CHINA // BUILD <em>2026.10</em></div>
-            <p class="hero-sub"><span class="hero-sub-prompt">&gt;&nbsp;</span><span id="typingText"></span><span class="typing-cursor"></span></p>
+            <p class="hero-sub"><span class="hero-sub-prompt">&gt;&nbsp;</span><span id="typingText">做 AI 研究，写开源代码，偶尔打比赛拿奖。</span><span class="typing-cursor" aria-hidden="true"></span></p>
             <p class="hero-intro">北京理工大学硕士在读，研究法律 AI 与多模态安全对齐。开发有源码、有运行记录的 AI 工具与应用。<br>KSEM（CCF-C）会议论文 1 篇。</p>
             <div class="hero-actions"><a href="resume-dynamic.html" class="btn btn-primary">查看科幻简历 ↗</a><a href="#projects" class="btn btn-ghost">浏览代表项目</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">下载 PDF ↓</a></div>
             <div class="hero-stats">
@@ -778,32 +771,6 @@
             document.getElementById('nav').classList.toggle('scrolled', scrollTop > 50);
         }, { passive: true });
 
-        // Typing effect
-        var typingTexts = [
-            '做 AI 研究，写开源代码，偶尔打比赛拿奖。',
-            '研究方向：司法判决认知智能 + 多模态安全对齐。',
-            'AI Skills · 在线考试系统 · Agent 工具。',
-            '北京理工大学 · 智能科学与技术 · 硕士在读。'
-        ];
-        var ti = 0, ci = 0, del = false;
-        function typeEffect() {
-            var el = document.getElementById('typingText');
-            if (!el) return;
-            var t = typingTexts[ti];
-            el.textContent = del ? t.substring(0, --ci) : t.substring(0, ++ci);
-            var s = del ? 25 : 60;
-            if (!del && ci === t.length) { s = 2000; del = true; }
-            else if (del && ci === 0) { del = false; ti = (ti + 1) % typingTexts.length; s = 400; }
-            setTimeout(typeEffect, s);
-        }
-        setTimeout(typeEffect, 500);
-
-        // Animate on scroll
-        var obs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.anim, .stagger').forEach(function(el) { obs.observe(el); });
-
         // Skill bars
         var skObs = new IntersectionObserver(function(entries) {
             entries.forEach(function(e) {
@@ -815,52 +782,14 @@
         }, { threshold: 0.3 });
         document.querySelectorAll('.skill-row').forEach(function(el) { skObs.observe(el.parentElement); });
 
-        // Counter animation
-        var cObs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-                if (e.isIntersecting) {
-                    var nums = e.target.querySelectorAll('.stat-card-num');
-                    nums.forEach(function(el) {
-                        var text = el.textContent;
-                        var match = text.match(/^(\d+)/);
-                        if (!match) return;
-                        var target = parseInt(match[1]);
-                        var suffix = text.replace(/^\d+/, '');
-                        var current = 0;
-                        var step = Math.max(1, Math.floor(target / 40));
-                        var id = setInterval(function() {
-                            current += step;
-                            if (current >= target) { el.textContent = target + suffix; clearInterval(id); }
-                            else el.textContent = current + suffix;
-                        }, 30);
-                    });
-                    cObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('.stat-grid').forEach(function(el) { cObs.observe(el); });
-
-        // Magnetic buttons
-        document.querySelectorAll('.btn').forEach(function(btn) {
-            btn.addEventListener('mousemove', function(e) {
-                var r = btn.getBoundingClientRect();
-                var x = e.clientX - r.left - r.width / 2;
-                var y = e.clientY - r.top - r.height / 2;
-                btn.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.15) + 'px)';
-            });
-            btn.addEventListener('mouseleave', function() {
-                btn.style.transform = '';
-            });
-        });
-
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(function(a) {
             a.addEventListener('click', function(e) {
                 e.preventDefault();
                 var h = this.getAttribute('href');
-                if (h === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+                if (h === '#') { window.scrollTo({ top: 0, behavior: document.documentElement.dataset.motion === 'off' ? 'instant' : 'smooth' }); return; }
                 var t = document.querySelector(h);
-                if (t) t.scrollIntoView({ behavior: 'smooth' });
+                if (t) t.scrollIntoView({ behavior: document.documentElement.dataset.motion === 'off' ? 'instant' : 'smooth' });
             });
         });
 
@@ -904,112 +833,6 @@
                 btn.disabled = false;
             });
         }
-
-        // Particles background
-        (function() {
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            var canvas = document.createElement('canvas');
-            canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:0;';
-            document.body.prepend(canvas);
-            var ctx = canvas.getContext('2d');
-            var particles = [];
-            var particleCount = 60;
-
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            for (var i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.3,
-                    vy: (Math.random() - 0.5) * 0.3,
-                    r: Math.random() * 1.5 + 0.5,
-                    o: Math.random() * 0.3 + 0.1
-                });
-            }
-
-            function drawParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (var i = 0; i < particles.length; i++) {
-                    var p = particles[i];
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    if (p.x < 0) p.x = canvas.width;
-                    if (p.x > canvas.width) p.x = 0;
-                    if (p.y < 0) p.y = canvas.height;
-                    if (p.y > canvas.height) p.y = 0;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(0, 212, 255, ' + p.o + ')';
-                    ctx.fill();
-                }
-                // Draw lines between close particles
-                for (var i = 0; i < particles.length; i++) {
-                    for (var j = i + 1; j < particles.length; j++) {
-                        var dx = particles[i].x - particles[j].x;
-                        var dy = particles[i].y - particles[j].y;
-                        var dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 120) {
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = 'rgba(0, 212, 255, ' + (0.06 * (1 - dist / 120)) + ')';
-                            ctx.lineWidth = 0.5;
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(drawParticles);
-            }
-            drawParticles();
-        })();
-
-        // Custom cursor
-        (function() {
-            if (window.matchMedia('(max-width: 768px)').matches) return;
-            if (window.matchMedia('(pointer: coarse)').matches) return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            var dot = document.createElement('div');
-            var ring = document.createElement('div');
-            dot.style.cssText = 'position:fixed;width:6px;height:6px;background:#00d4ff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,background 0.2s;mix-blend-mode:difference;';
-            ring.style.cssText = 'position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,212,255,0.3);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s;';
-            document.body.appendChild(dot);
-            document.body.appendChild(ring);
-            var mx = 0, my = 0, rx = 0, ry = 0;
-            document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-            (function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); })();
-            document.querySelectorAll('a, button, .card, .stat-card, .award-row, .blog-card, .value-item').forEach(function(el) {
-                el.addEventListener('mouseenter', function() { dot.style.width = '40px'; dot.style.height = '40px'; dot.style.background = 'rgba(0,212,255,0.15)'; ring.style.width = '60px'; ring.style.height = '60px'; ring.style.borderColor = 'rgba(0,212,255,0.6)'; });
-                el.addEventListener('mouseleave', function() { dot.style.width = '6px'; dot.style.height = '6px'; dot.style.background = '#00d4ff'; ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(0,212,255,0.3)'; });
-            });
-            document.body.style.cursor = 'none';
-        })();
-
-        // Parallax on hero background
-        (function() {
-            var heroBg = document.querySelector('.hero-bg');
-            if (!heroBg) return;
-            window.addEventListener('scroll', function() {
-                var scrollY = window.scrollY;
-                if (scrollY < window.innerHeight) {
-                    heroBg.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
-                }
-            }, { passive: true });
-        })();
-
-        // Card mouse glow
-        document.querySelectorAll('.card').forEach(function(card) {
-            card.addEventListener('mousemove', function(e) {
-                var r = card.getBoundingClientRect();
-                card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-                card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-            });
-        });
 
         // Back to top button visibility
         var backToTop = document.getElementById('backToTop');
