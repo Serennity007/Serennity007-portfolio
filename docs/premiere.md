@@ -4,7 +4,7 @@ Audience: research collaborators and engineering recruiters. Preserve the establ
 
 Palette: deep ink #050b12, ice #e8f2f5, cyan #70e5ea, muted blue #adc2cf, existing theme-aware surface and line tokens. Noto Sans SC carries Chinese content; JetBrains Mono is limited to code, project identifiers and the opening monogram.
 
-Layout: identity and research on the left, runnable workbench on the right. Below research, give the quant toolchain a full-width feature and use three compact rows for supporting projects. On mobile, stack in reading order. In the interactive CV, research and projects have direct links and quieter editorial entries. Standard Chinese/English printable sources and PDF downloads remain unchanged.
+Layout: identity and research on the left, runnable workbench on the right. Below research, give the quant toolchain a full-width feature and use four compact rows for supporting projects. On mobile, stack in reading order. In the interactive CV, research and projects have direct links and quieter editorial entries. Standard Chinese/English printable sources and PDF downloads remain unchanged.
 
 The memorable moment is a finite 1.53-second orbital/monogram opening, followed by identity, research, supporting information and workbench. No fake loading percentage, scroll lock, indefinite loader, or external runtime request. Session revisits and deep links bypass it; an explicit replay button is available. Escape, skip, wheel, pagehide, backgrounding, print and reduced-motion changes terminate it. The global motion toggle also controls it. A 2.4s JS watchdog and 2.8s CSS escape prevent blocking content if GSAP fails.
 

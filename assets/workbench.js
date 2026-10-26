@@ -32,7 +32,8 @@
   if (!desk) return;
   const quant = 'https://github.com/Serennity007/awesome-stock-quant-skills/blob/0e23df9fbde7d3d9362c52ef9d448daa9e15c668/';
   const futures = 'https://github.com/Serennity007/taotao-futures-research/blob/14c5c364474ea76c1feb8d81c724eee5dc074167/';
-  const ppt = 'https://github.com/Serennity007/beiligong-ppt-skill/blob/decc6c099b374165181eb3d714c928db278e5100/';
+  const ghost = 'https://github.com/Serennity007/GhostTrack/blob/d6e529ffbbefd4e67fa0f8c5238da395661106e8/';
+  const audit = 'https://github.com/Serennity007/xss-audit-desktop/blob/018621358082163fe80df8c5d1e8955534d26330/';
   const projects = {
     quant: {
       index: '01 / QUANT RESEARCH', title: 'AI 选股与量化投研工具链',
@@ -59,18 +60,31 @@
       artifacts: ['index.html · 交互研究报告', 'REPORT.md / bundle.json · 计算与口径', 'inputs/ · 本次输入与配置'],
       artifactNote: '查看已归档的 AU2612、RB2701、M2701 取数记录，日期为 2026-10-25。'
     },
-    ppt: {
-      index: '03 / DOCUMENT AUTOMATION', title: 'PPT 批量改造与验收工作流',
-      lead: '我把版式扫描、字号放大、PowerPoint 实测与验收写成可复跑的工作流。',
+    ghost: {
+      index: '03 / NETWORK RESEARCH', title: 'GhostTrack Console & Atlas',
+      lead: '我在 GhostTrack 基础上扩展桌面、移动与 Web 工作台，把 IP、域名和证书查询的来源与结果放在同一处。',
       stages: [
-        { label: '版式扫描', title: '先识别版式骨架', body: '扫描形状、颜色、文字与标题层级，用配置记录修改范围和标题方案，再进行批量改造。', source: ppt + 'scripts/ppt_chrome.py' },
-        { label: '实测回退', title: '用实际排版结果约束字号', body: '放大字号后调用 Windows PowerPoint 测量越框，放不下就按档回退，再把实测结果写回文件。', source: ppt + 'scripts/ppt_fit.py' },
-        { label: '逐项验收', title: '把教师要求变成验收项', body: '检查配色、版面和实测结果；自动检查判不了的内容进入人工核对清单，保留源文件与分版本输出。', source: ppt + 'scripts/ppt_audit.py' }
+        { label: '来源汇总', title: '整合 IP、域名与证书证据', body: '域名概览并行查询 RDAP、DNS 与 HTTPS/TLS；IP/ASN 模块保留注册范围、网络组织及来源状态。', source: ghost + 'public_data.py' },
+        { label: '快照比较', title: '把一次查询保留为可比较的记录', body: 'Atlas 支持快照比较、分批查询、收藏和来源状态，区分托管版与本地引擎的可用能力。', source: ghost + 'docs/atlas.md' },
+        { label: '脱敏报告', title: '查询上下文随结果一起导出', body: '导出 JSON、CSV 和独立 HTML，保留工具、输入与查询时间；Atlas 提供脱敏预览，便于分享选定的证据。', source: ghost + 'reports.py' }
       ],
-      evidence: ppt + 'README.md', evidenceLabel: '工作流与复现命令',
-      repo: 'https://github.com/Serennity007/beiligong-ppt-skill',
-      artifacts: ['chrome.json · 版式扫描结果', 'fit.json · PowerPoint 实测与回退', 'audit.md · 检查结果与人工核对项'],
-      artifactNote: '这里展示产物格式。实测步骤需要 Windows 与 Microsoft PowerPoint。'
+      evidence: ghost + 'docs/atlas.md', evidenceLabel: '软件功能与版本说明',
+      repo: 'https://github.com/Serennity007/GhostTrack',
+      artifacts: ['JSON · 结果字段、来源与查询上下文', 'CSV · 可筛选的查询表格', 'HTML · 独立研究报告与脱敏结果'],
+      artifactNote: '已发布 Windows、Android 与 Web 版本；各端能力与来源限制见项目指南。'
+    },
+    audit: {
+      index: '04 / SOURCE SECURITY', title: 'XSS Audit Desktop',
+      lead: '我将 xss-audit 审计方法扩展为双语桌面软件和 CLI，把源码导入、AST 证据、人工分诊与报告串成审查流程。',
+      stages: [
+        { label: '源码导入', title: '从本地目录或固定 GitHub 快照开始', body: '支持导入公开 GitHub 仓库并指定分支、标签或提交，结合本地目录扫描保留检查范围。', source: audit + 'xss_audit/importer.py' },
+        { label: 'AST 证据', title: '把输入、传播与敏感调用放在一起看', body: '对 JS/TS/Python 提供有限 AST 流向证据，展示源码行与传播步骤；自动信号用于辅助人工确认。', source: audit + 'xss_audit/analysis.py' },
+        { label: '人工复核', title: '保存判断，再导出可交接的报告', body: '按优先级、类别和关键词筛选，保存待复核、风险、误报或已修复状态，输出离线 HTML、JSON、Markdown 与 SARIF。', source: audit + 'xss_audit/reports.py' }
+      ],
+      evidence: audit + 'docs/VERIFICATION.md', evidenceLabel: '已归档的本地验证记录',
+      repo: 'https://github.com/Serennity007/xss-audit-desktop',
+      artifacts: ['HTML / Markdown · 可读审查报告', 'JSON / SARIF 2.1.0 · 结构化线索', '复核记录 · 状态、笔记与源码上下文'],
+      artifactNote: '公开验证记录含 43 项通过、1 项跳过及 8 组 CLI 导出检查；审查线索需人工确认。'
     }
   };
   let selected = 'quant', stage = 1, scenario = 'default';
