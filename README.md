@@ -2,7 +2,7 @@
 
 # Zhengtao Liang — Portfolio & Resume
 
-BIT M.S. student · 1 KSEM conference paper (CCF-C) · AI research and open-source engineering.
+BIT M.S. student · Paper accepted at KSEM (CCF-C) · AI research and open-source engineering.
 
 [Portfolio](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 

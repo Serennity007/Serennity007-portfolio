@@ -2,7 +2,7 @@
 
 # 梁正涛 — 作品集与简历
 
-北京理工大学硕士在读 · KSEM（CCF-C）会议论文 1 篇 · AI 研究与开源工程。
+北京理工大学硕士在读 · KSEM（CCF-C）会议论文已中稿 · AI 研究与开源工程。
 
 [在线作品集](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 
