@@ -6,13 +6,13 @@ BIT M.S. student · Paper accepted at KSEM (CCF-C) · agent collaboration, agent
 
 [Portfolio](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 
-Selected projects cover quant AI Skills, IP/domain research, source-code security review, agent CLI tools and financial RSS tooling. Each entry links to its public source.
+Selected projects cover quant AI Skills, IP/domain research, static source-code scanning, agent CLI tools and financial RSS tooling. Each entry links to its public source.
 
 Serve this folder locally with `python -m http.server 8080`. Static HTML/CSS/JavaScript; no build step. The main branch deploys through `.github/workflows/deploy.yml` to GitHub Pages.
 
 The homepage and interactive CV share ambient light, rotating wireframes, pointer lighting, damped cursor feedback, card tilt and a persistent motion toggle. Mouse tracking works in narrow desktop windows too; touch input hides the mouse follower and reduced-motion settings use a static view. See [motion behavior and checks](docs/motion.md); run `node --test tests/motion.test.cjs` for the controller tests.
 
-The [interactive project desk](docs/workbench.md) explains quant, futures, IP/domain research and source-code security review with pinned source links. A synthetic consensus-ranking demo runs in the browser. The interactive CV returns to this desk; no API key or market-data service is required.
+The [interactive project desk](docs/workbench.md) explains quant, futures, IP/domain research and static source-code scanning with pinned source links. A synthetic consensus-ranking demo runs in the browser. The interactive CV returns to this desk; no API key or market-data service is required.
 
 Resume variants: `resume.html`, `resume-en.html`, `resume-dark.html`, `resume-dynamic.html`. Keep publication wording and selected projects aligned across all four pages.
 

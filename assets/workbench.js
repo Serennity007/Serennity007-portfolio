@@ -61,30 +61,30 @@
       artifactNote: '查看已归档的 AU2612、RB2701、M2701 取数记录，日期为 2026-10-25。'
     },
     ghost: {
-      index: '03 / NETWORK RESEARCH', title: 'GhostTrack Console & Atlas',
-      lead: '我在 GhostTrack 基础上扩展桌面、移动与 Web 工作台，把 IP、域名和证书查询的来源与结果放在同一处。',
+      index: '03 / NETWORK CHECKS', title: 'GhostTrack Console & Atlas',
+      lead: '在原有 GhostTrack 查询工具上增加域名批量检查、DNS/TLS 检查和快照对比，实现任务暂停、取消、失败重试及报告导出。',
       stages: [
-        { label: '来源汇总', title: '整合 IP、域名与证书证据', body: '域名概览并行查询 RDAP、DNS 与 HTTPS/TLS；IP/ASN 模块保留注册范围、网络组织及来源状态。', source: ghost + 'public_data.py' },
-        { label: '快照比较', title: '把一次查询保留为可比较的记录', body: 'Atlas 支持快照比较、分批查询、收藏和来源状态，区分托管版与本地引擎的可用能力。', source: ghost + 'docs/atlas.md' },
-        { label: '脱敏报告', title: '查询上下文随结果一起导出', body: '导出 JSON、CSV 和独立 HTML，保留工具、输入与查询时间；Atlas 提供脱敏预览，便于分享选定的证据。', source: ghost + 'reports.py' }
+        { label: '信息查询', title: 'IP、域名与证书信息查询', body: '并行查询 RDAP、DNS 和 HTTPS/TLS，记录 IP/ASN 归属、原始字段及各数据源状态。', source: ghost + 'public_data.py' },
+        { label: '批量检查', title: '域名批量检查与快照对比', body: '批量任务支持暂停、取消和失败重试，检查 DNS、证书有效期及 HTTP 状态。快照对比仅比较两次均成功的数据源。', source: ghost + 'docs/atlas.md' },
+        { label: '报告导出', title: '查询结果与检查报告导出', body: '导出 JSON、CSV 和独立 HTML 报告，保留目标、查询时间及数据来源；提供导出预览和脱敏选项。', source: ghost + 'reports.py' }
       ],
-      evidence: ghost + 'docs/atlas.md', evidenceLabel: '软件功能与版本说明',
+      evidence: ghost + 'docs/atlas.md', evidenceLabel: '批量检查说明与使用文档',
       repo: 'https://github.com/Serennity007/GhostTrack',
-      artifacts: ['JSON · 结果字段、来源与查询上下文', 'CSV · 可筛选的查询表格', 'HTML · 独立研究报告与脱敏结果'],
-      artifactNote: '已发布 Windows、Android 与 Web 版本；各端能力与来源限制见项目指南。'
+      artifacts: ['JSON · 查询字段与数据来源', 'CSV · 批量检查结果', 'HTML · 检查报告与快照对比'],
+      artifactNote: 'HTTPS/TLS 和证书检查使用本地引擎；Web 托管版的查询范围见文档。'
     },
     audit: {
-      index: '04 / SOURCE SECURITY', title: 'XSS Audit Desktop',
-      lead: '我将 xss-audit 审计方法扩展为双语桌面软件和 CLI，把源码导入、AST 证据、人工分诊与报告串成审查流程。',
+      index: '04 / STATIC SCANNING', title: 'XSS Audit Desktop',
+      lead: '在 xss-audit 审计方法基础上新增源码静态扫描引擎，实现规则匹配、JS/TS/Python AST 分析、源码行定位及结果复核。',
       stages: [
-        { label: '源码导入', title: '从本地目录或固定 GitHub 快照开始', body: '支持导入公开 GitHub 仓库并指定分支、标签或提交，结合本地目录扫描保留检查范围。', source: audit + 'xss_audit/importer.py' },
-        { label: 'AST 证据', title: '把输入、传播与敏感调用放在一起看', body: '对 JS/TS/Python 提供有限 AST 流向证据，展示源码行与传播步骤；自动信号用于辅助人工确认。', source: audit + 'xss_audit/analysis.py' },
-        { label: '人工复核', title: '保存判断，再导出可交接的报告', body: '按优先级、类别和关键词筛选，保存待复核、风险、误报或已修复状态，输出离线 HTML、JSON、Markdown 与 SARIF。', source: audit + 'xss_audit/reports.py' }
+        { label: '规则扫描', title: '源码规则扫描', body: '扫描本地目录或导入的公开 GitHub 代码，按规则输出审查线索，记录扫描范围、跳过文件和解析异常。', source: audit + 'xss_audit/scanner.py' },
+        { label: 'AST 分析', title: 'AST 流向分析', body: '使用 Tree-sitter 解析 JS/TS，使用标准库 AST 解析 Python，输出输入来源、赋值传播及敏感调用对应的源码行。', source: audit + 'xss_audit/analysis.py' },
+        { label: '复核导出', title: '人工复核与报告导出', body: '按优先级和类别筛选，保存复核状态与笔记，导出 HTML、Markdown、JSON 和 SARIF 2.1.0 报告。', source: audit + 'xss_audit/reports.py' }
       ],
-      evidence: audit + 'docs/VERIFICATION.md', evidenceLabel: '已归档的本地验证记录',
+      evidence: audit + 'docs/VERIFICATION.md', evidenceLabel: '本地测试与导出检查记录',
       repo: 'https://github.com/Serennity007/xss-audit-desktop',
-      artifacts: ['HTML / Markdown · 可读审查报告', 'JSON / SARIF 2.1.0 · 结构化线索', '复核记录 · 状态、笔记与源码上下文'],
-      artifactNote: '公开验证记录含 43 项通过、1 项跳过及 8 组 CLI 导出检查；审查线索需人工确认。'
+      artifacts: ['HTML / Markdown · 审查报告', 'JSON / SARIF 2.1.0 · 结构化扫描结果', '复核记录 · 状态、笔记与源码位置'],
+      artifactNote: '本地验证记录为 43 项通过、1 项跳过，另完成 8 组 CLI 导出检查。扫描线索由人工确认。'
     }
   };
   let selected = 'quant', stage = 1, scenario = 'default';
