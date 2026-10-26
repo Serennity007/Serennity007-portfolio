@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const source = fs.readFileSync(path.join(__dirname, '../assets/premiere.js'), 'utf8');
 function fixture(options = {}) {
-  const events = new Map(), media = new Map(), timers = new Map(), timelines = [];
+  const events = new Map(), media = new Map(), timers = new Map(), timelines = [], timeoutDelays = [], storageKeys = [];
   let observer, overlay = null, stored = options.seen ? 'seen' : null;
   function node() {
     const listeners = {};
@@ -30,11 +30,11 @@ function fixture(options = {}) {
   };
   const context = {
     document, location: { hash: options.hash || '' }, scrollY: options.scroll || 0,
-    sessionStorage: { getItem() { if (options.noStorage) throw Error('blocked'); return stored; }, setItem(_, value) { if (options.noStorage) throw Error('blocked'); stored = value; } },
+    sessionStorage: { getItem(key) { if (options.noStorage) throw Error('blocked'); return options.oldSeen && key === 'zt-opening-v1' ? 'seen' : stored; }, setItem(key, value) { if (options.noStorage) throw Error('blocked'); storageKeys.push(key); stored = value; } },
     matchMedia(query) { const state = { matches: query.includes('reduce') ? !!options.reduced : false, addEventListener(_, fn) { this.change = fn; } }; media.set(query, state); return state; },
     MutationObserver: class { constructor(fn) { observer = fn; } observe() {} },
     addEventListener(name, fn) { events.set(name, fn); },
-    setTimeout(fn) { timers.set(timers.size + 1, fn); return timers.size; }, clearTimeout(id) { timers.delete(id); }
+    setTimeout(fn, delay) { timeoutDelays.push(delay); timers.set(timers.size + 1, fn); return timers.size; }, clearTimeout(id) { timers.delete(id); }
   };
   if (!options.noGsap) context.gsap = {
     timeline(config) {
@@ -45,7 +45,7 @@ function fixture(options = {}) {
   };
   context.window = context;
   vm.runInNewContext(source, context);
-  return { root, document, replay, entries, timelines, timers, media, get overlay() { return overlay; }, get stored() { return stored; }, event(name, detail = {}) { events.get(name)?.(detail); }, policyOff() { root.dataset.motion = 'off'; observer(); } };
+  return { root, document, replay, entries, timelines, timers, timeoutDelays, storageKeys, media, get overlay() { return overlay; }, get stored() { return stored; }, event(name, detail = {}) { events.get(name)?.(detail); }, policyOff() { root.dataset.motion = 'off'; observer(); } };
 }
 test('opening completes into a finite hero sequence and releases inline styles', () => {
   const f = fixture(); assert.ok(f.overlay); assert.equal(f.stored, 'seen');
@@ -69,8 +69,18 @@ test('hero handoff starts under the fading opening and is not restarted on compl
   f.timelines[1].config.onComplete(); assert.ok(f.entries.every(x => !x.style.opacity));
 });
 test('a watchdog releases the page even if animation completion never arrives', () => {
-  const f = fixture(); [...f.timers.values()][0]();
+  const f = fixture(); assert.ok(f.timeoutDelays[0] >= 4500 && f.timeoutDelays[0] <= 6000);
+  [...f.timers.values()][0]();
   assert.equal(f.overlay, null); assert.equal(f.timers.size, 0);
+});
+test('the personal introduction retains the supplied identity, research and achievement facts', () => {
+  const f = fixture();
+  const visibleText = f.overlay.innerHTML.replace(/<[^>]*>/g, '');
+  for (const fact of ['梁正涛', '北京理工大学', '智能体协作研究', '智能体安全', '多模态大模型安全研究', 'KSEM（CCF-C）已中稿', '贵州大学专业第一（1/69）', '华为 ICT 国家一等奖', 'GhostTrack', 'XSS Audit Desktop']) assert.ok(visibleText.includes(fact), fact);
+  assert.ok(!/PPT|法律 AI|全球.*三等奖|1 篇/.test(visibleText));
+});
+test('an existing visitor can see the new introduction without clearing old session data', () => {
+  const f = fixture({ oldSeen: true }); assert.ok(f.overlay); assert.equal(f.storageKeys[0], 'zt-opening-v2');
 });
 test('missing or broken animation dependency leaves the page usable', () => {
   for (const options of [{ noGsap: true }, { throwGsap: true }]) {
