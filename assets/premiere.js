@@ -76,7 +76,7 @@
     overlay.querySelector('button').addEventListener('click', () => finish(true));
     root.dataset.opening = 'playing';
     // Also backed by a CSS timeout; no scroll lock or hidden page content.
-    fallback = setTimeout(() => finish(true), 6500);
+    fallback = setTimeout(() => finish(true), 7500);
     try {
       timeline = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: () => finish(true) });
       timeline.addLabel('identity', 0)
@@ -91,7 +91,7 @@
         .fromTo('.opening-proof span', { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: .55, stagger: .08 }, 'research+=0.3')
         .fromTo('.opening-projects li', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .5, stagger: .07 }, 'research+=0.55')
         .call(() => { if (overlay) overlay.dataset.phase = 'profile'; }, [], 1.9)
-        .addLabel('handoff', 4.45)
+        .addLabel('handoff', 5.45)
         .call(() => { if (overlay) overlay.dataset.phase = 'handoff'; handedOff = true; revealHero(); }, [], 'handoff')
         .to('.opening-profile', { y: -12, opacity: 0, duration: .3 }, 'handoff')
         .to('.opening-space', { scale: 1.3, opacity: 0, duration: .55 }, 'handoff')

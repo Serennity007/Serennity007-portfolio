@@ -1,5 +1,5 @@
 /* The portfolio's signature moment, followed by quieter reading surfaces. */
-.opening-scene{position:fixed;inset:0;z-index:10020;display:grid;place-items:center;overflow:hidden;background:#050b12;color:#e8f2f5;pointer-events:none;animation:opening-fail-open 0s 6.9s forwards}
+.opening-scene{position:fixed;inset:0;z-index:10020;display:grid;place-items:center;overflow:hidden;background:#050b12;color:#e8f2f5;pointer-events:none;animation:opening-fail-open 0s 7.9s forwards}
 .opening-space{position:absolute;inset:-8%;background:radial-gradient(ellipse at 50% 42%,#0b354a77,transparent 57%);contain:paint;transform-origin:50% 45%}
 .opening-lines{position:absolute;inset:0;width:100%;height:100%;stroke-width:.75;opacity:.65;mask-image:radial-gradient(ellipse,#0004 12%,#000 65%,transparent 90%)}
 .opening-sweep{position:absolute;inset:0;background:linear-gradient(transparent 47.5%,#70e5ea0d 49.5%,#a2f0f044 50%,transparent 50.2%)}
