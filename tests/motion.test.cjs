@@ -31,9 +31,11 @@ class Element extends Events {
   removeAttribute(k) { delete this.attributes[k]; if (k.startsWith('data-')) delete this.dataset[this.camel(k.slice(5))]; }
   camel(k) { return k.replace(/-([a-z])/g, (_, s) => s.toUpperCase()); }
   getAttribute(k) { return this.attributes[k] ?? null; }
+  hasAttribute(k) { return Object.prototype.hasOwnProperty.call(this.attributes, k); }
   getBoundingClientRect() { return this.rect; }
   querySelector() { return null; }
   closest(selector) {
+    if (selector.startsWith('[') && this.hasAttribute(selector.slice(1, -1))) return this;
     if (selector.startsWith('.') && this.classes.has(selector.slice(1))) return this;
     if (selector.includes('a, button') && this.interactive) return this;
     return this.parentElement?.closest(selector) || null;
@@ -41,8 +43,10 @@ class Element extends Events {
 }
 function fixture(options = {}) {
   const events = new Events(), document = new Events();
-  const root = new Element(), body = new Element(options.cv ? 'hud-cv' : '');
+  const root = new Element(), body = new Element((options.cv ? 'hud-cv ' : '') + (options.scoped ? 'scoped-motion' : ''));
   const card = new Element('card build-window'), magnet = new Element('btn');
+  const readingCard = new Element('card');
+  if (options.scoped) { card.setAttribute('data-motion-surface', ''); card.setAttribute('data-motion-zone', ''); body.append(readingCard); }
   const scene = new Element('hero-bg'), typing = options.cv ? null : new Element();
   const nav = new Element(), toolbar = new Element(), reveal = new Element('section');
   card.append(magnet); body.append(card, scene, nav, toolbar, reveal);
@@ -50,7 +54,7 @@ function fixture(options = {}) {
   document.createElement = () => new Element();
   document.createElementNS = () => new Element();
   document.getElementById = () => typing;
-  document.querySelectorAll = s => s.startsWith('.card,') ? [card] : s.startsWith('.btn,') ? [magnet] : [reveal];
+  document.querySelectorAll = s => s.startsWith('.card,') ? (options.scoped ? [card, readingCard] : [card]) : s.startsWith('.btn,') ? [magnet] : [reveal];
   document.querySelector = s => s.startsWith('.hero-bg,') ? scene : s === '.hero-bg' ? (options.cv ? null : scene) : s === '.nav-links' ? (options.cv ? null : nav) : toolbar;
   let hit = card;
   document.elementFromPoint = () => hit;
@@ -105,8 +109,18 @@ function fixture(options = {}) {
     const result = [...queries].find(([query]) => query.includes(type))[1];
     result.matches = value; result.send('change');
   }
-  return { root, body, card, magnet, scene, typing, reveal, button, document, events, frames, timers, storage, observers, settle, step, move, media };
+  return { root, body, card, readingCard, magnet, scene, typing, reveal, button, document, events, frames, timers, storage, observers, settle, step, move, media };
 }
+
+test('scoped pages keep long reading cards flat while featured surfaces retain highlights', () => {
+  const f = fixture({ scoped: true });
+  assert.ok(f.card.classList.contains('motion-card'));
+  assert.ok(!f.readingCard.classList.contains('motion-card'));
+  assert.equal(f.readingCard.children.length, 0);
+  f.move(300, 150); f.settle(); assert.equal(f.root.dataset.pointerZone, 'on');
+  f.move(500, 500, f.readingCard); f.settle(); assert.equal(f.root.dataset.pointerZone, 'off');
+  assert.equal(parseFloat(f.card.style.getPropertyValue('--motion-rx')), 0);
+});
 
 test('the controller has no perpetual idle frame loop', () => {
   const f = fixture(); assert.equal(f.root.dataset.motion, 'on'); f.settle(); assert.equal(f.frames.size, 0);

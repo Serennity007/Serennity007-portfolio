@@ -343,12 +343,15 @@
 <link rel="stylesheet" href="assets/navigation.css?v=20261025-showcase2">
 <script src="assets/navigation.js?v=20261025-showcase2" defer></script>
 <link rel="stylesheet" href="assets/portfolio.css?v=20261025-case1">
-<link rel="stylesheet" href="assets/motion.css?v=20261026-pointer5">
-<script src="assets/motion.js?v=20261026-pointer5" defer></script>
+<link rel="stylesheet" href="assets/motion.css?v=20261026-pointer6">
+<script src="assets/motion.js?v=20261026-pointer6" defer></script>
 <link rel="stylesheet" href="assets/workbench.css?v=20261026-desk1">
 <script src="assets/workbench.js?v=20261026-desk1" defer></script>
+<link rel="stylesheet" href="assets/premiere.css?v=20261026-premiere1">
+<script src="assets/vendor/gsap.min.js?v=3.15.0" defer></script>
+<script src="assets/premiere.js?v=20261026-premiere1" defer></script>
 </head>
-<body>
+<body class="portfolio-premiere scoped-motion">
 
     <!-- Scroll Progress Bar -->
     <div class="scroll-bar" id="scrollBar"></div>
@@ -376,24 +379,28 @@
     </nav>
 
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" data-motion-zone>
         <div class="hero-bg"></div>
         <div class="container hero-content">
             <div class="hero-copy">
             <div class="hero-badge">✦ 贵州大学 → 北京理工大学 · 专业第一</div>
-            <h1 data-text="梁正涛">梁正涛</h1>
-            <div class="hero-status"><span class="dot"></span>SYS.ONLINE · <em>ACTIVE</em> // GZ → BJ · CHINA // BUILD <em>2026.10</em></div>
-            <p class="hero-sub"><span class="hero-sub-prompt">&gt;&nbsp;</span><span id="typingText">做 AI 研究，写开源代码，偶尔打比赛拿奖。</span><span class="typing-cursor" aria-hidden="true"></span></p>
-            <p class="hero-intro">北京理工大学硕士在读，研究法律 AI 与多模态安全对齐。开发有源码、有运行记录的 AI 工具与应用。<br>KSEM（CCF-C）会议论文已中稿。</p>
-            <div class="hero-actions"><a href="resume-dynamic.html" class="btn btn-primary">查看科幻简历 ↗</a><a href="#workbench" class="btn btn-ghost">交互作品台 ↓</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">下载 PDF ↓</a></div>
+            <div class="hero-signature">Zhengtao Liang / 梁正涛</div>
+            <h1 data-entry>梁正涛</h1>
+            <div class="hero-research" data-entry><p>研究法律 AI，<br>构建可复核的 AI 工具。</p><span>司法判决认知智能 · 多模态安全对齐</span></div>
+            <div class="hero-details" data-entry>
+            <p class="hero-intro">北京理工大学硕士在读。开源选股、期货研究与开发者工具，保留源码和验证记录。<br>KSEM（CCF-C）会议论文已中稿。</p>
+            <div class="hero-actions"><a href="resume-dynamic.html" class="btn btn-primary">查看简历 ↗</a><a href="#workbench" class="btn btn-ghost">交互作品台 ↓</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">下载 PDF ↓</a></div>
             <div class="hero-stats">
                 <div><div class="hero-stat-num">41</div><div class="hero-stat-lbl" title="截至 2026-10-24">选股 Skill · Stars（10/24）</div></div>
                 <div><div class="hero-stat-num">已中稿</div><div class="hero-stat-lbl">KSEM · CCF-C</div></div>
                 <div><div class="hero-stat-num">1/69</div><div class="hero-stat-lbl">专业排名</div></div>
                 <div><div class="hero-stat-num">4.14</div><div class="hero-stat-lbl">GPA / 5.0</div></div>
             </div>
+            <button type="button" class="hero-replay" data-replay-opening>重播开场 ↗</button>
             </div>
-            <aside class="build-window workbench" id="workbench" aria-label="工程作品交互展示">
+            </div>
+            <div class="hero-work" data-entry><div class="hero-work-caption"><span>正在构建的工具</span><span>点选项目，查看实现</span></div>
+            <aside class="build-window workbench" data-motion-surface id="workbench" aria-label="工程作品交互展示">
                 <div class="build-titlebar"><i class="window-dot"></i><i class="window-dot"></i><i class="window-dot"></i><span>~/zhengtao/projects</span></div>
                 <div class="build-body">
                     <div class="bench-tabs" role="tablist" aria-label="切换工程作品" data-bench-controls hidden>
@@ -439,6 +446,7 @@
                     <p class="bench-status" role="status" data-bench-status></p>
                 </div>
             </aside>
+            </div>
         </div>
     </section>
 
@@ -553,10 +561,10 @@
                 </div>
             </div>
             <h3 class="anim" style="margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">💻 开源项目</h3>
-            <div class="card-grid anim stagger">
-                <article class="card quant-feature" id="quant-research">
+            <div class="work-collection">
+                <article class="card quant-feature anim" data-motion-zone data-motion-surface id="quant-research">
                     <div class="quant-feature-main">
-                        <div class="quant-kicker">FEATURED / OPEN SOURCE</div>
+                        <div class="quant-kicker">主打项目 · 有源码与实测记录</div>
                         <h3 class="card-title">AI 选股与量化投研工具链</h3>
                         <p class="card-desc">我把财务筛选、因子评分、多框架共识与含成本回测写成可运行的 Agent Skills，输出分项得分、换手、持仓明细和输入哈希。</p>
                         <div class="quant-metrics"><span><strong>30</strong> 原创 Skills</span><span><strong>23</strong> 方法参考框架</span><span><strong>40</strong> 本地测试通过</span></div>
@@ -565,36 +573,31 @@
                         <div class="quant-actions"><a href="https://github.com/Serennity007/awesome-stock-quant-skills" class="btn btn-primary" target="_blank" rel="noopener noreferrer">查看源码 ↗</a><a href="project-quant.html" class="btn btn-ghost">项目拆解与实测 ↗</a></div>
                     </div>
                     <div class="quant-console">
-                        <div class="quant-kicker">$ QUICK START</div>
+                        <div class="quant-kicker">从输入到结果，保留每一步</div>
+                        <ol class="quant-flow"><li>真实财务数据取数</li><li>财务筛选与因子评分</li><li>多框架共识排序</li><li>含成本回测与持仓核算</li></ol>
                         <p>安装演示依赖后，在仓库目录运行：</p>
                         <code>python scripts/run_demo.py</code>
-                        <ul><li>多框架共识排序</li><li>交易成本与持仓核算</li><li>报告、CSV、输入哈希与日志</li></ul>
+                        <p>输出报告、CSV、输入哈希与运行日志。</p>
                         <p>两个独立合成场景，用于复核计算。</p>
                         <div class="quant-evidence"><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/docs/validation.md">验证范围 ↗</a><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/examples/verification/2026-10-24/buffett-check.json">真实取数记录 ↗</a></div>
                     </div>
                 </article>
 
-                <article class="card">
-                    <div class="card-icon">📐</div>
-                    <div class="card-title">PPT 批量改造与验收工作流</div>
-                    <div class="card-desc">使用 Python 批量统一课件标题、配色和字号；调用 PowerPoint 实测文本越框并回退，配套静态验收报告与回归测试。</div>
-                    <div style="margin-top:12px;"><span class="tag">Python · python-pptx · PowerPoint</span></div>
-                    <a href="https://github.com/Serennity007/beiligong-ppt-skill" target="_blank" rel="noopener noreferrer" class="card-link">beiligong-ppt-skill ↗</a>
-                </article>
 
-                <article class="card">
-                    <div class="card-icon">🔍</div>
-                    <div class="card-title">AI Agent 会话分析 CLI</div>
-                    <div class="card-desc">解析多种编码 Agent 的本地会话日志，汇总 token 用量、成本估算与工具调用；提供终端报告与 JSON 输出。</div>
-                    <div style="margin-top:12px;"><span class="tag">Node.js · JavaScript · CLI</span></div>
-                    <a href="https://github.com/Serennity007/agent-trace" target="_blank" rel="noopener noreferrer" class="card-link">agent-trace ↗</a>
+                <article class="project-row">
+                    <span class="project-row-symbol" aria-hidden="true">PPT</span>
+                    <div><h3><a href="https://github.com/Serennity007/beiligong-ppt-skill" target="_blank" rel="noopener noreferrer">PPT 批量改造与验收工作流 ↗</a></h3><p>批量统一课件标题、配色与字号，在 PowerPoint 中实测文本越框，配套验收报告和回归测试。</p></div>
+                    <div class="project-row-meta">Python / PowerPoint<br>自动化 · 版式验收</div>
                 </article>
-                                <article class="card">
-                    <div class="card-icon">📰</div>
-                    <div class="card-title">财经 RSS 阅读器与摘要工具</div>
-                    <div class="card-desc">基于 Qiaomu AI RSS 改造 Obsidian 财经阅读器，内置 45 个源，支持文章转 Markdown、日记摘录与 OPML；另开发飞书摘要工具，支持消息去重、分组卡片和分批发送。</div>
-                    <div style="margin-top:12px;"><span class="tag">TypeScript · Obsidian API · Node.js</span></div>
-                    <a href="https://github.com/Serennity007/serenity-stock-rss" target="_blank" rel="noopener noreferrer" class="card-link">serenity-stock-rss ↗</a> · <a href="https://github.com/Serennity007/feishu-finance-digest" class="card-link">飞书摘要 ↗</a>
+                <article class="project-row">
+                    <span class="project-row-symbol" aria-hidden="true">CLI</span>
+                    <div><h3><a href="https://github.com/Serennity007/agent-trace" target="_blank" rel="noopener noreferrer">AI Agent 会话分析 CLI ↗</a></h3><p>解析编码 Agent 的本地日志，汇总 token 用量、成本估算和工具调用，提供终端报告与 JSON 输出。</p></div>
+                    <div class="project-row-meta">Node.js / JavaScript<br>日志解析 · 开发者工具</div>
+                </article>
+                <article class="project-row">
+                    <span class="project-row-symbol" aria-hidden="true">RSS</span>
+                    <div><h3><a href="https://github.com/Serennity007/serenity-stock-rss" target="_blank" rel="noopener noreferrer">财经 RSS 阅读器与摘要工具 ↗</a></h3><p>基于 Qiaomu AI RSS 改造 Obsidian 财经阅读器，内置 45 个源，支持 Markdown 摘录与 OPML；另开发飞书摘要工具。</p></div>
+                    <div class="project-row-meta">TypeScript / Obsidian<a href="https://github.com/Serennity007/feishu-finance-digest">飞书摘要 ↗</a></div>
                 </article>
             </div>
             <div style="text-align:center;margin-top:36px;" class="anim"><a href="https://github.com/Serennity007?tab=repositories" target="_blank" class="btn btn-ghost">查看全部仓库 →</a></div>

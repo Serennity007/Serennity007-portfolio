@@ -31,7 +31,7 @@
   const point = { x: 0, y: 0, rx: 0, ry: 0, vx: 0, vy: 0 };
   const tail = Array.from({ length: 6 }, () => ({ x: 0, y: 0 }));
   const pose = { x: 0, y: 0 };
-  const cards = [...document.querySelectorAll('.card, .build-window, .resume-choice, .stat-card, .value-item')].map(node => {
+  const cards = [...document.querySelectorAll('.card, .build-window, .resume-choice, .stat-card, .value-item')].filter(node => !document.body.classList.contains('scoped-motion') || node.hasAttribute('data-motion-surface')).map(node => {
     node.classList.add('motion-card');
     const sheen = document.createElement('span');
     sheen.className = 'motion-sheen motion-decoration';
@@ -114,6 +114,7 @@
   }
   function locate(target) {
     const element = target instanceof Element ? target : null;
+    root.dataset.pointerZone = element?.closest('[data-motion-zone]') ? 'on' : 'off';
     const card = cardMap.get(element?.closest('.motion-card')) || null;
     const magnet = magnetMap.get(element?.closest('.motion-magnet')) || null;
     if (activeCard !== card) {
