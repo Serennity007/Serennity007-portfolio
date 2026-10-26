@@ -68,7 +68,7 @@
   const reticle = document.createElement('div');
   reticle.className = 'motion-reticle motion-decoration';
   reticle.setAttribute('aria-hidden', 'true');
-  reticle.innerHTML = '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><g class="motion-reticle-ring"><path d="M8 15V8h7M29 8h7v7M36 29v7h-7M15 36H8v-7"/><circle cx="22" cy="22" r="15" stroke-dasharray="1 5"/></g><circle class="motion-pointer-core" cx="22" cy="22" r="1.5" fill="currentColor" stroke="none"/></svg>';
+  reticle.innerHTML = '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width=".85"><g class="motion-reticle-ring"><circle class="motion-pointer-halo" cx="22" cy="22" r="19" fill="currentColor" stroke="none"/><circle class="motion-pointer-outline" cx="22" cy="22" r="15"/></g><circle class="motion-pointer-core" cx="22" cy="22" r="2" fill="currentColor" stroke="none"/></svg>';
   document.body.append(field, reticle);
   const svgNode = (tag, attributes) => {
     const node = document.createElementNS('http://www.w3.org/2000/svg', tag);

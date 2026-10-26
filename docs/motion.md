@@ -2,7 +2,7 @@
 
 The homepage and `resume-dynamic.html` share `assets/motion.css` and `assets/motion.js`.
 
-On a desktop with a fine pointer, move across the featured project and project cards. A light field follows the pointer, a damped reticle trails it, and the cards tilt toward the pointer. The homepage wireframe and the CV's ZT orbit respond on two axes. Action buttons shift by at most 6 px horizontally and 4 px vertically. CV cards tilt at most 1.5 degrees to keep long text readable.
+On a desktop with a fine pointer, move across the featured project and project cards. A light field follows the pointer, a small glowing dot and thin circular ring trail it, and the cards tilt toward the pointer. The former square targeting brackets and dotted ring have been removed. The continuous ring expands gently over links and controls, with a quieter central dot. The homepage wireframe and the CV's ZT orbit respond on two axes. Action buttons shift by at most 6 px horizontally and 4 px vertically. CV cards tilt at most 1.5 degrees to keep long text readable.
 
 A short SVG ribbon follows fast pointer movement and retracts as the spring settles. It shares the existing frame scheduler and leaves no permanent trail. Card surfaces combine a moving glass reflection with a masked edge highlight and a shadow opposite the pointer. On leaving a card, these values return to neutral. The wireframe combines latitude/longitude lines with a gradient metal ring at another rotation speed. A compact decorative version sits behind the narrow-screen CV header, so the scene remains visible when the large ZT aside is hidden.
 
