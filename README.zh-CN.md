@@ -6,7 +6,7 @@
 
 [在线作品集](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 
-代表项目涵盖量化 AI Skills、组卷与考试系统、PPT 自动化、地图演示应用及 Agent/Git CLI 工具，每项均附公开源码链接。
+代表项目涵盖量化 AI Skills、PPT 自动化、Agent CLI 与财经阅读工具，每项均附公开源码链接。
 
 本地运行：`python -m http.server 8080`。纯 HTML/CSS/JavaScript，无需构建。推送 main 后通过 `.github/workflows/deploy.yml` 部署至 GitHub Pages。
 

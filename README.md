@@ -6,7 +6,7 @@ BIT M.S. student · 1 KSEM conference paper (CCF-C) · AI research and open-sour
 
 [Portfolio](https://serennity007.github.io/Serennity007-portfolio/) · [中文简历](https://serennity007.github.io/Serennity007-portfolio/resume.html) · [English Resume](https://serennity007.github.io/Serennity007-portfolio/resume-en.html)
 
-Selected projects cover quant AI Skills, exam authoring and assessment, PowerPoint automation, a restaurant map demo, and agent/Git CLI tools. Each entry links to its public source.
+Selected projects cover quant AI Skills, PowerPoint automation, agent CLI tools and financial RSS tooling. Each entry links to its public source.
 
 Serve this folder locally with `python -m http.server 8080`. Static HTML/CSS/JavaScript; no build step. The main branch deploys through `.github/workflows/deploy.yml` to GitHub Pages.
 

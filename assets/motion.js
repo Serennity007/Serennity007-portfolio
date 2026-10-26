@@ -24,7 +24,7 @@
   const phrases = [
     '做 AI 研究，写开源代码，偶尔打比赛拿奖。',
     '研究方向：司法判决认知智能 + 多模态安全对齐。',
-    'AI Skills · 在线考试系统 · Agent 工具。',
+    'AI Skills · 量化研究 · Agent 工具。',
     '北京理工大学 · 智能科学与技术 · 硕士在读。'
   ];
   typingCount = phrases[0].length;
