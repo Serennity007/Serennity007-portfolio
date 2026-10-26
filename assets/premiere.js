@@ -66,7 +66,7 @@
       <div class="opening-profile" aria-hidden="true">
         <div class="opening-name"><span class="opening-name-char">梁</span><span class="opening-name-char">正</span><span class="opening-name-char">涛</span></div>
         <p class="opening-english">Zhengtao Liang</p>
-        <p class="opening-school">北京理工大学 · 智能科学与技术硕士在读</p>
+        <p class="opening-school"><span>北京理工大学 · 人工智能学院</span><span>智能科学与技术硕士在读</span></p>
         <ul class="opening-research"><li>智能体协作研究</li><li>智能体安全</li><li>多模态大模型安全研究</li></ul>
         <ul class="opening-projects"><li>AI 选股与量化投研工具链</li><li>GhostTrack · 域名检查</li><li>XSS Audit Desktop · 源码扫描</li></ul>
         <div class="opening-proof"><span class="opening-paper">CCF-C 已中稿</span><span>贵州大学专业第一（1/69）</span><span>华为 ICT 国家一等奖</span></div>
