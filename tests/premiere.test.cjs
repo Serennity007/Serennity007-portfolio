@@ -69,7 +69,7 @@ test('hero handoff starts under the fading opening and is not restarted on compl
   f.timelines[1].config.onComplete(); assert.ok(f.entries.every(x => !x.style.opacity));
 });
 test('a watchdog releases the page even if animation completion never arrives', () => {
-  const f = fixture(); assert.ok(f.timeoutDelays[0] >= 4500 && f.timeoutDelays[0] <= 6000);
+  const f = fixture(); assert.equal(f.timeoutDelays[0], 6500);
   [...f.timers.values()][0]();
   assert.equal(f.overlay, null); assert.equal(f.timers.size, 0);
 });
