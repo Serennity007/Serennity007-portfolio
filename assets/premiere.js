@@ -68,8 +68,8 @@
         <p class="opening-english">Zhengtao Liang</p>
         <p class="opening-school">北京理工大学 · 智能科学与技术硕士在读</p>
         <ul class="opening-research"><li>智能体协作研究</li><li>智能体安全</li><li>多模态大模型安全研究</li></ul>
-        <div class="opening-proof"><span class="opening-paper">KSEM（CCF-C）已中稿</span><span>贵州大学专业第一（1/69）</span><span>华为 ICT 国家一等奖</span></div>
         <ul class="opening-projects"><li>AI 选股与量化投研工具链</li><li>GhostTrack · 域名检查</li><li>XSS Audit Desktop · 源码扫描</li></ul>
+        <div class="opening-proof"><span class="opening-paper">KSEM（CCF-C）已中稿</span><span>贵州大学专业第一（1/69）</span><span>华为 ICT 国家一等奖</span></div>
       </div>
       <button type="button" class="opening-skip">跳过开场 <span aria-hidden="true">↗</span></button>`;
     document.body.prepend(overlay);
@@ -88,8 +88,8 @@
         .fromTo('.opening-school', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .55 }, 'identity+=0.48')
         .addLabel('research', .66)
         .fromTo('.opening-research li', { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: .55, stagger: .07 }, 'research')
-        .fromTo('.opening-proof span', { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: .55, stagger: .08 }, 'research+=0.3')
-        .fromTo('.opening-projects li', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .5, stagger: .07 }, 'research+=0.55')
+        .fromTo('.opening-projects li', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .5, stagger: .07 }, 'research+=0.3')
+        .fromTo('.opening-proof span', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .5, stagger: .07 }, 'research+=0.55')
         .call(() => { if (overlay) overlay.dataset.phase = 'profile'; }, [], 1.9)
         .addLabel('handoff', 5.45)
         .call(() => { if (overlay) overlay.dataset.phase = 'handoff'; handedOff = true; revealHero(); }, [], 'handoff')
