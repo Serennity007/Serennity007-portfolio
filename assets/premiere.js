@@ -69,7 +69,7 @@
         <p class="opening-school">北京理工大学 · 智能科学与技术硕士在读</p>
         <ul class="opening-research"><li>智能体协作研究</li><li>智能体安全</li><li>多模态大模型安全研究</li></ul>
         <ul class="opening-projects"><li>AI 选股与量化投研工具链</li><li>GhostTrack · 域名检查</li><li>XSS Audit Desktop · 源码扫描</li></ul>
-        <div class="opening-proof"><span class="opening-paper">KSEM（CCF-C）已中稿</span><span>贵州大学专业第一（1/69）</span><span>华为 ICT 国家一等奖</span></div>
+        <div class="opening-proof"><span class="opening-paper">CCF-C 已中稿</span><span>贵州大学专业第一（1/69）</span><span>华为 ICT 国家一等奖</span></div>
       </div>
       <button type="button" class="opening-skip">跳过开场 <span aria-hidden="true">↗</span></button>`;
     document.body.prepend(overlay);

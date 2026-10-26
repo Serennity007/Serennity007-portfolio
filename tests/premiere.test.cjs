@@ -76,7 +76,7 @@ test('a watchdog releases the page even if animation completion never arrives', 
 test('the personal introduction retains the supplied identity, research and achievement facts', () => {
   const f = fixture();
   const visibleText = f.overlay.innerHTML.replace(/<[^>]*>/g, '');
-  for (const fact of ['梁正涛', '北京理工大学', '智能体协作研究', '智能体安全', '多模态大模型安全研究', 'KSEM（CCF-C）已中稿', '贵州大学专业第一（1/69）', '华为 ICT 国家一等奖', 'GhostTrack', 'XSS Audit Desktop']) assert.ok(visibleText.includes(fact), fact);
+  for (const fact of ['梁正涛', '北京理工大学', '智能体协作研究', '智能体安全', '多模态大模型安全研究', 'CCF-C 已中稿', '贵州大学专业第一（1/69）', '华为 ICT 国家一等奖', 'GhostTrack', 'XSS Audit Desktop']) assert.ok(visibleText.includes(fact), fact);
   assert.ok(!/PPT|法律 AI|全球.*三等奖|1 篇/.test(visibleText));
 });
 test('an existing visitor can see the new introduction without clearing old session data', () => {
