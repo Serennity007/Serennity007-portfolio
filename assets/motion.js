@@ -23,7 +23,7 @@
   const typing = document.getElementById('typingText');
   const phrases = [
     '做 AI 研究，写开源代码，偶尔打比赛拿奖。',
-    '研究方向：司法判决认知智能 + 多模态安全对齐。',
+    '研究方向：智能体协作研究、智能体安全、多模态大模型安全研究。',
     'AI Skills · 量化研究 · Agent 工具。',
     '北京理工大学 · 智能科学与技术 · 硕士在读。'
   ];
