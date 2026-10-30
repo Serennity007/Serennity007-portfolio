@@ -17,3 +17,5 @@
 论文按本人要求仅写会议名称与篇数，不写题目、年份、作者顺序或录用/发表状态。
 
 语言范围：本仓库提供中英文指南及独立的中英文简历页面，采用静态网站交付，不包装为桌面 Release；部分主页品牌和项目内容仍为中文。
+
+[六个重点项目](https://serennity007.github.io/Serennity007-portfolio/#featured-projects)与个人主页、导航共用公开项目清单，详见[同步方法与验证范围](docs/featured-projects.md)。现有 PDF 简历保留为历史存档，HTML 项目数量已按源码与带日期的验证记录更新。

@@ -346,6 +346,7 @@
 <link rel="stylesheet" href="assets/motion.css?v=20261026-pointer7">
 <script src="assets/motion.js?v=20261026-pointer7" defer></script>
 <link rel="stylesheet" href="assets/workbench.css?v=20261026-desk3">
+<link rel="stylesheet" href="assets/featured.css?v=20261030">
 <script src="assets/workbench.js?v=20261026-desk3" defer></script>
 <link rel="stylesheet" href="assets/premiere.css?v=20261026-premiere8">
 <script src="assets/vendor/gsap.min.js?v=3.15.0" defer></script>
@@ -364,7 +365,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#featured-projects">Projects</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#awards">Awards</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -389,9 +390,9 @@
             <div class="hero-research" data-entry><p>研究智能体协作与安全，<br>构建可复核的 AI 工具。</p><span>智能体协作研究 · 智能体安全 · 多模态大模型安全研究</span></div>
             <div class="hero-details" data-entry>
             <p class="hero-intro">北京理工大学硕士在读。开发量化投研、网络信息查询与源码静态扫描工具，保留源码和验证记录。<br>KSEM（CCF-C）会议论文已中稿。</p>
-            <div class="hero-actions"><a href="resume-dynamic.html" class="btn btn-primary">查看简历 ↗</a><a href="#workbench" class="btn btn-ghost">交互作品台 ↓</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">下载 PDF ↓</a><button type="button" class="hero-replay" data-replay-opening>重播开场 ↗</button></div>
+            <div class="hero-actions"><a href="resume-dynamic.html" class="btn btn-primary">查看简历 ↗</a><a href="#workbench" class="btn btn-ghost">交互作品台 ↓</a><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download class="btn btn-ghost">PDF 存档 ↓</a><button type="button" class="hero-replay" data-replay-opening>重播开场 ↗</button></div>
             <div class="hero-stats">
-                <div><div class="hero-stat-num">42</div><div class="hero-stat-lbl" title="截至 2026-10-26">选股 Skill · Stars（10/26）</div></div>
+                <div><div class="hero-stat-num">6</div><div class="hero-stat-lbl">重点开源项目</div></div>
                 <div><div class="hero-stat-num">已中稿</div><div class="hero-stat-lbl">KSEM · CCF-C</div></div>
                 <div><div class="hero-stat-num">1/69</div><div class="hero-stat-lbl">专业排名</div></div>
                 <div><div class="hero-stat-num">4.14</div><div class="hero-stat-lbl">GPA / 5.0</div></div>
@@ -503,7 +504,7 @@
             <div class="stat-grid anim">
                 <div class="stat-card"><div class="stat-card-num">4+</div><div class="stat-card-lbl">Years Coding</div></div>
                 <div class="stat-card"><div class="stat-card-num">1/69</div><div class="stat-card-lbl">专业排名</div></div>
-                <div class="stat-card"><div class="stat-card-num">5</div><div class="stat-card-lbl">代表项目</div></div>
+                <div class="stat-card"><div class="stat-card-num">6</div><div class="stat-card-lbl">重点开源项目</div></div>
             </div>
         </div>
     </section>
@@ -537,8 +538,83 @@
     <section class="section" id="projects">
         <div class="container">
             <div class="eyebrow anim">Selected Work</div>
-            <h2 class="section-title anim">研究与工程作品</h2>
+            <h2 class="section-title anim" id="quant-research">研究与工程作品</h2><span id="project-xss-audit"></span>
             <p class="section-desc anim">围绕智能体协作与安全开展研究，也开发量化投研、源码扫描与开发者工具。这里展示已有项目与可复核的实现记录。</p>
+<!-- featured-projects:start -->
+<section class="focus-projects" id="featured-projects" aria-labelledby="focus-title">
+  <div class="focus-heading"><div><p class="focus-kicker">SELECTED OPEN SOURCE · 06</p><h3 id="focus-title">选一个项目，实际跑起来</h3><p>从输入、实现到结果，先用公开样例走通一次。</p></div>
+  <a href="https://github.com/Serennity007/repo-catalog/blob/main/docs/projects.md">六项上手指南 ↗</a></div>
+  <div class="focus-grid">
+    <article class="focus-card" id="focus-quant">
+      <div class="focus-card-top"><span>01</span><span>重点维护</span></div>
+      <h4>股票与量化研究工具链</h4><p class="focus-repo">awesome-stock-quant-skills</p><p class="focus-purpose">把财务筛选、共识排序和含成本回测串成可复核的研究流程。</p>
+      <dl>
+        <div><dt>输入</dt><dd>内置合成 CSV；实际研究另行准备财务和行情数据。</dd></div>
+        <div><dt>产物</dt><dd>REPORT.md、排名 CSV、持仓、成本与输入哈希。</dd></div>
+        <div><dt>实现</dt><dd>原创 Skills 与脚本，含多框架合成和回测核算；第三方合集另有来源说明。</dd></div>
+      </dl><p class="focus-environment">Python 3.11+；演示依赖 NumPy、pandas。</p>
+      <p class="focus-limits">演示是两个独立合成场景；计算通过不代表投资效果。</p>
+      <div class="focus-links"><a class="focus-start" href="https://github.com/Serennity007/repo-catalog/blob/main/docs/projects.md#quant">开始使用 ↗</a><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/docs/quickstart.md">源码与指南</a><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/docs/validation.md">验证范围</a><a href="https://serennity007.github.io/Serennity007-portfolio/project-quant.html">在线体验与案例</a></div>
+    </article>
+    <article class="focus-card" id="focus-audit">
+      <div class="focus-card-top"><span>02</span><span>重点维护</span></div>
+      <h4>源码静态审计工作台</h4><p class="focus-repo">xss-audit-desktop</p><p class="focus-purpose">让安全审查保留源码位置、有限流向证据和人工复核结论。</p>
+      <dl>
+        <div><dt>输入</dt><dd>本地源码、公开仓库快照或内置 demo-project。</dd></div>
+        <div><dt>产物</dt><dd>审查信号、覆盖情况与 HTML / SARIF 等报告。</dd></div>
+        <div><dt>实现</dt><dd>基于 xss-audit 方法扩展扫描引擎、AST 分析、桌面与浏览器复核界面。</dd></div>
+      </dl><p class="focus-environment">源码 Python 3.11+；Windows 便携包与浏览器版另有入口。</p>
+      <p class="focus-limits">信号需人工确认；浏览器和桌面覆盖不同，源码复验不等于重测发布包。</p>
+      <div class="focus-links"><a class="focus-start" href="https://github.com/Serennity007/repo-catalog/blob/main/docs/projects.md#audit">开始使用 ↗</a><a href="https://github.com/Serennity007/xss-audit-desktop/blob/main/README.md">源码与指南</a><a href="https://github.com/Serennity007/xss-audit-desktop/blob/main/docs/verification/2026-10-30-source.json">验证范围</a><a href="https://serennity007.github.io/xss-audit-desktop/">在线体验与案例</a></div>
+    </article>
+    <article class="focus-card" id="focus-agent-trace">
+      <div class="focus-card-top"><span>03</span><span>重点维护</span></div>
+      <h4>Agent 本地会话分析</h4><p class="focus-repo">agent-trace</p><p class="focus-purpose">从编码 Agent 的本地日志查看 token、工具调用和成本估算。</p>
+      <dl>
+        <div><dt>输入</dt><dd>指定目录的受支持日志；首次运行使用公开合成样本。</dd></div>
+        <div><dt>产物</dt><dd>终端汇总或可解析的 JSON。</dd></div>
+        <div><dt>实现</dt><dd>多种日志解析器、会话与工具统计、终端及 JSON 输出。</dd></div>
+      </dl><p class="focus-environment">Node.js 18+、npm；源码安装需要包源访问。</p>
+      <p class="focus-limits">日志格式覆盖有限；价格使用内置估算，不是账单。源码修复未发布到 npm。</p>
+      <div class="focus-links"><a class="focus-start" href="https://github.com/Serennity007/repo-catalog/blob/main/docs/projects.md#agent-trace">开始使用 ↗</a><a href="https://github.com/Serennity007/agent-trace/blob/main/docs/first-run.md">源码与指南</a><a href="https://github.com/Serennity007/agent-trace/blob/main/CHANGELOG.md">验证范围</a></div>
+    </article>
+    <article class="focus-card" id="focus-paper">
+      <div class="focus-card-top"><span>04</span><span>重点维护</span></div>
+      <h4>论文 PDF 中文排版流程</h4><p class="focus-repo">paper-zh-translation</p><p class="focus-purpose">在保留论文版面坐标的前提下，把已有中文译文写回 PDF 并检查。</p>
+      <dl>
+        <div><dt>输入</dt><dd>有文本层的 PDF、逐段译文 JSON 与中文字体。</dd></div>
+        <div><dt>产物</dt><dd>中文 PDF、可复跑的译文工程和五项版面检查。</dd></div>
+        <div><dt>实现</dt><dd>整理六阶段 Skill、提取/回写/质检脚本和共享输入校验。</dd></div>
+      </dl><p class="focus-environment">Python 3.11+、PyMuPDF、fonttools 及可用中文字体。</p>
+      <p class="focus-limits">脚本不自动生成译文；扫描件需先 OCR，合成自检不代表真实论文翻译质量。</p>
+      <div class="focus-links"><a class="focus-start" href="https://github.com/Serennity007/repo-catalog/blob/main/docs/projects.md#paper">开始使用 ↗</a><a href="https://github.com/Serennity007/paper-zh-translation/blob/main/README.md">源码与指南</a><a href="https://github.com/Serennity007/paper-zh-translation/blob/main/CHANGELOG.md">验证范围</a></div>
+    </article>
+    <article class="focus-card" id="focus-ppt">
+      <div class="focus-card-top"><span>05</span><span>重点维护</span></div>
+      <h4>已有 PPTX 批量改版</h4><p class="focus-repo">beiligong-ppt-skill</p><p class="focus-purpose">把字号、底色、标题与院标调整变成可复跑的课件改版流程。</p>
+      <dl>
+        <div><dt>输入</dt><dd>已有 PPTX 和按课件调整的配置；首次运行用合成单页。</dd></div>
+        <div><dt>产物</dt><dd>分版本 PPTX、字号映射和扫描 JSON；完整流程另含实测与审计。</dd></div>
+        <div><dt>实现</dt><dd>课件改版 Skill、批处理脚本、PowerPoint 实测回退与输出路径保护。</dd></div>
+      </dl><p class="focus-environment">基础演示只需 Python 3.10+ 与 python-pptx；实测/导出需 Windows PowerPoint。</p>
+      <p class="focus-limits">无 Office 演示只验证扫描和字号映射，不证明排版可交付；fit 未绑定课件指纹。</p>
+      <div class="focus-links"><a class="focus-start" href="https://github.com/Serennity007/repo-catalog/blob/main/docs/projects.md#ppt">开始使用 ↗</a><a href="https://github.com/Serennity007/beiligong-ppt-skill/blob/master/README.md">源码与指南</a><a href="https://github.com/Serennity007/beiligong-ppt-skill/blob/master/CHANGELOG.md">验证范围</a></div>
+    </article>
+    <article class="focus-card" id="focus-futures">
+      <div class="focus-card-top"><span>06</span><span>重点维护</span></div>
+      <h4>期货分板块研究工作台</h4><p class="focus-repo">taotao-futures-research</p><p class="focus-purpose">在共同区间、信息时点与样本覆盖明确的条件下比较产业板块。</p>
+      <dl>
+        <div><dt>输入</dt><dd>内置合成配置，或用户准备并注明来源的市场与产业数据。</dd></div>
+        <div><dt>产物</dt><dd>中英文 HTML / Markdown、JSON、冻结输入与 SHA-256 清单。</dd></div>
+        <div><dt>实现</dt><dd>八个专项 Skills 的统一工作台、数据契约、证据与风险核算工具。</dd></div>
+      </dl><p class="focus-environment">Python 3.10+；基础离线命令只用标准库。</p>
+      <p class="focus-limits">样例使用合成数据与虚构规则；研究计算不构成已验证交易策略。</p>
+      <div class="focus-links"><a class="focus-start" href="https://github.com/Serennity007/repo-catalog/blob/main/docs/projects.md#futures">开始使用 ↗</a><a href="https://github.com/Serennity007/taotao-futures-research/blob/main/README.zh-CN.md">源码与指南</a><a href="https://github.com/Serennity007/taotao-futures-research/blob/main/docs/maintenance-2026-10-30.md">验证范围</a></div>
+    </article>
+  </div>
+  <p class="focus-footnote">内容核对 2026-10-30 · 重点为维护优先级，功能范围以各项目说明为准。<a href="https://github.com/Serennity007/repo-catalog/blob/main/docs/lifecycle.md">维护分级 ↗</a></p>
+</section>
+<!-- featured-projects:end -->
             <h3 class="anim" style="margin-top:40px;margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">🔬 研究项目</h3>
             <div class="card-grid anim stagger" style="margin-bottom:40px;">
                 <div class="card" style="background:linear-gradient(135deg, rgba(0,212,255,0.08), rgba(139,92,246,0.05));">
@@ -560,45 +636,7 @@
                     <div style="margin-top:10px;"><span class="tag">Langchain</span><span class="tag">FastAPI</span><span class="tag">LLM</span></div>
                 </div>
             </div>
-            <h3 class="anim" style="margin-bottom:16px;font-size:15px;color:var(--text-2);letter-spacing:1px;">💻 开源项目</h3>
-            <div class="work-collection">
-                <article class="card quant-feature anim" data-motion-zone data-motion-surface id="quant-research">
-                    <div class="quant-feature-main">
-                        <div class="quant-kicker">主打项目 · 有源码与实测记录</div>
-                        <h3 class="card-title">AI 选股与量化投研工具链</h3>
-                        <p class="card-desc">我把财务筛选、因子评分、多框架共识与含成本回测写成可运行的 Agent Skills，输出分项得分、换手、持仓明细和输入哈希。</p>
-                        <div class="quant-metrics"><span><strong>30</strong> 原创 Skills</span><span><strong>23</strong> 方法参考框架</span><span><strong>40</strong> 本地测试通过</span></div>
-                        <p class="card-desc">2026-10-24 使用 AKShare 1.19.3 完成 600519 真实取数与筛选，覆盖 2021–2025 年报；2026-10-25 完成 40 项本地测试。</p>
-                        <p class="quant-snapshot">GitHub 42 Stars · 8 Forks · 统计于 2026-10-26</p>
-                        <p class="card-desc">我使用真实财务数据完成取数与筛选实测，并公开原始 JSON、筛选结果和验证记录。我未为项目付费投流或刷量，Star、Fork 均为自然增长。</p>
-                        <div class="quant-actions"><a href="https://github.com/Serennity007/awesome-stock-quant-skills" class="btn btn-primary" target="_blank" rel="noopener noreferrer">查看源码 ↗</a><a href="project-quant.html" class="btn btn-ghost">项目拆解与实测 ↗</a></div>
-                    </div>
-                    <div class="quant-console">
-                        <div class="quant-kicker">从输入到结果，保留每一步</div>
-                        <ol class="quant-flow"><li>真实财务数据取数</li><li>财务筛选与因子评分</li><li>多框架共识排序</li><li>含成本回测与持仓核算</li></ol>
-                        <p>安装演示依赖后，在仓库目录运行：</p>
-                        <code>python scripts/run_demo.py</code>
-                        <p>输出报告、CSV、输入哈希与运行日志。</p>
-                        <p>两个独立合成场景，用于复核计算。</p>
-                        <div class="quant-evidence"><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/docs/validation.md">验证范围 ↗</a><a href="https://github.com/Serennity007/awesome-stock-quant-skills/blob/main/examples/verification/2026-10-24/buffett-check.json">真实取数记录 ↗</a></div>
-                    </div>
-                </article>
-
-
-                <article class="project-row" id="project-ghosttrack" style="scroll-margin-top:100px;"><span class="project-row-symbol" aria-hidden="true">IP</span><div><h3><a href="https://github.com/Serennity007/GhostTrack" target="_blank" rel="noopener noreferrer">GhostTrack · 网络信息查询与域名检查 ↗</a></h3><p>在原有 GhostTrack 查询工具上扩展域名批量检查，新增 DNS、证书有效期和 HTTP 状态检查、快照对比及结果导出。实现任务队列的暂停、取消与失败重试。</p></div><div class="project-row-meta">Python · Tkinter · Android · Web<a href="https://github.com/Serennity007/GhostTrack/releases/latest" target="_blank" rel="noopener noreferrer">下载软件 ↗</a></div></article>
-<article class="project-row" id="project-xss-audit" style="scroll-margin-top:100px;"><span class="project-row-symbol" aria-hidden="true">AST</span><div><h3><a href="https://github.com/Serennity007/xss-audit-desktop" target="_blank" rel="noopener noreferrer">XSS Audit Desktop · 源码静态扫描工具 ↗</a></h3><p>在 xss-audit 审计方法基础上新增源码静态扫描引擎，实现 JS/TS/Python 的规则匹配、AST 流向分析和源码行定位。支持本地目录及公开 GitHub 仓库扫描、人工复核与 HTML/SARIF 导出。</p></div><div class="project-row-meta">Python · Tree-sitter · Tkinter · SARIF<a href="https://github.com/Serennity007/xss-audit-desktop/releases/latest" target="_blank" rel="noopener noreferrer">下载软件 ↗</a></div></article>
-                <article class="project-row">
-                    <span class="project-row-symbol" aria-hidden="true">CLI</span>
-                    <div><h3><a href="https://github.com/Serennity007/agent-trace" target="_blank" rel="noopener noreferrer">AI Agent 会话分析 CLI ↗</a></h3><p>解析编码 Agent 的本地日志，汇总 token 用量、成本估算和工具调用，提供终端报告与 JSON 输出。</p></div>
-                    <div class="project-row-meta">Node.js / JavaScript<br>日志解析 · 开发者工具</div>
-                </article>
-                <article class="project-row">
-                    <span class="project-row-symbol" aria-hidden="true">RSS</span>
-                    <div><h3><a href="https://github.com/Serennity007/serenity-stock-rss" target="_blank" rel="noopener noreferrer">财经 RSS 阅读器与摘要工具 ↗</a></h3><p>基于 Qiaomu AI RSS 改造 Obsidian 财经阅读器，内置 45 个源，支持 Markdown 摘录与 OPML；另开发飞书摘要工具。</p></div>
-                    <div class="project-row-meta">TypeScript / Obsidian<a href="https://github.com/Serennity007/feishu-finance-digest">飞书摘要 ↗</a></div>
-                </article>
-            </div>
-            <div style="text-align:center;margin-top:36px;" class="anim"><a href="https://github.com/Serennity007?tab=repositories" target="_blank" class="btn btn-ghost">查看全部仓库 →</a></div>
+            <p id="project-ghosttrack" style="scroll-margin-top:100px;margin-top:24px;"><a href="https://github.com/Serennity007/GhostTrack">GhostTrack：基于上游扩展的域名检查</a> · <a href="https://github.com/Serennity007/serenity-stock-rss">财经 RSS 阅读器</a> · <a href="https://github.com/Serennity007/repo-catalog/blob/main/README.zh-CN.md">浏览全部项目 →</a></p>
             <div class="gh-card anim">
                 <h3 style="font-size:14px;font-weight:600;margin-bottom:16px;">📊 GitHub Activity</h3>
                 <div style="min-height:160px;background:var(--surface-2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;" id="ghStatsLoading">
@@ -701,7 +739,7 @@
 
     <section class="section" id="resumes"><div class="container">
         <div class="eyebrow anim">Resume</div><h2 class="section-title anim">选择简历版本</h2>
-        <p class="section-desc anim">在线查看四种排版，或直接下载中英文 PDF。每个版本均支持返回主页、章节跳转、版本切换和打印。</p>
+        <p class="section-desc anim">在线查看四种排版，均支持返回主页、版本切换和打印。中英文 PDF 为历史存档；最新项目与验证范围请看上方六项入口。</p>
         <div class="resume-choice-grid"><a class="resume-choice" href="resume.html"><span class="resume-choice-label">ZH / PRINT</span><h3>中文打印版</h3><p>标准中文简历，适合快速查看、A4 打印或保存为 PDF。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-en.html"><span class="resume-choice-label">EN / PRINT</span><h3>English CV</h3><p>英文履历，适合英文阅读、交流与打印。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dark.html"><span class="resume-choice-label">HUD / DOSSIER</span><h3>科幻档案版</h3><p>青蓝 HUD 档案排版，按章节浏览科研、项目与获奖经历。</p><span class="resume-choice-action">打开简历 ↗</span></a><a class="resume-choice" href="resume-dynamic.html"><span class="resume-choice-label">HUD / INTERACTIVE</span><h3>科幻交互版</h3><p>科幻终端长页，提供章节定位、阅读进度与移动端排版。</p><span class="resume-choice-action">打开简历 ↗</span></a></div>
 <div class="resume-downloads"><a href="assets/resumes/Liang-Zhengtao-Resume-ZH.pdf" download>↓ 中文简历 PDF</a><a href="assets/resumes/Liang-Zhengtao-Resume-EN.pdf" download>↓ English CV PDF</a><span>更新于 2026-10-25</span></div>
     </div></section>

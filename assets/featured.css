@@ -1,0 +1,26 @@
+.focus-projects{margin:42px 0 64px;scroll-margin-top:100px}
+.focus-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}
+.focus-kicker{font:11px/1.6 'JetBrains Mono',monospace;letter-spacing:1.4px;color:var(--accent);margin-bottom:12px}
+.focus-heading h3{font-size:clamp(23px,3vw,32px);line-height:1.4;margin-bottom:10px}
+.focus-heading p:not(.focus-kicker){font-size:14px;color:var(--text-2)}
+.focus-heading>a,.focus-footnote a{color:var(--accent);font-size:13px;text-underline-offset:4px;white-space:nowrap}
+.focus-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.focus-card{display:flex;flex-direction:column;min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;scroll-margin-top:100px}
+.focus-card-top{display:flex;justify-content:space-between;font:11px/1.6 'JetBrains Mono',monospace;color:var(--accent);margin-bottom:20px}
+.focus-card-top span:last-child{border:1px solid var(--border);border-radius:100px;padding:3px 10px;font-family:inherit}
+.focus-card h4{font-size:21px;line-height:1.45;margin:0 0 6px}
+.focus-repo{font:11px/1.7 'JetBrains Mono',monospace;color:var(--text-2);overflow-wrap:anywhere}
+.focus-purpose{font-size:14px;line-height:1.8;margin:16px 0 20px;color:var(--text)}
+.focus-card dl{display:grid;gap:12px;margin:0 0 18px}
+.focus-card dl>div{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;font-size:13px;line-height:1.8}
+.focus-card dt{color:var(--accent)}.focus-card dd{margin:0;color:var(--text-2)}
+.focus-environment,.focus-limits{font-size:12px;line-height:1.85;color:var(--text-2)}
+.focus-environment{padding-top:16px;border-top:1px solid var(--border);margin-top:auto}
+.focus-limits{margin:9px 0 20px}
+.focus-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.focus-links a{color:var(--accent);font-size:12px;text-underline-offset:4px}
+.focus-links .focus-start{border:1px solid var(--accent);border-radius:8px;padding:9px 13px;text-decoration:none}
+.focus-projects a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+.focus-footnote{font-size:12px;color:var(--text-2);line-height:1.8;margin-top:20px}.focus-footnote a{margin-left:12px}
+@media(max-width:700px){.focus-grid{grid-template-columns:1fr}.focus-heading{align-items:start;flex-direction:column;gap:14px}.focus-card{padding:22px}.focus-footnote a{display:block;margin:8px 0 0}}
+@media print{.focus-grid{display:block}.focus-card{break-inside:avoid;margin-bottom:16px}}

@@ -21,3 +21,5 @@ Every resume includes a persistent homepage link, version switcher, contact link
 Publication wording follows the owner’s instructions: venue and count only; no title, year, author order or publication-status claims.
 
 Language scope: this repository has English and Chinese guides and separate English/Chinese resume pages. It is a static website, not a desktop Release. Some homepage branding and project content remain Chinese.
+
+The [six focus projects](https://serennity007.github.io/Serennity007-portfolio/#featured-projects) share a public manifest with the profile and catalog. See [content synchronization](docs/featured-projects.md). Existing PDF resumes remain archived snapshots; HTML project counts were refreshed against the source and dated validation record.
